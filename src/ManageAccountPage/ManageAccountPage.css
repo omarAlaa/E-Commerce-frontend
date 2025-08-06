@@ -1,0 +1,80 @@
+.manage-account-main {
+    display: flex;
+    justify-content: center;
+}
+
+.manage-account-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 100%;
+}
+
+.manage-account {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-left: 1em;
+}
+
+.manage-account hr,
+p {
+    width: 90%;
+}
+
+.change-username {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 3em;
+}
+
+.change-username input {
+    outline: none;
+    border: 1px solid gray;
+    padding: .5em;
+    border-radius: .5em;
+    font-size: medium;
+}
+
+.change-username input:hover {
+    border-color: black;
+}
+
+.change-username input:focus {
+    border-color: blue;
+}
+
+.change-username button {
+    background: white;
+    color: blue;
+    padding: .5em;
+    border-radius: .5em;
+    border: 1px solid blue;
+    padding: 10px 20px;
+}
+
+.change-username button:hover {
+    cursor: pointer;
+    background: whitesmoke;
+}
+
+#delete-account-text {
+    color: red;
+}
+
+#delete-account-button {
+    width: 150px;
+    background: white;
+    color: red;
+    border: 1px solid rgb(255, 110, 110);
+    padding: .7em 20px;
+    border-radius: .5em;
+    white-space: nowrap;
+    margin-bottom: 30px;
+}
+
+#delete-account-button:hover {
+    border-color: red;
+    cursor: pointer;
+}

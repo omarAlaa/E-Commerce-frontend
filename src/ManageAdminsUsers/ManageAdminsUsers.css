@@ -1,0 +1,32 @@
+.manage-admins-users-main {
+    display: flex;
+    justify-content: center;
+}
+
+.manage-admins-users-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.table-title {
+    margin-left: 57px;
+}
+
+#users-admins-hr {
+    margin-top: 16px;
+    width: 90%;
+    align-self: center;
+}
+
+@media screen and (max-width:700px) {
+    .table-title {
+        margin-left: 0;
+    }
+
+    #users-admins-hr {
+        margin-left: -35px;
+    }
+}

@@ -1,0 +1,69 @@
+.orders-main {
+    display: flex;
+    justify-content: center;
+}
+
+.no-orders {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+}
+
+.orders-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.orders {
+    margin: 2em 2em 0 1em;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: large;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+}
+
+.order-item-info {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.order-item-title {
+    white-space: wrap;
+}
+
+#subtotal {
+    color: red;
+}
+
+.date-id {
+    color: blue;
+}
+
+.order hr {
+    margin-bottom: 10px;
+}
+
+.order:last-of-type hr {
+    display: none;
+}
+
+@media screen and (max-width:700px) {
+    .orders-main {
+        justify-content: start;
+    }
+}

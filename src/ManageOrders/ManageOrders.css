@@ -1,0 +1,72 @@
+.manage-orders-main {
+    display: flex;
+    /* height: 100vh; */
+    justify-content: center;
+}
+
+.manage-orders-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2em;
+}
+
+.dialog-order {
+    position: fixed;
+    top: 15%;
+    align-self: center;
+    margin-right: 200px;
+    border: none;
+    border-radius: .5em;
+    background: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.manage-order-buttons {
+    display: flex;
+    gap: 10px;
+    align-self: flex-end;
+}
+
+.manage-order-buttons button {
+    border-radius: .5em;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid blue;
+}
+
+.manage-order-buttons button:hover {
+    background: rgb(204, 199, 199);
+}
+
+#update-button {
+    background: blue;
+    color: whitesmoke;
+}
+
+#update-button:hover {
+    background: rgb(7, 7, 179);
+}
+
+@media screen and (max-width:700px) {
+
+    .manage-orders-main {
+        height: 50px;
+    }
+
+    .manage-orders-body h2 {
+        text-align: center;
+        margin-right: 45px;
+    }
+
+    .dialog-order {
+        margin-left: 170px;
+    }
+}

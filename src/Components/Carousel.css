@@ -1,0 +1,54 @@
+.carousel-section {
+    position: relative;
+}
+
+.carousel-body {
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+    height: 70vh;
+    border-radius: .5em;
+    padding: 10px;
+    background: rgb(52, 121, 121);
+    align-self: center;
+    gap: 10px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.carousel-body::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-image {
+    min-width: 100%;
+    scroll-snap-align: center;
+    cursor: pointer;
+}
+
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-section button {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    padding: 0 1%;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.61);
+    color: black;
+    border: none;
+    cursor: pointer;
+    scale: 2 3.5;
+}
+
+.carousel-section button:hover {
+    color: blue;
+}
+
+.carousel-section button:nth-of-type(2) {
+    left: 92%;
+}

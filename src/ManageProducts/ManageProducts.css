@@ -1,0 +1,114 @@
+.manage-products-main {
+    display: flex;
+    justify-content: center;
+}
+
+.manage-products-body {
+    width: 100%;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+
+.manage-products-body h3 {
+    margin-left: 5%;
+}
+
+.add-product {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: center;
+    border: 1px solid gray;
+    padding: 24px;
+    margin-top: 32px;
+    border-radius: .5em;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.one-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.manage-products-main input,
+textarea {
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 16px;
+    font-size: medium;
+}
+
+.manage-products-main textarea {
+    font-size: larger;
+    padding: .5em;
+}
+
+.manage-products-main input:hover,
+textarea:hover {
+    border-color: black;
+}
+
+.manage-products-main input:focus,
+textarea:focus {
+    border-color: blue;
+}
+
+.add-product button {
+    background: limegreen;
+    color: whitesmoke;
+    border: none;
+    border-radius: .5em;
+    padding: 1em 0;
+    cursor: pointer;
+}
+
+.add-product button:hover {
+    background: green;
+}
+
+.dialog-product {
+    position: fixed;
+    top: 15%;
+    align-self: center;
+    margin-right: 200px;
+    border: none;
+    border-radius: .5em;
+    background: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.dialog-product label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+@media screen and (max-width: 770px) {
+
+    .one-row {
+        flex-direction: column;
+    }
+
+    .manage-products-body hr {
+        width: 93%;
+    }
+
+    .manage-products-body h2 {
+        margin-left: 0;
+    }
+
+    .dialog-product {
+        margin-left: 170px;
+    }
+}

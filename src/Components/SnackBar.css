@@ -1,0 +1,34 @@
+.snack-bar {
+    position: fixed;
+    align-self: center;
+    top: 2em;
+    background: red;
+    color: white;
+    padding: 10px;
+    border-radius: .5em;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+@keyframes show-snackbar {
+
+    0% {
+        scale: 0;
+    }
+
+    5% {
+        scale: 1;
+    }
+
+    95% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 0;
+    }
+}

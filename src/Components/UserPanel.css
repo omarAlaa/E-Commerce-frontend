@@ -1,0 +1,115 @@
+.side-panel {
+    position: sticky;
+    top: 64px;
+    display: flex;
+    flex-direction: column;
+    width: min(230px, 50vw);
+    gap: 2px;
+}
+
+.side-panel h2 {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.menu-icon {
+    display: none;
+}
+
+.user-info {
+    display: flex;
+    gap: 5px;
+    margin: 8px 0 0 5px;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: larger;
+    cursor: pointer;
+    width: 100%;
+    padding: .5em;
+    color: black;
+    text-decoration: none;
+}
+
+.setting:hover {
+    background: rgb(230, 230, 230);
+}
+
+.setting h4 {
+    margin-left: 20px;
+}
+
+#hide-hr {
+    min-height: calc(100vh - 64px);
+}
+
+.upper-panel {
+    position: sticky;
+    top: 0;
+    min-height: 53px;
+    padding: 10px;
+    margin-left: 6px;
+}
+
+@media screen and (max-width:700px) {
+    .side-panel {
+        display: none;
+    }
+
+    .user-panel-main {
+        height: 50px;
+    }
+
+    .menu-icon {
+        display: flex;
+        min-height: 53px;
+    }
+
+    .menu-icon :first-child {
+        margin: 15px 0 0 10px;
+    }
+
+    .user-panel-main:first-child {
+        position: sticky;
+        top: 64px;
+        z-index: 1;
+    }
+
+    .upper-panel h2 {
+        text-align: center;
+        margin-right: 45px;
+    }
+
+    #hide-hr {
+        display: none;
+    }
+
+    .user-panel-main:hover .side-panel {
+        display: flex;
+        animation: slide .5s ease-in-out forwards;
+        position: absolute;
+        min-height: calc(100vh - 64px);
+        background: whitesmoke;
+        width: min(230px, 50vw);
+        top: 0;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(-180px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
