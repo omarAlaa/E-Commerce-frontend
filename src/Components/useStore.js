@@ -25,9 +25,9 @@ export const useStore = create((set, get) => ({
     },
     addToCart: async (product) => {
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/cart/add`, { userId: get().user.id, oldCart: get().cart, product })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/cart/add`, { userId: get().user ? get().user.id : '', oldCart: get().cart, product })
             set({ cart: res.data.userCart, snackBar: { visible: true, success: true, text: 'Product added to cart' } })
-            if (get().user.id === '') {
+            if (!get().user) {
                 localStorage.setItem('cart', JSON.stringify(res.data.userCart))
             }
         } catch (error) {
@@ -38,9 +38,9 @@ export const useStore = create((set, get) => ({
     changeQuantity: async (title, quantity) => {
         try {
             if (get().cart.items.find(item => item.title === title).quantity + quantity !== 0) {
-                const res = await axios.put(`${import.meta.env.VITE_API_URL}/cart/update`, { userId: get().user.id, oldCart: get().cart, title, quantity })
+                const res = await axios.put(`${import.meta.env.VITE_API_URL}/cart/update`, { userId: get().user ? get().user.id : '', oldCart: get().cart, title, quantity })
                 set({ cart: res.data.userCart })
-                if (get().user.id === '') {
+                if (!get().user) {
                     localStorage.setItem('cart', JSON.stringify(res.data.userCart))
                 }
             }
@@ -51,9 +51,9 @@ export const useStore = create((set, get) => ({
     },
     deleteFromCart: async (title) => {
         try {
-            const res = await axios.delete(`${import.meta.env.VITE_API_URL}/cart/deleteProduct`, { data: { userId: get().user.id, oldCart: get().cart, title } })
+            const res = await axios.delete(`${import.meta.env.VITE_API_URL}/cart/deleteProduct`, { data: { userId: get().user ? get().user.id : '', oldCart: get().cart, title } })
             set({ cart: res.data.userCart })
-            if (get().user.id === '') {
+            if (!get().user) {
                 localStorage.setItem('cart', JSON.stringify(res.data.userCart))
             }
         } catch (error) {
@@ -63,9 +63,9 @@ export const useStore = create((set, get) => ({
     },
     emptyCart: async () => {
         try {
-            await axios.delete(`${import.meta.env.VITE_API_URL}/cart/emptyCart`, { data: { userId: get().user.id } })
+            await axios.delete(`${import.meta.env.VITE_API_URL}/cart/emptyCart`, { data: { userId: get().user ? get().user.id : '' } })
             set({ cart: { ...get().cart, items: [] } })
-            if (get().user.id === '') {
+            if (!get().user) {
                 localStorage.removeItem('cart')
             }
         } catch (error) {
