@@ -8,11 +8,11 @@ import { useStore } from '../Components/useStore'
 export default function Login() {
     const [snackBar, setSnackBar] = useState()
     const navigate = useNavigate()
-    const { changeUser } = useStore()
+    const { changeUser, cart } = useStore()
 
     async function handleLogin(data) {
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, { email: data.get('email'), password: data.get('password') })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/login`, { email: data.get('email'), password: data.get('password'), userCart: cart ? cart : {} })
             changeUser({ ...res.data })
             navigate(res.data.role === 'user' ? '/' : '/manageProducts')
         } catch (error) {

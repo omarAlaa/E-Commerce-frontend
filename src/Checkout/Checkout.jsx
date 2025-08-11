@@ -35,7 +35,7 @@ export default function Checkout() {
 
     return (
         <main className='checkout-main'>
-            <button className='back-store' onClick={() => navigate('/mainPage')}>{'< Back to store'}</button>
+            <button className='back-store' onClick={() => navigate('/')}>{'< Back to store'}</button>
             <article className='steps'>
                 <button className="circle" style={{ background: step === 1 ? 'blue' : 'green' }}></button>
                 <p>Shipping address </p>

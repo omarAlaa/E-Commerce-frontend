@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Cart() {
-    const { cart, fetchCart, changeQuantity, deleteFromCart, emptyCart } = useStore()
+    const { cart, fetchCart, changeQuantity, deleteFromCart, emptyCart, user } = useStore()
 
     useEffect(() => {
         fetchCart()
@@ -35,7 +35,7 @@ export default function Cart() {
                 <h3>Subtotal</h3>
                 <div className="checkout">
                     <h3>{Intl.NumberFormat().format(cart?.subtotal)} EGP</h3>
-                    <Link to='/checkout'><button className='cart-button'>Checkout</button></Link>
+                    <Link to={user ? '/checkout' : '/login'}><button className='cart-button'>Checkout</button></Link>
                 </div>
             </> : <section className='empty-cart'>
                 <h1>Your cart is empty</h1>

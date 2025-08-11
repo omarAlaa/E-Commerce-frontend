@@ -3,16 +3,19 @@ import SnackBar from '../Components/SnackBar'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
+import { useStore } from '../Components/useStore'
 
 export default function Register() {
 
     const [snackBar, setSnackBar] = useState()
     const navigate = useNavigate()
+    const { cart, changeUser } = useStore()
 
     async function handleRegister(data) {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/register`, { email: data.get('email'), userName: data.get('username'), password: data.get('password') })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/register`, { email: data.get('email'), userName: data.get('username'), password: data.get('password'), userCart: cart ? cart : {} })
             setSnackBar({ text: 'Account created successfully', visible: true, success: true })
+            changeUser({ ...res.data })
             setTimeout(() => navigate('/'), 2000)
         } catch (error) {
             setSnackBar({ text: error.status === 401 ? 'User already exists' : error.status === 402 ? 'Username is taken' : 'Error occured, please try again later', success: false, visible: true })
