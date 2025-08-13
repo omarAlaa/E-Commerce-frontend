@@ -26,7 +26,7 @@ export default function Checkout() {
     }, [])
 
     useEffect(() => {
-        if (!loading && !cart) {
+        if (!loading && (!cart || !user)) {
             navigate('/')
         }
     }, [loading])
@@ -46,7 +46,7 @@ export default function Checkout() {
 
     return (
         <>
-            {cart ?
+            {cart && user ?
                 <main className='checkout-main'>
                     <button className='back-store' onClick={() => navigate('/')}>{'< Back to store'}</button>
                     <article className='steps'>
