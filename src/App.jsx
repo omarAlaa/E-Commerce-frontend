@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, Navigate, } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './Login/Login'
 import Register from './Register/Register'
 import MainPage from './MainPage/MainPage'
@@ -30,7 +30,7 @@ function App() {
         <Route path='/manageProducts' element={user?.role === 'admin' ? <ManageProducts /> : <Login />} />
         <Route path='/manageOrders' element={user?.role === 'admin' ? <ManageOrders /> : <Login />} />
         <Route path='/manageAdminsUsers' element={user?.role === 'admin' ? <ManageAdminsUsers /> : <Login />} />
-        <Route path='/checkout' element={cart ? <Checkout /> : <MainPage />} />
+        <Route path='/checkout' element={<Checkout />} />
       </Routes>
     </Router>
   )
