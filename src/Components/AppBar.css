@@ -38,7 +38,7 @@
 .dropdown-container:hover .options {
     display: flex;
     position: fixed;
-    top: 52px;
+    top: 45px;
     right: 5px;
     flex-direction: column;
     gap: 5px;

@@ -20,7 +20,7 @@ export default function updateOrderDialog(props) {
                 <div onClick={() => props.deleteItem(product)} className="cart-icons"><Trash2 /></div>
             </article>)}
             <hr />
-            <strong style={{ color: 'red' }}>Subtotal: {Intl.NumberFormat().format(props.dialogOrder.subtotal)} EGP</strong>
+            <strong style={{ color: 'green' }}>Subtotal: {Intl.NumberFormat().format(props.dialogOrder.subtotal)} EGP</strong>
             <article className="manage-order-buttons">
                 <button id='update-button' onClick={props.updateOrder}>Update</button>
                 <button onClick={props.emptyDialogOrder}>Close</button>

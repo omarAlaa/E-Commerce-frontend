@@ -42,7 +42,7 @@ export default function AppBar() {
                     </article>
                 </article>}
                 <article className="dropdown-container">
-                    <button><img className='profile-pic' src="https://pps.whatsapp.net/v/t61.24694-24/126462489_1178994829187791_9121617399796202963_n.jpg?ccb=11-4&oh=01_Q5AaIZsa7s_gcADaBxlgJyqWIx9fuEpATBM9i4xz1QgKNk8w&oe=67F4F4B9&_nc_sid=5e03e0&_nc_cat=111" alt="" width={'40px'} height={'40px'} /></button>
+                    <button><CircleUser size={28} /></button>
                     {!user ?
                         <ul className='options'>
                             <Link to='/login' className='link'>
@@ -55,7 +55,7 @@ export default function AppBar() {
                         :
                         <ul className='options'>
                             <Link to={user.role === 'user' ? '/manageAccount' : '/manageProducts'} className='link'>
-                                <li><img className='profile-pic' src="https://pps.whatsapp.net/v/t61.24694-24/126462489_1178994829187791_9121617399796202963_n.jpg?ccb=11-4&oh=01_Q5AaIZsa7s_gcADaBxlgJyqWIx9fuEpATBM9i4xz1QgKNk8w&oe=67F4F4B9&_nc_sid=5e03e0&_nc_cat=111" alt="" width={'24px'} height={'24px'} />{user.role === user ? 'Account' : 'Panel'}</li>
+                                <li><CircleUser />{user.role === 'user' ? 'Profile' : 'Panel'}</li>
                             </Link>
                             <li onClick={handleLogout}><LogOut />Logout</li></ul>}
                 </article>
