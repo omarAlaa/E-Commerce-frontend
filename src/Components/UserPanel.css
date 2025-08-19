@@ -18,8 +18,9 @@
 
 .user-info {
     display: flex;
+    align-items: center;
     gap: 5px;
-    margin: 8px 0 0 5px;
+    margin: 8px 0 0 9px;
 }
 
 .settings {

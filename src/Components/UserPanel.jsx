@@ -1,6 +1,6 @@
 import './UserPanel.css'
 import { Link } from 'react-router-dom'
-import { ClipboardCheck, AlignJustify, PackageCheck, Users, UserCog } from 'lucide-react'
+import { ClipboardCheck, AlignJustify, PackageCheck, Users, UserCog, CircleUser } from 'lucide-react'
 import { useStore } from '../Components/useStore'
 
 export default function UserPanel(props) {
@@ -13,7 +13,7 @@ export default function UserPanel(props) {
             </div>
             <section className='side-panel'>
                 <article className='user-info'>
-                    <img className='profile-pic' src="https://pps.whatsapp.net/v/t61.24694-24/126462489_1178994829187791_9121617399796202963_n.jpg?ccb=11-4&oh=01_Q5AaIZsa7s_gcADaBxlgJyqWIx9fuEpATBM9i4xz1QgKNk8w&oe=67F4F4B9&_nc_sid=5e03e0&_nc_cat=111" alt="" width={'40px'} height={'40px'} />
+                    <CircleUser />
                     <h2>{user?.userName}</h2>
                 </article>
                 <hr />

@@ -1,4 +1,5 @@
 import { ScrollText } from 'lucide-react'
+import Loading from '../../Components/Loading'
 
 export default function Orders(props) {
     return (
@@ -6,6 +7,7 @@ export default function Orders(props) {
             <header className='upper-panel'>
                 <h2>Orders</h2>
             </header>
+            {!props.orders && <Loading />}
             {props.orders?.length === 0 ?
                 <section className="no-orders">
                     <ScrollText size={80} />

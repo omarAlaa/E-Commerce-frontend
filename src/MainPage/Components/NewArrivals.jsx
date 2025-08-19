@@ -1,3 +1,4 @@
+import Loading from "../../Components/Loading"
 import { useEffect, useState } from "react"
 import Product from "../../Components/Product"
 
@@ -11,8 +12,11 @@ export default function NewArrivals() {
     }, [])
 
     return (
-        <section className="container">
-            {newArrivals?.map(product => <Product key={product._id} {...product} />)}
-        </section>
+        <>
+            {!newArrivals && <Loading />}
+            <section className="container">
+                {newArrivals?.map(product => <Product key={product._id} {...product} />)}
+            </section>
+        </>
     )
 }

@@ -7,6 +7,7 @@ import axios from 'axios'
 import SnackBar from '../Components/SnackBar'
 import UpdateProductForm from './Components/UpdateProductForm'
 import Table from '../Components/Table'
+import Loading from '../Components/Loading'
 
 export default function ManageProducts() {
     const [products, setProducts] = useState()
@@ -59,7 +60,9 @@ export default function ManageProducts() {
                 <section className="manage-products-body">
                     <header className="upper-panel"><h2>Products</h2></header>
                     <AddProductForm addProduct={addProduct} />
-                    <Table title='All Products' headers={['title', 'price', 'category', 'action']} rows={products} actions={['Update', 'Delete']} reviewProduct={(product) => setDialogProduct(product)} deleteProduct={deleteProduct} />
+                    {products ?
+                        <Table title='All Products' headers={['title', 'price', 'category', 'action']} rows={products} actions={['Update', 'Delete']} reviewProduct={(product) => setDialogProduct(product)} deleteProduct={deleteProduct} />
+                        : <Loading />}
                     {dialogProduct && <UpdateProductForm updateProduct={updateProduct} dialogProduct={dialogProduct} emptyDialogProduct={() => setDialogProduct()} />}
                 </section>
                 <SnackBar {...snackBar} />

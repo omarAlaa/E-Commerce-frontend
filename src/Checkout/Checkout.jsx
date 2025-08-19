@@ -7,6 +7,7 @@ import { useStore } from '../Components/useStore'
 import axios from 'axios'
 import Snackbar from '../Components/SnackBar'
 import OrderConfirmed from './OrderConfirmed'
+import Loading from '../Components/Loading'
 import { useNavigate } from 'react-router-dom'
 
 export default function Checkout() {
@@ -68,7 +69,7 @@ export default function Checkout() {
                     <Snackbar {...snackBar} />
                 </main>
                 :
-                <></>}
+                <><Loading /></>}
         </>
     )
 }

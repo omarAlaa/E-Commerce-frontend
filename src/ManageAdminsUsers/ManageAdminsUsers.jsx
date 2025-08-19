@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import SnackBar from '../Components/SnackBar'
 import Table from '../Components/Table'
+import Loading from '../Components/Loading'
 
 export default function ManageAdminsUsers() {
     const [adminsAndUsers, setAdminsAndUsers] = useState()
@@ -44,9 +45,13 @@ export default function ManageAdminsUsers() {
                 <hr id='hide-hr' />
                 <section className="manage-admins-users-body">
                     <header className='upper-panel'><h2>Admins/Users</h2></header>
-                    <Table title='Admins' headers={['email', 'userName', 'action']} rows={adminsAndUsers?.admins} actions={['Remove']} remove={remove} />
-                    <hr id='users-admins-hr' />
-                    <Table title='Users' headers={['email', 'userName', 'action']} rows={adminsAndUsers?.users} actions={['Make Admin', 'Remove']} remove={remove} makeAdmin={makeAdmin} />
+                    {adminsAndUsers ?
+                        <>
+                            <Table title='Admins' headers={['email', 'userName', 'action']} rows={adminsAndUsers?.admins} actions={['Remove']} remove={remove} />
+                            <hr id='users-admins-hr' />
+                            <Table title='Users' headers={['email', 'userName', 'action']} rows={adminsAndUsers?.users} actions={['Make Admin', 'Remove']} remove={remove} makeAdmin={makeAdmin} />
+                        </>
+                        : <Loading />}
                 </section>
                 <SnackBar {...snackBar} />
             </main>

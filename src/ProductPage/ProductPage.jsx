@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom'
 import AppBar from '../Components/AppBar'
 import { Star } from 'lucide-react'
 import SnackBar from '../Components/SnackBar'
+import Loading from '../Components/Loading'
 import Footer from '../Components/Footer'
 import { useStore } from '../Components/useStore'
 
@@ -44,11 +45,12 @@ export default function ProductPage() {
     return (
         <>
             <AppBar />
-            <article className='breadcrumbs'>
+            {product && <article className='breadcrumbs'>
                 <Link to='/'>Store</Link>
                 {' / '}<Link to={`/${product?.category}`}>{product?.category}</Link>
                 {' / '}<strong>{product?.title}</strong>
-            </article>
+            </article>}
+            {!product && <Loading />}
             <section className="product-container">
                 <article className='img-container'>
                     <img src={product?.image} alt="" width={'300px'} height={'300px'} />
@@ -76,6 +78,7 @@ export default function ProductPage() {
             <button disabled={scrollTimes !== 0 ? false : true} className='left-arrow' onClick={() => scroll('left')} style={{ opacity: scrollTimes !== 0 ? '1' : '0', cursor: scrollTimes !== 0 ? 'pointer' : 'default' }}>{'<'}</button>
             <button disabled={scrollTimes !== allowedScrollTimes ? false : true} className='right-arrow' onClick={() => scroll('right')} style={{ opacity: scrollTimes !== allowedScrollTimes ? '1' : '0', cursor: scrollTimes !== allowedScrollTimes ? 'pointer' : 'default' }}>{'>'}</button>
             <section className="similar-products" ref={scrollRef}>
+                {!similarProducts && <Loading />}
                 {similarProducts?.map(prod => <div key={prod._id} className='similar-product-container'>
                     <Link to={`/product/${prod._id}`}><img src={prod.image} alt="" width={'200px'} height={'200px'} /></Link>
                     <h3>{prod.title}</h3>

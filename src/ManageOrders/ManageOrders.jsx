@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import SnackBar from '../Components/SnackBar'
 import Table from '../Components/Table'
+import Loading from '../Components/Loading'
 import UpdateOrderDialog from './UpdateOrderDialog'
 
 export default function ManageOrders() {
@@ -61,7 +62,9 @@ export default function ManageOrders() {
                 <hr id='hide-hr' />
                 <section className='manage-orders-body'>
                     <header className='upper-panel'><h2>Orders</h2></header>
-                    <Table headers={['_id', 'action']} rows={orders} actions={['Review', 'Cancel']} cancel={cancel} review={(order) => setDialogOrder(order)} />
+                    {orders ?
+                        <Table headers={['_id', 'action']} rows={orders} actions={['Review', 'Cancel']} cancel={cancel} review={(order) => setDialogOrder(order)} />
+                        : <Loading />}
                     {dialogOrder && <UpdateOrderDialog dialogOrder={dialogOrder} changeQuantity={changeQuantity} deleteItem={deleteItem} updateOrder={updateOrder} emptyDialogOrder={() => setDialogOrder()} />}
                 </section>
                 <SnackBar {...snackBar} />
