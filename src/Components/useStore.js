@@ -79,6 +79,7 @@ export const useStore = create((set, get) => ({
             localStorage.setItem('user', JSON.stringify(user))
         } else {
             localStorage.removeItem('user')
+            set({ cart: JSON.parse(localStorage.getItem('cart')) })
         }
     }
 }))
