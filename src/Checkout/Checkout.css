@@ -93,6 +93,10 @@
     margin-left: auto;
 }
 
+.place-order {
+    width: 112px;
+}
+
 .nav-button:hover {
     background: rgb(0, 0, 161);
 }

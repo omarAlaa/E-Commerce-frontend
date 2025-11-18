@@ -47,6 +47,7 @@
 }
 
 #update-button {
+    width: 65px;
     background: blue;
     color: whitesmoke;
 }

@@ -8,7 +8,7 @@
 .spinner {
     width: 220px;
     height: 220px;
-    border: 8px solid aqua;
+    border: solid aqua;
     border-left-color: white;
     border-radius: 50%;
     animation: spin 1s linear infinite;

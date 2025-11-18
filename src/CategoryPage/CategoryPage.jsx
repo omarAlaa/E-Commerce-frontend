@@ -14,6 +14,7 @@ export default function CategoryPage() {
     const [products, setProducts] = useState()
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         fetch(`${import.meta.env.VITE_API_URL}/products/${category}`)
             .then(res => res.json())
             .then(data => setProducts(data))

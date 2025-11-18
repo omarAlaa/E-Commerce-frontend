@@ -15,6 +15,7 @@ export default function ManageProducts() {
     const [dialogProduct, setDialogProduct] = useState()
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         fetch(`${import.meta.env.VITE_API_URL}/products`)
             .then(res => res.json())
             .then(data => setProducts(data.map(product => ({ ...product, price: new Intl.NumberFormat().format(product.price) }))))

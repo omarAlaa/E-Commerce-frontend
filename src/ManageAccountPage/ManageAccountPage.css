@@ -46,6 +46,7 @@ p {
 }
 
 .change-username button {
+    width: 90px;
     background: white;
     color: blue;
     padding: .5em;

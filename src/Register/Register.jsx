@@ -1,9 +1,18 @@
 import '../Components/LoginRegister.css'
 import SnackBar from '../Components/SnackBar'
+import Loading from '../Components/Loading'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useStore } from '../Components/useStore'
+
+function RegisterButton() {
+    const { pending } = useFormStatus()
+    return (
+        <button className="login-register-button" disabled={pending}> {pending ? <Loading size={15} height={'100%'} /> : 'Sign Up'} </button>
+    )
+}
 
 export default function Register() {
 
@@ -35,7 +44,7 @@ export default function Register() {
                     <input className='checkbox' type="checkbox" name="receive-email" id="receive-email" />
                     <label htmlFor="receive-email">I want to receive inspiration, marketing promotions and updates via email.</label>
                 </article>
-                <button className="login-register-button">Sign Up</button>
+                <RegisterButton />
                 <Link className="login-link" to='/login'>Already have an account? Sign in</Link>
             </form>
             <SnackBar {...snackBar} />

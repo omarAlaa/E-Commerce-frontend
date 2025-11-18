@@ -12,6 +12,7 @@ export default function ProductPage() {
     const { id } = useParams()
     const [product, setProduct] = useState()
     const [similarProducts, setSimilarProducts] = useState()
+    const [isLoading, setIsLoading] = useState(false)
     const scrollRef = useRef()
     const [scrollTimes, setScrollTimes] = useState(0)
     const allowedScrollTimes = similarProducts?.length - 3
@@ -60,7 +61,12 @@ export default function ProductPage() {
                     <hr />
                     <div className="price-add">
                         <h2>{new Intl.NumberFormat().format(product?.price)} EGP</h2>
-                        <button onClick={() => addToCart(product)}>+ Add</button>
+                        <button onClick={async () => {
+                            setIsLoading(true)
+                            await addToCart(product)
+                            setIsLoading(false)
+                        }}
+                            disabled={isLoading}>{isLoading ? <Loading size={15} height={'100%'} /> : '+ Add'}</button>
                     </div>
                     <hr />
                     <strong>DESCRIPTION</strong>

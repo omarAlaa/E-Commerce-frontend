@@ -1,8 +1,11 @@
+import Loading from './Loading'
 import { Link } from "react-router-dom"
 import { Star } from 'lucide-react'
 import { useStore } from "./useStore"
+import { useState } from 'react'
 
 export default function Product(props) {
+    const [isLoading, setIsLoading] = useState(false)
     const { addToCart } = useStore()
 
     return (
@@ -17,7 +20,12 @@ export default function Product(props) {
             </article>
             <article className="price-addCart">
                 <strong>{Intl.NumberFormat().format(props?.price)} EGP</strong>
-                <button onClick={() => addToCart(props)}>+ Add</button>
+                <button onClick={async () => {
+                    setIsLoading(true)
+                    await addToCart(props)
+                    setIsLoading(false)
+                }}
+                    disabled={isLoading}>{isLoading ? <Loading size={15} height={'100%'} /> : '+ Add'}</button>
             </article>
         </article>
     )

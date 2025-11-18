@@ -1,9 +1,18 @@
 import '../Components/LoginRegister.css'
 import SnackBar from '../Components/SnackBar'
+import Loading from '../Components/Loading'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { useStore } from '../Components/useStore'
+
+function LoginButton() {
+    const { pending } = useFormStatus()
+    return (
+        <button className='login-register-button' disabled={pending}> {pending ? <Loading size={15} height={'100%'} /> : 'Sign In'} </button>
+    )
+}
 
 export default function Login() {
     const [snackBar, setSnackBar] = useState()
@@ -32,7 +41,7 @@ export default function Login() {
                     <input className='checkbox' type="checkbox" name="remember" id="remember" />
                     <label htmlFor="remember">Remember Me</label>
                 </article>
-                <button className='login-register-button'>Sign In</button>
+                <LoginButton />
                 <article className="login-options">
                     <a href="">Forgot Password?</a>
                     <Link to="/register">Don't have an account? Sign Up</Link>

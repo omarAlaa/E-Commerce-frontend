@@ -1,11 +1,16 @@
 import './Cart.css'
+import Loading from './Loading'
 import { Trash2, ShoppingCart } from 'lucide-react'
 import { useStore } from './useStore'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Cart() {
     const { cart, fetchCart, changeQuantity, deleteFromCart, emptyCart, user } = useStore()
+    const [decItemId, setDecItemId] = useState()
+    const [incItemId, setIncItemId] = useState()
+    const [delItemId, setDelItemId] = useState()
+    const [emptyLoading, setEmptyLoading] = useState(false)
 
     useEffect(() => {
         fetchCart()
@@ -23,14 +28,30 @@ export default function Cart() {
                         <p>Total: {Intl.NumberFormat().format(product.quantity * product.price)} EGP</p>
                         <div id='quantity'>
                             Qty:
-                            <div onClick={() => changeQuantity(product.title, -1)} className="cart-icons" id='quantity-icons'>-</div>
+                            <div onClick={async () => {
+                                setDecItemId(product._id)
+                                await changeQuantity(product.title, -1)
+                                setDecItemId(null)
+                            }} className="cart-icons" id='quantity-icons'>{decItemId === product._id ? <Loading size={15} height={'100%'} /> : '-'}</div>
                             {product.quantity}
-                            <div onClick={() => changeQuantity(product.title, 1)} className="cart-icons" id='quantity-icons'>+</div>
+                            <div onClick={async () => {
+                                setIncItemId(product._id)
+                                await changeQuantity(product.title, 1)
+                                setIncItemId(null)
+                            }} className="cart-icons" id='quantity-icons'>{incItemId === product._id ? <Loading size={15} height={'100%'} /> : '+'}</div>
                         </div>
                     </article>
-                    <div onClick={() => deleteFromCart(product.title)} className="cart-icons"><Trash2 /></div>
+                    <div onClick={async () => {
+                        setDelItemId(product._id)
+                        await deleteFromCart(product.title)
+                        setDelItemId(null)
+                    }} className="cart-icons">{delItemId === product._id ? <Loading size={25} height={'100%'} /> : <Trash2 />}</div>
                 </article>)}
-                <button onClick={emptyCart}>Empty your cart</button>
+                <button onClick={async () => {
+                    setEmptyLoading(true)
+                    await emptyCart()
+                    setEmptyLoading(false)
+                }} disabled={emptyLoading}>{emptyLoading ? <Loading size={15} height={'100%'} /> : 'Empty your cart'}</button>
                 <hr />
                 <h3>Subtotal</h3>
                 <div className="checkout">

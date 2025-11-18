@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Checkout() {
     const [step, setStep] = useState(1)
     const [loading, setLoading] = useState(true)
+    const [placeOrderLoading, setPlaceOrderLoading] = useState(false)
     const { cart, fetchCart, user } = useStore()
     const [snackBar, setSnackBar] = useState()
     const [id, setId] = useState()
@@ -64,7 +65,13 @@ export default function Checkout() {
                     <article className='steps-direction'>
                         <button className='nav-button' onClick={() => setStep(step - 1)} style={{ display: step === 1 || step === 4 ? 'none' : 'block' }}>{'< Previous'}</button>
                         <button className='nav-button next' onClick={() => setStep(step + 1)} style={{ display: step === 3 || step === 4 ? 'none' : 'block' }}>{'Next >'}</button>
-                        <button className='nav-button' onClick={placeOrder} style={{ display: step === 3 ? 'block' : 'none' }}>Place Order</button>
+                        <button className='nav-button place-order' disabled={placeOrderLoading}
+                            onClick={async () => {
+                                setPlaceOrderLoading(true)
+                                await placeOrder()
+                                setPlaceOrderLoading(false)
+                            }}
+                            style={{ display: step === 3 ? 'block' : 'none' }}>{placeOrderLoading ? <Loading size={15} height={'100%'} /> : 'Place Order'}</button>
                     </article>
                     <Snackbar {...snackBar} />
                 </main>

@@ -114,6 +114,7 @@
 }
 
 .price-addCart button {
+    width: 65px;
     padding: 10px 15px;
     background: limegreen;
     color: whitesmoke;

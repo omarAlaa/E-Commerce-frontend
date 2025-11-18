@@ -43,6 +43,7 @@
 }
 
 .price-add button {
+    width: 90px;
     background: rgb(21, 148, 21);
     color: white;
     border: none;

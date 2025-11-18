@@ -1,6 +1,11 @@
 import { Trash2 } from 'lucide-react'
+import Loading from '../Components/Loading'
+import { useState } from 'react'
 
-export default function updateOrderDialog(props) {
+export default function UpdateOrderDialog(props) {
+
+    const [updateLoading, setUpdateLoading] = useState(false)
+
     return (
         <article className='dialog-order'>
             <strong style={{ color: 'blue' }}>Order Id: {props.dialogOrder._id}</strong>
@@ -22,9 +27,16 @@ export default function updateOrderDialog(props) {
             <hr />
             <strong style={{ color: 'green' }}>Subtotal: {Intl.NumberFormat().format(props.dialogOrder.subtotal)} EGP</strong>
             <article className="manage-order-buttons">
-                <button id='update-button' onClick={props.updateOrder}>Update</button>
+                <button id='update-button' disabled={updateLoading} onClick={async () => {
+                    setUpdateLoading(true)
+                    await props.updateOrder()
+                    setUpdateLoading(false)
+                }}>{updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}</button>
                 <button onClick={props.emptyDialogOrder}>Close</button>
             </article>
         </article>
     )
 }
+
+
+
