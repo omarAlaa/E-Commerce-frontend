@@ -9,7 +9,7 @@ export default function FeaturedCategories() {
         <>
             {!categories && <Loading />}
             <section className="container">
-                {categories?.map(category => <Link to={`/${category.name.toLowerCase()}`} key={category._id} className="category-card">
+                {categories?.map(category => <Link to={`/${category.name}`} key={category._id} className="category-card">
                     <img src={category.image} alt="" />
                     <strong>{category.name}</strong>
                 </Link>)}

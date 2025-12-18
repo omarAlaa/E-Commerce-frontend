@@ -10,6 +10,11 @@
     min-height: 64px;
 }
 
+.icon,
+.cart {
+    cursor: pointer;
+}
+
 .name-categories {
     display: flex;
     gap: 30px;
@@ -32,10 +37,6 @@
 }
 
 .options {
-    display: none;
-}
-
-.dropdown-container:hover .options {
     display: flex;
     position: fixed;
     top: 45px;
@@ -60,7 +61,6 @@
     height: 50px;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
     gap: 20px;
     padding: 0 10px;
     white-space: nowrap;
@@ -79,10 +79,6 @@
 }
 
 .cart-container {
-    display: none;
-}
-
-.cart:hover .cart-container {
     display: flex;
     position: fixed;
     top: 0;

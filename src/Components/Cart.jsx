@@ -6,15 +6,11 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Cart() {
-    const { cart, fetchCart, changeQuantity, deleteFromCart, emptyCart, user } = useStore()
+    const { cart, changeQuantity, deleteFromCart, emptyCart, user } = useStore()
     const [decItemId, setDecItemId] = useState()
     const [incItemId, setIncItemId] = useState()
     const [delItemId, setDelItemId] = useState()
     const [emptyLoading, setEmptyLoading] = useState(false)
-
-    useEffect(() => {
-        fetchCart()
-    }, [])
 
     return (
         <main className="cart-main">

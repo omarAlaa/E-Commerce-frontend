@@ -1,6 +1,5 @@
 .manage-orders-main {
     display: flex;
-    /* height: 100vh; */
     justify-content: center;
 }
 
@@ -13,9 +12,7 @@
 
 .dialog-order {
     position: fixed;
-    top: 15%;
     align-self: center;
-    margin-right: 200px;
     border: none;
     border-radius: .5em;
     background: whitesmoke;
@@ -57,17 +54,8 @@
 }
 
 @media screen and (max-width:700px) {
-
-    .manage-orders-main {
-        height: 50px;
-    }
-
     .manage-orders-body h2 {
         text-align: center;
         margin-right: 45px;
-    }
-
-    .dialog-order {
-        margin-left: 170px;
     }
 }

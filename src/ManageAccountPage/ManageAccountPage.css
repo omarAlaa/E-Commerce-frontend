@@ -32,7 +32,7 @@ p {
 .change-username input {
     outline: none;
     border: 1px solid gray;
-    padding: .5em;
+    padding: 8px;
     border-radius: .5em;
     font-size: medium;
 }
@@ -42,7 +42,8 @@ p {
 }
 
 .change-username input:focus {
-    border-color: blue;
+    border: 2px solid rgba(3, 3, 250, 0.829);
+    padding: 7px;
 }
 
 .change-username button {
@@ -56,8 +57,12 @@ p {
 }
 
 .change-username button:hover {
-    cursor: pointer;
     background: whitesmoke;
+}
+
+.password-short {
+    color: red;
+    margin: -40px 0 19px;
 }
 
 #delete-account-text {
@@ -76,6 +81,8 @@ p {
 }
 
 #delete-account-button:hover {
-    border-color: red;
+    color: white;
+    background: red;
     cursor: pointer;
+    border: none;
 }

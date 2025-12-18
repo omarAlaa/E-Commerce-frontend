@@ -12,7 +12,7 @@ export default function Footer() {
                 <img src="https://i.ibb.co/nMmL6ft4/36682-removebg-preview.png" alt="" className='footer-column' />
                 <article className='footer-column'>
                     <strong>Categories</strong>
-                    {categories?.map(category => <Link to={`/${category.name.toLowerCase()}`} key={category._id} className='link'>{category.name}</Link>)}
+                    {categories?.map(category => <Link to={`/${category.name}`} key={category._id} className='link'>{category.name}</Link>)}
                 </article>
                 <article className='footer-column'>
                     <strong>Contacts</strong>

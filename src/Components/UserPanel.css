@@ -1,6 +1,9 @@
-.side-panel {
+.panel {
     position: sticky;
     top: 64px;
+}
+
+.side-panel {
     display: flex;
     flex-direction: column;
     width: min(230px, 50vw);
@@ -62,9 +65,6 @@
 }
 
 @media screen and (max-width:700px) {
-    .side-panel {
-        display: none;
-    }
 
     .user-panel-main {
         height: 50px;
@@ -73,6 +73,7 @@
     .menu-icon {
         display: flex;
         min-height: 53px;
+        cursor: pointer;
     }
 
     .menu-icon :first-child {
@@ -94,14 +95,29 @@
         display: none;
     }
 
-    .user-panel-main:hover .side-panel {
+    .show {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .side-panel {
         display: flex;
         animation: slide .5s ease-in-out forwards;
         position: absolute;
         min-height: calc(100vh - 64px);
         background: whitesmoke;
         width: min(230px, 50vw);
-        top: 0;
+        top: 64px;
+        left: 0;
     }
 
     @keyframes slide {

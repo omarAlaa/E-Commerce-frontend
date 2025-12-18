@@ -16,6 +16,12 @@
     margin-top: -15px;
 }
 
+.password-error {
+    width: 100%;
+    color: red;
+    margin-top: -10px;
+}
+
 .login-register-form input:not(.checkbox) {
     outline: none;
     width: 100%;
@@ -31,7 +37,7 @@
 }
 
 .login-register-form input:focus {
-    border: 2px solid blue;
+    border: 2px solid rgba(3, 3, 250, 0.829);
     padding: 19px;
 }
 
@@ -52,7 +58,6 @@
     background: rgb(93, 93, 248);
     color: white;
     border-radius: 8px;
-    cursor: pointer;
 }
 
 .login-options {

@@ -1,12 +1,14 @@
 .snack-bar {
     position: fixed;
-    align-self: center;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: left;
     top: 2em;
     background: red;
     color: white;
     padding: 10px;
     border-radius: .5em;
-    z-index: 1;
+    z-index: 999;
     display: flex;
     align-items: center;
     gap: 10px;

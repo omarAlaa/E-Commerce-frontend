@@ -8,14 +8,14 @@ export default function Table(props) {
 
     async function takeAction(action, row) {
         if (action === 'Delete') {
-            await props.deleteProduct(row._id)
+            await props.deleteProduct(row)
         }
         else if (action === 'Cancel') {
-            await props.cancel(row._id)
+            await props.cancel(row)
         } else if (action === 'Remove') {
-            await props.remove(row.email, row.role)
+            await props.remove(row)
         } else if (action === 'Make Admin') {
-            await props.makeAdmin(row.email)
+            await props.makeAdmin(row)
         } else if (action === 'Review') {
             props.review(row)
         } else {
