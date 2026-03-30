@@ -1,0 +1,27 @@
+.card {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid gray;
+    padding: 50px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: gray;
+}
+
+.card:hover {
+    border: 2px solid green;
+    padding: 49px;
+    scale: 1.1;
+    transition: scale .5s ease-in-out;
+    cursor: pointer;
+}
+
+.image {
+    width: 100%;
+    min-height: 150px;
+}

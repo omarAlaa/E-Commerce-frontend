@@ -1,0 +1,180 @@
+.checkout-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 50vw;
+    position: absolute;
+    left: 25%;
+    margin-top: 50px;
+}
+
+.back-store {
+    background: white;
+    border: 2px solid blue;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: pointer;
+    color: blue;
+    transition: all 0.2s ease;
+}
+
+.back-store:hover {
+    background: whitesmoke;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+}
+
+.steps p {
+    white-space: nowrap;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    border: 1px solid gray;
+    background: white;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.line {
+    min-width: 100px;
+    height: 1px;
+    background: black;
+    margin: 0 5px;
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-main input {
+    width: 100%;
+    outline: none;
+    border-radius: .5em;
+    border: 1px solid gray;
+    padding: 8px;
+    margin: 10px 0;
+    background: whitesmoke;
+    font-size: medium;
+}
+
+.checkout-main input:hover {
+    border-color: black;
+}
+
+.checkout-main input:focus {
+    border-color: blue;
+}
+
+.steps-direction {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-button {
+    margin: 20px 0 10px;
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border-radius: .5em;
+    border: none;
+    cursor: pointer;
+    max-width: 150px;
+    transition: all 0.2s ease;
+}
+
+.next {
+    margin-left: auto;
+}
+
+.place-order {
+    width: 112px;
+}
+
+.nav-button:hover {
+    background: rgb(0, 0, 161);
+}
+
+.city {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.review-order {
+    align-self: flex-start;
+    width: 100%;
+}
+
+.review-order-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: 10px;
+    background: skyblue;
+}
+
+.card-number-cvv,
+.name-date {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.card-number-cvv label,
+.name-date label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-number {
+    flex: 1;
+}
+
+.cvv {
+    width: 25%;
+}
+
+.order-confirmed-section {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .checkout-main {
+        width: 80vw;
+        left: 10vw;
+    }
+
+    .address {
+        width: 80vw;
+    }
+
+    .steps p {
+        white-space: wrap;
+    }
+
+    .line {
+        min-width: 10px;
+    }
+}

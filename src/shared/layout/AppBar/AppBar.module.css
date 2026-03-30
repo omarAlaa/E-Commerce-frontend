@@ -1,0 +1,174 @@
+.appBar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: blue;
+    color: whitesmoke;
+    min-height: 64px;
+}
+
+.title_categories,
+.cart_options {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.title {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+.categories {
+    background: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: large;
+    margin-top: 8px;
+    border: none;
+}
+
+.openCategories,
+.closeCategories,
+.openOptions,
+.closeOptions {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: whitesmoke;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.openCategories,
+.closeCategories {
+    top: 45px;
+    left: 100px;
+}
+
+.openCategories,
+.openOptions {
+    animation: openModal 0.3s ease forwards;
+}
+
+.closeCategories,
+.closeOptions {
+    animation: closeModal 0.3s ease forwards;
+}
+
+.category,
+.option {
+    cursor: pointer;
+    color: black;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    white-space: nowrap;
+    text-decoration: none;
+    list-style: none;
+}
+
+.category:hover,
+.option:hover {
+    background: aqua;
+    border-radius: 8px;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.itemsCount {
+    position: absolute;
+    top: 10px;
+    margin-left: 15px;
+    background: red;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    display: grid;
+    place-content: center;
+}
+
+.openCart,
+.closeCart {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.openCart {
+    animation: openCart .5s ease-in-out forwards;
+}
+
+.closeCart {
+    animation: closeCart .5s ease-in-out forwards;
+}
+
+.openOptions,
+.closeOptions {
+    top: 45px;
+    right: 10px;
+    width: 150px;
+}
+
+.option {
+    gap: 10px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+@keyframes openModal {
+    from {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 100%;
+        transform: translateY(10px);
+    }
+}
+
+@keyframes closeModal {
+    from {
+        opacity: 100%;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(0);
+    }
+}
+
+@keyframes openCart {
+    from {
+        transform: translateX(350px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes closeCart {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(350px);
+    }
+}

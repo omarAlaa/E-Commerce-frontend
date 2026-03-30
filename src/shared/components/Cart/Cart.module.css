@@ -1,0 +1,136 @@
+.container {
+    height: 100vh;
+    width: 370px;
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;
+    color: black;
+    padding: 10px;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.header {
+    font-size: x-large;
+}
+
+.product {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.image {
+    width: 80px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+}
+
+.title {
+    text-decoration: none;
+    color: black;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+
+.quantity_totalPrice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantityContainer {
+    background-color: white;
+    border: 1px solid rgba(161, 161, 161, 0.795);
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.delete,
+.quantity {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete {
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+}
+
+.quantity {
+    font-size: larger;
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 30px;
+}
+
+.delete:hover,
+.quantity:hover {
+    background: gray;
+}
+
+.emptyCartButton,
+.checkout {
+    border: 1px solid red;
+    border-radius: 8px;
+    background: white;
+    color: red;
+    width: 50%;
+    align-self: center;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.emptyCartButton:hover {
+    background: red;
+    color: white;
+}
+
+.checkout {
+    color: blue;
+    border-color: blue;
+    width: 200%;
+}
+
+.checkout:hover {
+    color: white;
+    background: rgb(20, 20, 116);
+}
+
+.checkoutContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 78px;
+}
+
+.subtotal {
+    color: green;
+}
+
+.emptyCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+}
+
+.message {
+    align-self: flex-start;
+}

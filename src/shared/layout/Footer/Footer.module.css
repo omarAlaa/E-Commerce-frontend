@@ -1,0 +1,53 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: whitesmoke;
+    padding: 5vw;
+    gap: 20px;
+    color: rgb(102, 100, 100);
+}
+
+.columns {
+    display: flex;
+    gap: 80px;
+    overflow: auto;
+}
+
+.image {
+    width: 50px;
+    margin-top: -6px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.contact {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: rgb(102, 100, 100);
+    white-space: nowrap;
+}
+
+.link:hover {
+    color: green;
+}
+
+@media screen and (max-width:700px) {
+    .columns {
+        flex-direction: column;
+    }
+}

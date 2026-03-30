@@ -1,0 +1,117 @@
+.manage-orders-main {
+    display: flex;
+    justify-content: center;
+}
+
+.manage-orders-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+    margin-bottom: 2em;
+}
+
+.manage-orders-main input,
+.manage-orders-main select {
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 11px;
+    font-size: medium;
+    height: 40px;
+}
+
+.manage-orders-main select {
+    width: 338px;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.manage-orders-main input:hover,
+.manage-orders-main select:hover {
+    border-color: black;
+}
+
+.manage-orders-main input:focus,
+.manage-orders-main select:focus {
+    border: 2px solid rgba(3, 3, 250, 0.829);
+    padding: 10px;
+}
+
+.manage-orders-main select:focus {
+    padding: 5px;
+}
+
+
+.dialog-order {
+    position: fixed;
+    align-self: center;
+    border: none;
+    border-radius: .5em;
+    background: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.manage-order-buttons {
+    display: flex;
+    gap: 10px;
+    align-self: flex-end;
+}
+
+.manage-order-buttons button {
+    border-radius: .5em;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid blue;
+}
+
+.manage-order-buttons button:hover {
+    background: rgb(204, 199, 199);
+}
+
+.status-select {
+    margin-top: -3px;
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    font-size: medium;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.status-select:hover {
+    border-color: black;
+}
+
+.status-select:focus {
+    border: 2px solid rgba(3, 3, 250, 0.829);
+    padding: 10px;
+}
+
+.status-select:focus {
+    padding: 5px;
+}
+
+#update-button {
+    width: 65px;
+    background: blue;
+    color: whitesmoke;
+}
+
+#update-button:hover {
+    background: rgb(7, 7, 179);
+}
+
+@media screen and (max-width:700px) {
+    .manage-orders-body h2 {
+        text-align: center;
+        margin-right: 45px;
+    }
+}

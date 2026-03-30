@@ -1,0 +1,78 @@
+.card {
+    width: 225px;
+    height: 350px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    color: black;
+}
+
+.card:hover {
+    border: 2px solid green;
+    padding: 19px;
+    scale: 1.1;
+    transition: scale .5s ease-in-out;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.category {
+    color: gray;
+    text-decoration: none;
+}
+
+.title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-top: -4px;
+    text-decoration: none;
+    color: black;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.rate {
+    margin-left: 5px;
+    margin-top: -1px;
+    color: gray;
+}
+
+.price_addCart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    color: green;
+}
+
+.addToCart {
+    width: 80px;
+    padding: 10px 15px;
+    background: limegreen;
+    color: whitesmoke;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addToCart:hover {
+    background: green;
+}

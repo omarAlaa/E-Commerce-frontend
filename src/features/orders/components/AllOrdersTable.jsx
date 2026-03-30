@@ -1,0 +1,115 @@
+import { ordersStore } from "../store/ordersStore"
+import { useState, useEffect } from "react"
+import UpdateOrderDialog from "./UpdateOrderDialog"
+import Loading from "../../../shared/ui/Loading/Loading"
+import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
+import { fetchAllOrders, updateOrder } from "../api/ordersAPI"
+import { uiStore } from "../../../app/store/uiStore"
+
+export default function AllOrdersTable() {
+    const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
+    const { showSnackBar } = uiStore()
+    const [orderIdToCancel, setOrderIdToCancel] = useState()
+    const [fetchLoading, setFetchLoading] = useState(true)
+    const headers = ['ID', 'Status', 'Actions']
+    const statuses = ['paid', 'shipped', 'delivered', 'cancelled']
+
+    useEffect(() => {
+        const getAllOrders = async () => {
+            try {
+                const res = await fetchAllOrders()
+
+                setOrders(res.data)
+            } catch (error) {
+                const errorMessage = error?.response?.data?.message || 'Failed to fetch orders'
+                showSnackBar({ visible: true, success: false, text: errorMessage })
+            } finally {
+                setFetchLoading(false)
+            }
+        }
+
+        getAllOrders()
+    }, [])
+
+    const handleCancelOrder = async (orderId) => {
+        try {
+            const res = await updateOrder(orderId, 'cancelled')
+
+            const updatedOrders = orders.map(order => order._id === orderId ? res.data : order)
+            setOrders(updatedOrders, true)
+
+            showSnackBar({ visible: true, success: true, text: 'Order cancelled' })
+        } catch (error) {
+            const errorMessage = error?.response?.data?.message || 'Failed to cancel order'
+            showSnackBar({ visible: true, success: false, text: errorMessage })
+        }
+    }
+
+    return (
+        <>
+            <div className="table-header">
+                <div className="search-section">
+                    <input type="text" name="search" id="search" placeholder="Search" onChange={e => searchOrders(e.target.value)} />
+
+                    <select name="status" id="search-category" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
+                        <option value="" disabled >Filter status</option>
+
+                        <option value="All orders" >All orders</option>
+
+                        {statuses?.map(status => <option key={status} value={status}>{status}</option>)}
+                    </select>
+                </div>
+            </div>
+
+            {fetchLoading ?
+                <Loading />
+                :
+                !filteredOrders ?
+                    <section className="no-items">
+                        <h2>Error occured, please try again later</h2>
+                    </section>
+                    :
+                    filteredOrders.length === 0 ?
+                        <section className="no-items">
+                            <h2>No orders found</h2>
+                        </section>
+                        :
+                        <section className="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        {headers.map(header => <td key={header}>{header}</td>)}
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {filteredOrders.map((order) => <tr key={order._id}>
+                                        <td className="long-data">{order._id}</td>
+
+                                        <td>{order.status}</td>
+
+                                        <td>
+                                            <button className='white-button' onClick={() => setOrderToReview(order)}>Review</button>
+
+                                            <button onClick={() => setOrderIdToCancel(order._id)}
+                                                disabled={order.status === 'cancelled'}
+                                                style={{ cursor: order.status === 'cancelled' ? 'not-allowed' : 'pointer' }}>
+                                                Cancel
+                                            </button>
+                                        </td>
+
+                                    </tr>)}
+                                </tbody>
+                            </table>
+                        </section>
+            }
+
+            <UpdateOrderDialog />
+
+            {orderIdToCancel && <ConfirmModal
+                close={() => setOrderIdToCancel()}
+                message={'Cancel order with ID: ' + orderIdToCancel + ' ?'}
+                action={async () => { await handleCancelOrder(orderIdToCancel) }} />}
+        </>
+    )
+}
