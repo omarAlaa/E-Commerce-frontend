@@ -1,4 +1,4 @@
-import './ManageAccount.css'
+import styles from './ManageAccount.module.css'
 import AppBar from '../../../../shared/layout/AppBar/AppBar'
 import UserPanel from '../../../../shared/layout/UserPanel/UserPanel'
 import SnackBar from '../../../../shared/ui/SnackBar/SnackBar'
@@ -14,31 +14,29 @@ export default function ManageAccount() {
         <>
             <AppBar />
 
-            <main className='manage-account-main'>
+            <main className={styles.main}>
                 <UserPanel page={'account'} />
 
                 <hr id='hide-hr' />
 
-                <section className="manage-account-section">
-                    <header className='upper-panel'>
+                <section className={styles.section}>
+                    <header className={styles.header}>
                         <h2>Account</h2>
                     </header>
 
-                    <section className="manage-account">
-                        <ChangeUsernameForm />
+                    <ChangeUsernameForm />
 
-                        <hr />
+                    <hr />
 
-                        <ChangePasswordForm />
+                    <ChangePasswordForm />
 
-                        <hr />
+                    <hr />
 
-                        <DeleteAccountSection />
-                    </section>
+                    <DeleteAccountSection />
                 </section>
-
-                <SnackBar {...snackBar} />
             </main>
+
+            <SnackBar {...snackBar} />
         </>
     )
 }

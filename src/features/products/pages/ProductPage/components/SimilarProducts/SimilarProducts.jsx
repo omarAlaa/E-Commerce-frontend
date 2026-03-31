@@ -46,11 +46,11 @@ export default function SimilarProducts(product) {
                         </section>
                         :
                         <>
-                            <section className={styles.arrows}>
+                            <div className={styles.arrows}>
                                 <ChevronLeft size={44} className={styles.arrow} onClick={() => scroll(-1)} />
 
                                 <ChevronRight size={44} className={styles.arrow} onClick={() => scroll(1)} />
-                            </section>
+                            </div>
 
                             <section className={styles.similar_products} ref={scrollRef}>
                                 {!similarProducts && <Loading />}

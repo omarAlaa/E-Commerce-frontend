@@ -1,3 +1,4 @@
+import styles from '../pages/ManageAccount/ManageAccount.module.css'
 import { changeUsername } from '../api/accountAPI'
 import { authStore } from "../../../app/store/authStore"
 import { uiStore } from "../../../app/store/uiStore"
@@ -42,10 +43,10 @@ export default function ChangeUsernameForm() {
         <>
             <h2>Change Username</h2>
 
-            <form onSubmit={handleChangeUsername} className="change-username">
-                <input autoComplete='on' value={newUsername} type="text" name="username" id="username" placeholder='New Username' onChange={e => setNewUsername(e.target.value)} />
+            <form onSubmit={handleChangeUsername} className={styles.form}>
+                <input className={styles.input} autoComplete='on' value={newUsername} type="text" name="username" id="username" placeholder='New Username' onChange={e => setNewUsername(e.target.value)} />
 
-                <button disabled={usernameDisabled}
+                <button className={styles.button} disabled={usernameDisabled}
                     style={{ cursor: usernameDisabled ? 'not-allowed' : 'pointer' }}
                 >
                     {changeUsernameLoading ? <Loading size={15} height={'100%'} /> : 'Change'}

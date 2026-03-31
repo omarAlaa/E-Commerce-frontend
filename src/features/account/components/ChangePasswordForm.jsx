@@ -1,3 +1,4 @@
+import styles from '../pages/ManageAccount/ManageAccount.module.css'
 import { changePassword } from '../api/accountAPI'
 import { uiStore } from "../../../app/store/uiStore"
 import Loading from "../../../shared/ui/Loading/Loading"
@@ -42,20 +43,21 @@ export default function ChangePasswordForm() {
             <h2>Change Password</h2>
 
             <form onSubmit={handleChangePassword} >
-                <section className="change-username">
-                    <input value={newPassword} type="password" name="password" id="password" placeholder='New Password' onChange={e => setNewPassword(e.target.value)} />
+                <div className={styles.form}>
+                    <input className={styles.input} value={newPassword} type="password" name="password" id="password" placeholder='New Password' onChange={e => setNewPassword(e.target.value)} />
 
-                    <input value={confirmPassword} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} />
+                    <input className={styles.input} value={confirmPassword} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} />
 
-                    <button type='submit'
+                    <button className={styles.button}
+                        type='submit'
                         disabled={passwordDisabled}
                         style={{ cursor: passwordDisabled ? 'not-allowed' : 'pointer' }}
                     >
                         {changePasswordLoading ? <Loading size={15} height={'100%'} /> : 'Change'}
                     </button>
-                </section>
+                </div>
 
-                <div className='password-short' style={{ display: isShortPasswords ? 'block' : 'none' }}>
+                <div className={isShortPasswords ? styles.short_password : styles.hide}>
                     Both passwords must be at least 8 characters
                 </div>
             </form>

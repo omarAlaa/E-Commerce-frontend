@@ -1,3 +1,4 @@
+import styles from '../pages/ManageAccount/ManageAccount.module.css'
 import { deleteAccount } from '../api/accountAPI'
 import { authStore } from '../../../app/store/authStore'
 import { uiStore } from '../../../app/store/uiStore'
@@ -28,11 +29,11 @@ export default function DeleteAccountSection() {
 
     return (
         <>
-            <h2 id='delete-account-text'>Delete Account</h2>
+            <h2 className={styles.delete_account_text}>Delete Account</h2>
 
-            <p>Once you delete your account all your data will be removed.</p>
+            <p className={styles.delete_account_text}>Once you delete your account all your data will be removed.</p>
 
-            <button id='delete-account-button' onClick={() => setShowConfirmModal(true)}>
+            <button className={styles.delete_account_bttn} onClick={() => setShowConfirmModal(true)}>
                 Delete Account
             </button>
 

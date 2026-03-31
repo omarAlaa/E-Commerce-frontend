@@ -18,7 +18,7 @@
 .details {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 16px;
 }
 
 .price_add {
@@ -61,6 +61,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 1em 10vw 0;
+        margin: 16px 10vw 0;
     }
 }
