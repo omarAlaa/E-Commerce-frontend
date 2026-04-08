@@ -1,3 +1,4 @@
+import styles from '../pages/UserOrders/UserOrders.module.css'
 import Loading from '../../../shared/ui/Loading/Loading'
 import { ScrollText } from 'lucide-react'
 import { useState, useEffect } from 'react'
@@ -24,8 +25,8 @@ export default function UserOrdersTable() {
     }, [])
 
     return (
-        <section className="orders-section">
-            <header className='upper-panel'>
+        <section className={styles.section}>
+            <header className={styles.header}>
                 <h2>Orders</h2>
             </header>
 
@@ -33,23 +34,23 @@ export default function UserOrdersTable() {
                 < Loading />
                 :
                 !orders ?
-                    < section className="no-orders">
+                    < section className={styles.no_orders} >
                         <ScrollText size={80} />
 
                         <h2>{errorMessage}</h2>
                     </section>
                     :
-                    <section className="orders">
+                    <section className={styles.orders} >
                         {
-                            orders?.map(order => <article className='order' key={order._id}>
+                            orders?.map(order => <article className={styles.order} key={order._id}>
                                 {
-                                    order.items.map(item => <article key={order._id + item._id} className='order-item'>
+                                    order.items.map(item => <article key={order._id + item._id} className={styles.order_item}>
                                         <img src={item.image} alt="" width={'60px'} height={'60px'} />
 
-                                        <article className="order-item-info">
-                                            <strong className="order-item-title">{item.title}</strong>
+                                        <article className={styles.order_item_info}>
+                                            <strong className={styles.order_item_title}>{item.title}</strong>
 
-                                            <p>Unit price: {new Intl.NumberFormat().format(item.price)} EGP</p>
+                                            <p>Price: {new Intl.NumberFormat().format(item.price)} EGP</p>
 
                                             <p>Qty: {item.quantity}</p>
                                         </article>
@@ -58,11 +59,13 @@ export default function UserOrdersTable() {
                                     </article>)
                                 }
 
-                                <strong id='subtotal'>Order Subtotal: {new Intl.NumberFormat().format(order.subtotal)} EGP</strong>
+                                <strong className={styles.subtotal}>Order Subtotal: {new Intl.NumberFormat().format(order.subtotal)} EGP</strong>
 
-                                <strong className='date-id'>Order Date: {new Date(parseInt(order?._id?.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
+                                <strong>Order status: {order.status}</strong>
 
-                                <strong className='date-id'>Order ID: {order._id}</strong>
+                                <strong className={styles.date_id}>Order Date: {new Date(parseInt(order?._id?.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
+
+                                <strong className={styles.date_id}>Order ID: {order._id}</strong>
 
                                 <hr />
 

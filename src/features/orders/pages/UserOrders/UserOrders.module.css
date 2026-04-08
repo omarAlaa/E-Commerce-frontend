@@ -1,9 +1,13 @@
-.orders-main {
+.main {
     display: flex;
     justify-content: center;
 }
 
-.no-orders {
+.header {
+    margin: 20px 0;
+}
+
+.no_orders {
     height: 50vh;
     display: flex;
     flex-direction: column;
@@ -12,9 +16,12 @@
     margin-right: 40px;
 }
 
-.orders-section {
+.section {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin-bottom: 20px;
+    margin-left: 16px;
 }
 
 .orders {
@@ -28,29 +35,30 @@
     font-size: large;
 }
 
-.order-item {
+.order_item {
     display: flex;
     flex-direction: row;
     gap: 1em;
     align-items: center;
 }
 
-.order-item-info {
+.order_item_info {
     display: flex;
     flex-direction: column;
+    gap: 5px;
     white-space: nowrap;
     width: 100%;
 }
 
-.order-item-title {
+.order_item_title {
     white-space: wrap;
 }
 
-#subtotal {
+.subtotal {
     color: green;
 }
 
-.date-id {
+.date_id {
     color: blue;
 }
 
@@ -63,7 +71,12 @@
 }
 
 @media screen and (max-width:700px) {
-    .orders-main {
+    .main {
         justify-content: start;
+    }
+
+    .header {
+        align-self: center;
+        margin-left: -55px;
     }
 }

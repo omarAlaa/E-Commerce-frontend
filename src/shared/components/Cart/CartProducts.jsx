@@ -94,10 +94,10 @@ export default function CartProducts() {
         <>
             {
                 cart?.map(item =>
-                    <>
+                    <div key={item.product._id}>
                         <hr />
 
-                        <article key={item.product._id} className={styles.product}>
+                        <article className={styles.product}>
                             <img className={styles.image} src={item.product.image} alt="Product image" />
 
                             <div className={styles.info}>
@@ -134,7 +134,7 @@ export default function CartProducts() {
                                 {delItemId === item.product._id ? <Loading size={25} /> : <Trash2 />}
                             </div>
                         </article>
-                    </>
+                    </div>
                 )
             }
 
