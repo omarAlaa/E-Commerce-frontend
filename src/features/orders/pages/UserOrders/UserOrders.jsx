@@ -12,7 +12,7 @@ export default function UserOrders() {
             <main className={styles.main}>
                 <UserPanel page={'orders'} />
 
-                <hr id='hide-hr' />
+                <hr className={styles.divider} />
 
                 <UserOrdersTable />
             </main>

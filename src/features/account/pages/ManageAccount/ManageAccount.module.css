@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+.divider{
+    min-height: calc(100vh - 64px);
+}
+
 .section {
     display: flex;
     flex-direction: column;
@@ -94,5 +98,9 @@ p {
     .header {
         align-self: center;
         margin-left: -40px;
+    }
+
+    .divider{
+        display: none;
     }
 }

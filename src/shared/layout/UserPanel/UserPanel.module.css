@@ -1,35 +1,30 @@
-.panel {
-    position: sticky;
-    top: 64px;
-}
-
-.side-panel {
+.sidePanel {
     display: flex;
     flex-direction: column;
     width: min(230px, 50vw);
     gap: 2px;
 }
 
-.side-panel h2 {
-    text-align: center;
-    margin: 5px 0;
-}
-
-.menu-icon {
+.menuIcon {
     display: none;
 }
 
-.user-info {
+.userInfo {
     display: flex;
     align-items: center;
     gap: 5px;
     margin: 8px 0 0 9px;
 }
 
+.userName {
+    text-align: center;
+    margin: 5px 0;
+}
+
 .settings {
     display: flex;
     flex-direction: column;
-    gap: .5em;
+    gap: 8px;
 }
 
 .setting {
@@ -39,9 +34,10 @@
     font-size: larger;
     cursor: pointer;
     width: 100%;
-    padding: .5em;
+    padding: 8px;
     color: black;
     text-decoration: none;
+    transition: all ease 0.2s;
 }
 
 .setting:hover {
@@ -52,50 +48,29 @@
     margin-left: 20px;
 }
 
-#hide-hr {
-    min-height: calc(100vh - 64px);
-}
-
-.upper-panel {
-    position: sticky;
-    top: 0;
-    min-height: 53px;
-    padding: 10px;
-    margin-left: 6px;
-}
-
 @media screen and (max-width:700px) {
 
-    .user-panel-main {
+    .main {
         height: 50px;
     }
 
-    .menu-icon {
+    .menuIcon {
         display: flex;
         min-height: 53px;
         cursor: pointer;
     }
 
-    .menu-icon :first-child {
+    .menuIcon :first-child {
         margin: 15px 0 0 10px;
     }
 
-    .user-panel-main:first-child {
+    .main:first-child {
         position: sticky;
         top: 64px;
         z-index: 1;
     }
 
-    .upper-panel h2 {
-        text-align: center;
-        margin-right: 45px;
-    }
-
-    #hide-hr {
-        display: none;
-    }
-
-    .show {
+    .showPanel {
         position: fixed;
         inset: 0;
         background-color: rgba(0, 0, 0, 0.4);
@@ -105,28 +80,44 @@
         z-index: 999;
     }
 
-    .hide {
+    .hidePanel {
         display: none;
     }
 
-    .side-panel {
+    .sidePanel {
         display: flex;
-        animation: slide .5s ease-in-out forwards;
-        position: absolute;
+        animation: slide .5s ease-in-out;
+        position: fixed;
         min-height: calc(100vh - 64px);
-        background: whitesmoke;
+        background: white;
         width: min(230px, 50vw);
         top: 64px;
         left: 0;
     }
 
+    .closePanel {
+        position: fixed;
+        inset: 0;
+        animation: close .5s ease-in-out forwards;
+    }
+
     @keyframes slide {
-        0% {
-            transform: translateX(-180px);
+        from {
+            transform: translateX(min(-230px, -50vw));
         }
 
-        100% {
+        to {
             transform: translateX(0);
+        }
+    }
+
+    @keyframes close {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(min(-230px, -50vw));
         }
     }
 }

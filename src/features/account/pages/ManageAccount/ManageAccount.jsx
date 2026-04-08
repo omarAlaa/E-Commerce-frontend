@@ -17,7 +17,7 @@ export default function ManageAccount() {
             <main className={styles.main}>
                 <UserPanel page={'account'} />
 
-                <hr id='hide-hr' />
+                <hr className={styles.divider} />
 
                 <section className={styles.section}>
                     <header className={styles.header}>
