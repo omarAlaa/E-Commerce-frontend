@@ -15,7 +15,7 @@ export default function UserPanel(props) {
                 <AlignJustify />
             </div>
 
-            <div className={mobPanel === 'show' ? styles.showPanel : mobPanel === 'close' ? styles.closePanel : styles.hidePanel}
+            <div className={mobPanel === 'show' ? styles.showPanel : mobPanel === 'close' ? styles.closePanel : styles.pcPanel}
                 onAnimationEnd={() => { if (mobPanel === 'close') setMobPanel('hide') }}
                 onClick={() => setMobPanel('close')}>
                 <section className={styles.sidePanel} onClick={e => e.stopPropagation()}>
