@@ -1,0 +1,43 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+    margin-bottom: 32px;
+    margin-left: 16px;
+}
+
+.divider {
+    min-height: calc(100vh - 64px);
+}
+
+.header {
+    margin: 20px 0;
+}
+
+.tablesDivider {
+    width: 90%;
+    align-self: center;
+}
+
+@media screen and (max-width:700px) {
+
+    .divider {
+        display: none;
+    }
+
+    .header {
+        align-self: center;
+        margin-left: -40px;
+    }
+
+    .tablesDivider {
+        margin-left: -35px;
+        width: 100%;
+    }
+}

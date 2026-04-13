@@ -8,7 +8,9 @@
     z-index: 2;
 }
 
-.dialogProduct {
+.dialogOrder {
+    position: fixed;
+    align-self: center;
     border: none;
     border-radius: .5em;
     background: whitesmoke;
@@ -19,45 +21,47 @@
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
     max-height: 70vh;
     overflow-y: auto;
-    z-index: 2;
+    z-index: 1;
 }
 
-.oneRow {
+.orderId {
+    color: blue;
+}
+
+.product {
     display: flex;
-    gap: 16px;
-    flex-wrap: nowrap;
+    gap: 10px;
 }
 
-.input,
-.textarea {
-    border-radius: 8px;
-    border: 1px solid gray;
-    outline: none;
-    padding: 11px;
-    font-size: medium;
-    height: 40px;
+.image {
+    align-self: center;
 }
 
-.textarea {
-    font-size: 17px;
-    height: 53px;
-}
-
-.input:hover,
-.textarea:hover {
-    border-color: black;
-}
-
-.input:focus,
-.textarea:focus {
-    border: 2px solid rgba(3, 3, 250, 0.829);
-    padding: 10px;
-}
-
-.label {
+.info {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.title {
+    font-size: large;
+}
+
+.subtotal {
+    color: green;
+    font-size: large;
+}
+
+.select {
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 6px;
+    font-size: medium;
+    height: 40px;
+    width: 150px;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 .actionsBttns {
@@ -89,12 +93,8 @@
     background: rgb(7, 7, 179);
 }
 
-@media screen and (max-width: 770px) {
-    .oneRow {
-        flex-direction: column;
-    }
-
-    .dialogProduct {
+@media screen and (max-width:768px) {
+    .dialogOrder {
         width: 90%;
     }
 }

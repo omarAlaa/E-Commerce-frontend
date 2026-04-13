@@ -1,8 +1,9 @@
-import Loading from '../../../shared/ui/Loading/Loading'
+import styles from './UpdateOrderDialog.module.css'
+import Loading from '../../../../shared/ui/Loading/Loading'
 import { useState } from 'react'
-import { ordersStore } from "../store/ordersStore"
-import { updateOrder } from '../api/ordersAPI'
-import { uiStore } from '../../../app/store/uiStore'
+import { ordersStore } from "../../store/ordersStore"
+import { updateOrder } from '../../api/ordersAPI'
+import { uiStore } from '../../../../app/store/uiStore'
 
 export default function UpdateOrderDialog() {
     const { setOrders, orders, orderToReview, setOrderToReview } = ordersStore()
@@ -39,50 +40,50 @@ export default function UpdateOrderDialog() {
         <>
             {
                 orderToReview &&
-                <section className='modal'
+                <article className={styles.modal}
                     onClick={() => {
                         setOrderToReview()
                         setStatus()
                     }}>
-                    <article className='dialog-order' onClick={e => e.stopPropagation()}>
-                        <strong style={{ color: 'blue' }}>Order Id: {orderToReview._id}</strong>
+                    <div className={styles.dialogOrder} onClick={e => e.stopPropagation()}>
+                        <strong className={styles.orderId}>Order Id: {orderToReview._id}</strong>
 
                         <hr />
 
                         {
-                            orderToReview.items.map(product => <article key={product._id} className='cart-product'>
-                                <img src={product.image} alt="" width={'40px'} height={'40px'} />
+                            orderToReview.items.map(product => <div key={product._id} className={styles.product}>
+                                <img className={styles.image} src={product.image} alt="" width={'40px'} height={'40px'} />
 
-                                <article className="cart-product-info">
-                                    <strong>{product.title}</strong>
+                                <div className={styles.info}>
+                                    <strong className={styles.title}>{product.title}</strong>
 
-                                    <p>Unit price: {Intl.NumberFormat().format(product.price)} EGP</p>
+                                    <p>price: {Intl.NumberFormat().format(product.price)} EGP</p>
 
                                     <p>Quantity: {product.quantity}</p>
 
-                                    <p>Total price: {Intl.NumberFormat().format(product.quantity * product.price)} EGP</p>
-                                </article>
-                            </article>)
+                                    <p>Total: {Intl.NumberFormat().format(product.quantity * product.price)} EGP</p>
+                                </div>
+                            </div>)
                         }
 
                         <hr />
 
-                        <strong style={{ color: 'green' }}>Subtotal: {new Intl.NumberFormat().format(orderToReview.subtotal)} EGP</strong>
+                        <strong className={styles.subtotal}>Subtotal: {new Intl.NumberFormat().format(orderToReview.subtotal)} EGP</strong>
 
-                        <strong className='date-id'>Order Date: {new Date(parseInt(orderToReview._id.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
+                        <strong>Order Date: {new Date(parseInt(orderToReview._id.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
 
-                        <div className='one-row'>
+                        <div className={styles.oneRow}>
                             <strong>Status:</strong>
 
-                            <select className='status-select' name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
+                            <select className={styles.select} name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
                                 <option value="" disabled>Change status</option>
 
                                 {statuses.map(status => <option value={status} key={status}>{status}</option>)}
                             </select>
                         </div>
 
-                        <article className="manage-order-buttons">
-                            <button id='update-button'
+                        <div className={styles.actionsBttns}>
+                            <button className={styles.updateBttn}
                                 disabled={updateDisabled}
                                 onClick={() => { handleUpdateOrder(orderToReview._id, status) }}
                                 style={{ cursor: updateDisabled ? 'not-allowed' : 'pointer' }}
@@ -90,13 +91,13 @@ export default function UpdateOrderDialog() {
                                 {updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
                             </button>
 
-                            <button onClick={() => {
+                            <button className={styles.closeBttn} onClick={() => {
                                 setOrderToReview()
                                 setStatus()
                             }}>Close</button>
-                        </article>
-                    </article>
-                </section >
+                        </div>
+                    </div>
+                </article >
             }
         </>
     )

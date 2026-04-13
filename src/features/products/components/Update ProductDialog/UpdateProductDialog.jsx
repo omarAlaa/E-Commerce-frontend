@@ -73,14 +73,14 @@ export default function UpdateProductDialog() {
                             <textarea className={styles.textarea} type="text" name="description-update" id="description-update" defaultValue={productToUpdate.description} />
                         </label>
 
-                        <div className="manage-order-buttons">
-                            <button id='update-button'
+                        <div className={styles.actionsBttns}>
+                            <button className={styles.updateBttn}
                                 type="submit"
                                 disabled={updateProductLoading}
                             >{updateProductLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
                             </button>
 
-                            <button type="button" onClick={closeUpdate}>Close</button>
+                            <button className={styles.closeBttn} type="button" onClick={closeUpdate}>Close</button>
                         </div>
                     </form>
                 </div>

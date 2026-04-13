@@ -1,4 +1,4 @@
-import './ManageOrders.css'
+import styles from './ManageOrders.module.css'
 import AppBar from '../../../../shared/layout/AppBar/AppBar'
 import UserPanel from '../../../../shared/layout/UserPanel/UserPanel'
 import AllOrdersTable from '../../components/AllOrdersTable'
@@ -12,13 +12,15 @@ export default function ManageOrders() {
         <>
             <AppBar />
 
-            <main className="manage-orders-main">
+            <main className={styles.main}>
                 <UserPanel page={'orders'} />
 
-                <hr id='hide-hr' />
+                <hr className={styles.divider} />
 
-                <section className='manage-orders-body'>
-                    <header className='upper-panel'><h2>Orders</h2></header>
+                <section className={styles.body}>
+                    <header className={styles.header}>
+                        <h2>Orders</h2>
+                    </header>
 
                     <AllOrdersTable />
                 </section>

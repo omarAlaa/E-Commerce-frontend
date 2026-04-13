@@ -1,4 +1,4 @@
-import './ManageAdminsUsers.css'
+import styles from './ManageAdminsUsers.module.css'
 import AppBar from '../../../../shared/layout/AppBar/AppBar'
 import UserPanel from '../../../../shared/layout/UserPanel/UserPanel'
 import AdminsTable from '../../Components/AdminsTable'
@@ -13,17 +13,19 @@ export default function ManageAdminsUsers() {
         <>
             <AppBar />
 
-            <main className="manage-admins-users-main">
+            <main className={styles.main}>
                 <UserPanel page='admins-users' />
 
-                <hr id='hide-hr' />
+                <hr className={styles.divider} />
 
-                <section className="manage-admins-users-body">
-                    <header className='upper-panel'><h2>Admins/Users</h2></header>
+                <section className={styles.body}>
+                    <header className={styles.header}>
+                        <h2>Admins/Users</h2>
+                    </header>
 
                     <AdminsTable />
 
-                    <hr id='users-admins-hr' />
+                    <hr className={styles.tablesDivider} />
 
                     <UsersTable />
                 </section>

@@ -1,7 +1,7 @@
 import styles from '../../../shared/components/Table/Table.module.css'
 import { ordersStore } from "../store/ordersStore"
 import { useState, useEffect } from "react"
-import UpdateOrderDialog from "./UpdateOrderDialog"
+import UpdateOrderDialog from "./UpdateOrderDialog/UpdateOrderDialog"
 import Loading from "../../../shared/ui/Loading/Loading"
 import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchAllOrders, updateOrder } from "../api/ordersAPI"
@@ -87,7 +87,7 @@ export default function AllOrdersTable() {
                                     {filteredOrders.map((order) => <tr key={order._id}>
                                         <td className={styles.longData}>{order._id}</td>
 
-                                        <td>{order.status}</td>
+                                        <td className={styles.entry}>{order.status}</td>
 
                                         <td>
                                             <button className={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</button>
