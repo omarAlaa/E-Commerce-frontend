@@ -1,0 +1,30 @@
+.address {
+    display: flex;
+    flex-direction: column;
+}
+
+.city {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    border-radius: .5em;
+    border: 1px solid gray;
+    padding: 8px;
+    margin: 10px 0;
+    background: whitesmoke;
+    font-size: medium;
+}
+
+.input:hover {
+    border-color: black;
+}
+
+.input:focus {
+    border-color: blue;
+}

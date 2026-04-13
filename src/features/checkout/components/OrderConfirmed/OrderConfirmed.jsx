@@ -1,6 +1,7 @@
+import styles from './OrderConfirmed.module.css'
 import { PackageCheck } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { checkoutStore } from '../store/checkoutStore'
+import { checkoutStore } from '../../store/checkoutStore'
 
 export default function OrderConfirmed() {
     const navigate = useNavigate()
@@ -12,14 +13,14 @@ export default function OrderConfirmed() {
     }
 
     return (
-        <section className="order-confirmed-section">
+        <section className={styles.section}>
             <PackageCheck color='blue' size={60} />
 
             <strong>Thank you for your order!</strong>
 
             <p>Your order id is #{orderId}. You can track your order status in your orders</p>
 
-            <button className='nav-button'
+            <button className={styles.button}
                 onClick={handleGoToMyOrders}>
                 Go to my orders
             </button>

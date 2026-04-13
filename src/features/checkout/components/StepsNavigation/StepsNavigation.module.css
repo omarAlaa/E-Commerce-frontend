@@ -1,0 +1,33 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button,
+.next,
+.placeOrder {
+    margin: 20px 0 10px;
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border-radius: .5em;
+    border: none;
+    cursor: pointer;
+    max-width: 150px;
+    transition: all 0.2s ease;
+}
+
+.button:hover,
+.next:hover,
+.placeOrder:hover {
+    background: rgb(0, 0, 161);
+}
+
+.next {
+    margin-left: auto;
+}
+
+.placeOrder {
+    width: 112px;
+}

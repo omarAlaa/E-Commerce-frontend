@@ -1,0 +1,35 @@
+.steps {
+    display: flex;
+    align-items: center;
+}
+
+.step {
+    white-space: nowrap;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    border: 1px solid gray;
+    background: white;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.line {
+    min-width: 100px;
+    height: 1px;
+    background: black;
+    margin: 0 5px;
+}
+
+@media screen and (max-width: 700px) {
+    .step {
+        white-space: wrap;
+    }
+
+    .line {
+        min-width: 10px;
+    }
+}

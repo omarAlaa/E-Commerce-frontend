@@ -1,0 +1,50 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: .5em;
+    padding: 10px;
+    background: skyblue;
+}
+
+.number_cvv,
+.name_date {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.number_cvv label,
+.name_date label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.number {
+    flex: 1;
+}
+
+.cvv {
+    width: 25%;
+}
+
+.input {
+    width: 100%;
+    outline: none;
+    border-radius: .5em;
+    border: 1px solid gray;
+    padding: 8px;
+    margin: 10px 0;
+    background: whitesmoke;
+    font-size: medium;
+}
+
+.input:hover {
+    border-color: black;
+}
+
+.input:focus {
+    border-color: blue;
+}

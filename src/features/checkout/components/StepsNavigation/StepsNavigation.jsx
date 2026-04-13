@@ -1,9 +1,10 @@
+import styles from './StepsNavigation.module.css'
 import { useState } from "react"
-import { cartStore } from "../../../app/store/cartStore"
-import { uiStore } from "../../../app/store/uiStore"
-import { checkoutStore } from "../store/checkoutStore"
-import Loading from '../../../shared/ui/Loading/Loading'
-import { placeOrder } from "../../orders/api/ordersAPI"
+import { cartStore } from "../../../../app/store/cartStore"
+import { uiStore } from "../../../../app/store/uiStore"
+import { checkoutStore } from "../../store/checkoutStore"
+import Loading from '../../../../shared/ui/Loading/Loading'
+import { placeOrder } from "../../../orders/api/ordersAPI"
 
 export default function StepsNavigation() {
     const { step, setStep, setOrderId } = checkoutStore()
@@ -28,22 +29,22 @@ export default function StepsNavigation() {
     }
 
     return (
-        <article className='steps-direction'>
-            <button className='nav-button'
+        <div className={styles.navigation}>
+            <button className={styles.button}
                 onClick={() => setStep(step - 1)}
                 style={{ display: step === 1 || step === 4 ? 'none' : 'block' }}
             >
                 {'< Previous'}
             </button>
 
-            <button className='nav-button next'
+            <button className={styles.next}
                 onClick={() => setStep(step + 1)}
                 style={{ display: step === 3 || step === 4 ? 'none' : 'block' }}
             >
                 {'Next >'}
             </button>
 
-            <button className='nav-button place-order'
+            <button className={styles.placeOrder}
                 disabled={placeOrderLoading}
                 onClick={async () => {
                     setPlaceOrderLoading(true)
@@ -54,6 +55,6 @@ export default function StepsNavigation() {
             >
                 {placeOrderLoading ? <Loading size={15} height={'100%'} /> : 'Place Order'}
             </button>
-        </article>
+        </div>
     )
 }

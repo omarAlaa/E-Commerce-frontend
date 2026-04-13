@@ -1,8 +1,8 @@
-import './Checkout.css'
-import ShippingAddress from '../../components/ShippingAddress'
-import ReviewOrder from '../../components/ReviewOrder'
-import Payment from '../../components/Payment'
-import OrderConfirmed from '../../components/OrderConfirmed'
+import styles from './Checkout.module.css'
+import ShippingAddress from '../../components/ShippingAddress/ShippingAddress'
+import ReviewOrder from '../../components/ReviewOrder/ReviewOrder'
+import Payment from '../../components/Payment/Payment'
+import OrderConfirmed from '../../components/OrderConfirmed/OrderConfirmed'
 import Snackbar from '../../../../shared/ui/SnackBar/SnackBar'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -10,9 +10,9 @@ import { cartStore } from '../../../../app/store/cartStore'
 import { fetchCart } from '../../../cart/api/cartAPI'
 import { authStore } from '../../../../app/store/authStore'
 import { uiStore } from '../../../../app/store/uiStore'
-import Steps from '../../components/Steps'
+import Steps from '../../components/Steps/Steps'
 import { checkoutStore } from '../../store/checkoutStore'
-import StepsNavigation from '../../components/StepsNavigation'
+import StepsNavigation from '../../components/StepsNavigation/StepsNavigation'
 
 export default function Checkout() {
     const { step, setStep } = checkoutStore()
@@ -56,8 +56,8 @@ export default function Checkout() {
         <>
             {
                 user &&
-                <main className='checkout-main'>
-                    <button className='back-store'
+                <main className={styles.main}>
+                    <button className={styles.backStore}
                         onClick={handleBackToStore}>
                         {'< Back to Store'}
                     </button>
@@ -77,10 +77,10 @@ export default function Checkout() {
                     }
 
                     <StepsNavigation />
-
-                    <Snackbar {...snackBar} />
                 </main>
             }
+
+            <Snackbar {...snackBar} />
         </>
     )
 }

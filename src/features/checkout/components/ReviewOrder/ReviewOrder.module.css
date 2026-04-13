@@ -1,0 +1,39 @@
+.container {
+    align-self: flex-start;
+    width: 100%;
+}
+
+.order {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: large;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.image {
+    width: 60px;
+}
+
+.title {
+    white-space: wrap;
+}
+
+.subtotal {
+    color: green;
+    font-size: large;
+}
