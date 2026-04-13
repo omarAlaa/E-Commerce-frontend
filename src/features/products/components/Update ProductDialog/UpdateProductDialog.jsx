@@ -1,8 +1,9 @@
-import { productsStore } from "../store/productsStore"
-import Loading from "../../../shared/ui/Loading/Loading"
-import { updateProduct } from "../api/productsAPI"
+import styles from './UpdateProductDialog.module.css'
+import { productsStore } from "../../store/productsStore"
+import Loading from "../../../../shared/ui/Loading/Loading"
+import { updateProduct } from "../../api/productsAPI"
 import { useState } from "react"
-import { uiStore } from "../../../app/store/uiStore"
+import { uiStore } from "../../../../app/store/uiStore"
 
 export default function UpdateProductDialog() {
     const { products, setProducts, productToUpdate, closeUpdate, setProductToUpdate } = productsStore()
@@ -47,32 +48,32 @@ export default function UpdateProductDialog() {
         <>
             {
                 productToUpdate &&
-                <section className="modal" onClick={closeUpdate}>
-                    <form onSubmit={handleUpdateProduct} className='dialog-product' onClick={e => e.stopPropagation()}>
+                <div className={styles.modal} onClick={closeUpdate}>
+                    <form onSubmit={handleUpdateProduct} className={styles.dialogProduct} onClick={e => e.stopPropagation()}>
                         <strong>{productToUpdate.title}</strong>
 
                         <hr />
 
-                        <article className="one-row">
-                            <label htmlFor="price-update">Price:
-                                <input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={String(productToUpdate.price).replace(/,/g, "")} />
+                        <div className={styles.oneRow}>
+                            <label className={styles.label} htmlFor="price-update">Price:
+                                <input className={styles.input} type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={String(productToUpdate.price).replace(/,/g, "")} />
                             </label>
 
-                            <label htmlFor="category-update">Category:
-                                <input type="text" name="category-update" id="category-update" defaultValue={productToUpdate.category} />
+                            <label className={styles.label} htmlFor="category-update">Category:
+                                <input className={styles.input} type="text" name="category-update" id="category-update" defaultValue={productToUpdate.category} />
                             </label>
-                        </article>
+                        </div>
 
-                        <label htmlFor="image-url-update">
+                        <label className={styles.label} htmlFor="image-url-update">
                             Image URL:
-                            <input type="text" name="image-url-update" id="image-url-update" defaultValue={productToUpdate.image} />
+                            <input className={styles.input} type="text" name="image-url-update" id="image-url-update" defaultValue={productToUpdate.image} />
                         </label>
 
-                        <label htmlFor="description-update">Description:
-                            <textarea className="description-update" type="text" name="description-update" id="description-update" defaultValue={productToUpdate.description} />
+                        <label className={styles.label} htmlFor="description-update">Description:
+                            <textarea className={styles.textarea} type="text" name="description-update" id="description-update" defaultValue={productToUpdate.description} />
                         </label>
 
-                        <article className="manage-order-buttons">
+                        <div className="manage-order-buttons">
                             <button id='update-button'
                                 type="submit"
                                 disabled={updateProductLoading}
@@ -80,9 +81,9 @@ export default function UpdateProductDialog() {
                             </button>
 
                             <button type="button" onClick={closeUpdate}>Close</button>
-                        </article>
+                        </div>
                     </form>
-                </section>
+                </div>
             }
         </>
     )

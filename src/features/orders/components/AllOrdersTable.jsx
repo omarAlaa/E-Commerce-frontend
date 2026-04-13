@@ -1,3 +1,4 @@
+import styles from '../../../shared/components/Table/Table.module.css'
 import { ordersStore } from "../store/ordersStore"
 import { useState, useEffect } from "react"
 import UpdateOrderDialog from "./UpdateOrderDialog"
@@ -47,11 +48,11 @@ export default function AllOrdersTable() {
 
     return (
         <>
-            <div className="table-header">
-                <div className="search-section">
-                    <input type="text" name="search" id="search" placeholder="Search" onChange={e => searchOrders(e.target.value)} />
+            <div className={styles.header}>
+                <div className={styles.searchSection}>
+                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchOrders(e.target.value)} />
 
-                    <select name="status" id="search-category" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
+                    <select className={styles.select} name="status" id="search-status" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
                         <option value="" disabled >Filter status</option>
 
                         <option value="All orders" >All orders</option>
@@ -74,8 +75,8 @@ export default function AllOrdersTable() {
                             <h2>No orders found</h2>
                         </section>
                         :
-                        <section className="table-container">
-                            <table>
+                        <section className={styles.container}>
+                            <table className={styles.table}>
                                 <thead>
                                     <tr>
                                         {headers.map(header => <td key={header}>{header}</td>)}
@@ -84,14 +85,15 @@ export default function AllOrdersTable() {
 
                                 <tbody>
                                     {filteredOrders.map((order) => <tr key={order._id}>
-                                        <td className="long-data">{order._id}</td>
+                                        <td className={styles.longData}>{order._id}</td>
 
                                         <td>{order.status}</td>
 
                                         <td>
-                                            <button className='white-button' onClick={() => setOrderToReview(order)}>Review</button>
+                                            <button className={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</button>
 
-                                            <button onClick={() => setOrderIdToCancel(order._id)}
+                                            <button className={styles.redBttn}
+                                                onClick={() => setOrderIdToCancel(order._id)}
                                                 disabled={order.status === 'cancelled'}
                                                 style={{ cursor: order.status === 'cancelled' ? 'not-allowed' : 'pointer' }}>
                                                 Cancel

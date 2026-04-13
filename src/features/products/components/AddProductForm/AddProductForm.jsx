@@ -1,11 +1,12 @@
-import Loading from "../../../shared/ui/Loading/Loading"
+import styles from './AddProductForm.module.css'
+import Loading from "../../../../shared/ui/Loading/Loading"
 import { Settings } from 'lucide-react'
 import { useState, useRef } from "react"
-import CategoriesModal from "./CategoriesModal"
-import { addProduct } from "../api/productsAPI"
-import { uiStore } from "../../../app/store/uiStore"
-import { categoriesStore } from "../../categories/store/categoriesStore"
-import { productsStore } from "../store/productsStore"
+import CategoriesModal from "../CategoriesModal/CategoriesModal"
+import { addProduct } from "../../api/productsAPI"
+import { uiStore } from "../../../../app/store/uiStore"
+import { categoriesStore } from "../../../categories/store/categoriesStore"
+import { productsStore } from "../../store/productsStore"
 
 export default function AddProductForm() {
 
@@ -45,34 +46,34 @@ export default function AddProductForm() {
     }
 
     return (
-        <form ref={formRef} onSubmit={handleAddProduct} className="add-product">
-            <input type="text" name="title" id="product-title" placeholder="Title" />
+        <form ref={formRef} onSubmit={handleAddProduct} className={styles.addProduct}>
+            <input className={styles.input} type="text" name="title" id="product-title" placeholder="Title" />
 
-            <article className="one-row">
-                <select name="category" id="category" defaultValue={''} onChange={e => setCategory(e.target.value)} style={{ color: category ? 'black' : 'gray' }}>
+            <div className={styles.oneRow}>
+                <select className={styles.select} name="category" id="category" defaultValue={''} onChange={e => setCategory(e.target.value)} style={{ color: category ? 'black' : 'gray' }}>
                     <option value="" disabled >Select Category</option>
 
-                    {categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)}
+                    {categories?.map(category => <option key={category._id} className={styles.option} value={category.name}>{category.name}</option>)}
                 </select>
 
                 <button type="button"
-                    className="manage-categories"
+                    className={styles.manageCategories}
                     onClick={() => setShowCatModal(true)}
                     title="Manage Categories"
                 >
                     <Settings size={20} /> Manage
                 </button>
-            </article>
+            </div>
 
-            <article className="one-row">
-                <input type="number" name="price" id="price" placeholder="Price" step="0.01" min="0" />
+            <div className={styles.oneRow}>
+                <input className={styles.input} type="number" name="price" id="price" placeholder="Price" step="0.01" min="0" />
 
-                <input type="text" name="image-url" id="image-url" placeholder="Image URL" />
-            </article>
+                <input className={styles.input} type="text" name="image-url" id="image-url" placeholder="Image URL" />
+            </div>
 
-            <textarea type="text" name="description" id="description" placeholder="Description" />
+            <textarea className={styles.textarea} type="text" name="description" id="description" placeholder="Description" />
 
-            <button className="new-product"
+            <button className={styles.newProduct}
                 type='submit'>
                 {addProductLoading ? <Loading size={15} height={'100%'} /> : '+ Add Product'}
             </button>

@@ -1,7 +1,7 @@
-import './ManageProducts.css'
+import styles from './ManageProducts.module.css'
 import AppBar from '../../../../shared/layout/AppBar/AppBar'
 import UserPanel from '../../../../shared/layout/UserPanel/UserPanel'
-import AddProductForm from '../../components/AddProductForm'
+import AddProductForm from '../../components/AddProductForm/AddProductForm'
 import ProductsTable from '../../components/ProductsTable'
 import SnackBar from '../../../../shared/ui/SnackBar/SnackBar'
 import { uiStore } from '../../../../app/store/uiStore'
@@ -13,19 +13,22 @@ export default function ManageProducts() {
         <>
             <AppBar />
 
-            <main className="manage-products-main">
+            <main className={styles.main}>
                 <UserPanel page={'products'} />
 
-                <hr id='hide-hr' />
+                <hr className={styles.divider} />
 
-                <section className="manage-products-body">
-                    <header className="upper-panel"><h2>Products</h2></header>
+                <div className={styles.body}>
+                    <header className={styles.header}>
+                        <h2>Products</h2>
+                    </header>
+
                     <AddProductForm />
 
                     <hr id='users-admins-hr' />
 
                     <ProductsTable />
-                </section>
+                </div>
             </main>
 
             <SnackBar {...snackBar} />

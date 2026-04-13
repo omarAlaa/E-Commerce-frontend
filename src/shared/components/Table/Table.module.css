@@ -1,15 +1,15 @@
 td,
-table {
+.table {
     border: 1px solid black;
     border-collapse: collapse;
 }
 
-.table-container {
+.table {
     align-self: center;
-    width: 90%;
+    width: 100%;
 }
 
-.table-header {
+.header {
     align-self: center;
     width: 90%;
     display: flex;
@@ -17,17 +17,52 @@ table {
     font-size: large;
 }
 
-.search-section {
+.container {
+    align-self: center;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchSection {
     display: flex;
     gap: 5px;
     margin-left: auto;
 }
 
-.search-section input {
-    width: 164px;
+.input,
+.select {
+    max-width: 164px;
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 11px;
+    font-size: medium;
+    height: 40px;
 }
 
-table,
+.select {
+    cursor: pointer;
+    padding: 6px;
+}
+
+.input:hover,
+.select:hover {
+    border-color: black;
+}
+
+.input:focus,
+.select:focus {
+    border: 2px solid rgba(3, 3, 250, 0.829);
+    padding: 10px;
+}
+
+.select:focus {
+    padding: 5px;
+}
+
+.table,
 td:has(strong) {
     border: none;
 }
@@ -38,15 +73,6 @@ td:has(strong) {
     font-size: large;
 }
 
-table {
-    align-self: center;
-    width: 100%;
-}
-
-#search-category {
-    width: 100%;
-}
-
 td {
     padding: 3px 3px;
 }
@@ -55,7 +81,12 @@ td:has(button) {
     width: 150px;
 }
 
-tr button {
+.entry {
+    text-align: center;
+}
+
+.redBttn,
+.whiteBttn {
     background: red;
     color: white;
     border: none;
@@ -63,53 +94,62 @@ tr button {
     padding: 8px 0px;
     cursor: pointer;
     margin: 7px 0;
-    width: min(100%, 100%);
+    width: 100%;
     transition: all 0.2s ease;
 }
 
-tr button:hover {
+.redBttn:hover {
     background: rgb(173, 0, 0);
 }
 
-.white-button {
+.whiteBttn {
     background: white;
     color: blue;
     border: 1px solid blue;
     padding: 7px 0;
 }
 
-.white-button:hover {
+.whiteBttn:hover {
     background: rgb(214, 206, 206);
 }
 
 @media screen and (max-width: 700px) {
-    .long-data {
+    #productsTable {
+        width: 110%;
+        margin-left: -4vw;
+    }
+
+    .longData {
         overflow-wrap: break-word;
         max-width: 150px;
     }
 
-    .table-container {
+    .container {
+        margin-left: -35px;
+        width: 100%;
+    }
+
+    .header {
         margin-left: -35px;
     }
 
-    .table-header {
-        margin-left: -35px;
-    }
-
-    .table-header strong {
+    .productsHeader {
         margin-bottom: -50px;
+        margin-left: -40px;
     }
 
-    .search-section {
+    .searchSection {
         flex-direction: column;
+        margin-right: -20px;
+    }
+
+    .redBttn,
+    .whiteBttn {
+        padding: 10px 30px;
     }
 
     td:not(:has(strong)) {
         padding: 3px 3px;
         text-align: center;
-    }
-
-    tr button {
-        padding: 8px 10px;
     }
 }

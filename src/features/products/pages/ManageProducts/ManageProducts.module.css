@@ -1,0 +1,65 @@
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.divider {
+    min-height: calc(100vh - 64px);
+}
+
+.body {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    margin-bottom: 32px;
+    margin-left: 16px;
+}
+
+.header {
+    margin: 20px 0;
+}
+
+.confirm-bttns {
+    justify-content: center;
+}
+
+.delete-bttn {
+    border: none;
+    border-radius: 4px;
+    padding: 10px 25px;
+    background-color: rgb(170, 170, 170);
+    color: black;
+    width: 90px;
+    transition: all 0.2s ease;
+}
+
+.delete-bttn {
+    color: white;
+    background-color: red;
+}
+
+.delete-bttn:hover {
+    cursor: pointer;
+    background-color: rgb(209, 5, 5);
+}
+
+@media screen and (max-width: 770px) {
+
+    .divider {
+        display: none;
+    }
+
+    .header {
+        align-self: center;
+        margin-left: -40px;
+    }
+
+    .manage-products-body hr {
+        width: 93%;
+    }
+
+    .manage-products-body h2 {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,72 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.dialogProduct {
+    border: none;
+    border-radius: .5em;
+    background: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.oneRow {
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.cancelBttn,
+.addBttn,
+.redBttn {
+    border: none;
+    border-radius: 4px;
+    padding: 10px 25px;
+    background-color: rgb(170, 170, 170);
+    color: black;
+    width: 90px;
+    transition: all 0.2s ease;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.addBttn,
+.redBttn {
+    background-color: blue;
+    color: white;
+}
+
+.redBttn {
+    background: red;
+}
+
+.cancelBttn:hover {
+    background-color: gray;
+}
+
+.addBttn:hover {
+    background-color: rgb(0, 0, 167);
+}
+
+.redBttn:hover {
+    background: rgb(173, 0, 0);
+}
+
+@media screen and (max-width: 770px) {
+    .dialogProduct {
+        width: 90%;
+    }
+}

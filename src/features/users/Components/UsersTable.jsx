@@ -1,4 +1,4 @@
-import '../../../shared/components/Table/Table.css'
+import styles from '../../../shared/components/Table/Table.module.css'
 import { adminsUsersStore } from '../store/adminsUsersStore'
 import { useState, useEffect } from 'react'
 import Loading from '../../../shared/ui/Loading/Loading'
@@ -59,11 +59,11 @@ export default function UsersTable() {
 
     return (
         <>
-            <div className="table-header">
+            <div className={styles.header}>
                 <strong>Users</strong>
 
-                <div className="search-section">
-                    <input type="text" name="search" id="search" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
+                <div className={styles.searchSection}>
+                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
                 </div>
             </div>
 
@@ -80,8 +80,8 @@ export default function UsersTable() {
                             <h2>No users found</h2>
                         </section>
                         :
-                        <section className='table-container'>
-                            <table>
+                        <section className={styles.container}>
+                            <table className={styles.table}>
                                 <thead>
                                     <tr>{headers.map(header => <td key={header}>{header}</td>)}</tr>
                                 </thead>
@@ -96,12 +96,13 @@ export default function UsersTable() {
                                             <button onClick={() => {
                                                 setActionUser(user)
                                                 setAction('Make admin: ')
-                                            }} className='white-button'>Make Admin</button>
+                                            }} className={styles.whiteBttn}>Make Admin</button>
 
-                                            <button onClick={() => {
-                                                setActionUser(user)
-                                                setAction('Remove user: ')
-                                            }}>Remove</button>
+                                            <button className={styles.redBttn}
+                                                onClick={() => {
+                                                    setActionUser(user)
+                                                    setAction('Remove user: ')
+                                                }} >Remove</button>
                                         </td>
                                     </tr>)}
                                 </tbody>

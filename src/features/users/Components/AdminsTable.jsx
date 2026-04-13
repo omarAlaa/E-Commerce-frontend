@@ -1,4 +1,4 @@
-import '../../../shared/components/Table/Table.css'
+import styles from '../../../shared/components/Table/Table.module.css'
 import { adminsUsersStore } from '../store/adminsUsersStore'
 import { useState, useEffect } from 'react'
 import Loading from '../../../shared/ui/Loading/Loading'
@@ -42,11 +42,11 @@ export default function AdminsTable() {
 
     return (
         <>
-            <div className="table-header">
+            <div className={styles.header}>
                 <strong>Admins</strong>
 
-                <div className="search-section">
-                    <input type="text" name="search" id="search" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
+                <div className={styles.searchSection}>
+                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
                 </div>
             </div>
 
@@ -63,19 +63,19 @@ export default function AdminsTable() {
                             <h2>No admins found</h2>
                         </section>
                         :
-                        <section className='table-container'>
-                            <table>
+                        <section className={styles.container}>
+                            <table className={styles.table}>
                                 <thead>
                                     <tr>{headers.map(header => <td key={header}>{header}</td>)}</tr>
                                 </thead>
 
                                 <tbody>
                                     {filteredAdmins.map(admin => <tr key={admin._id}>
-                                        <td className='long-data'>{admin.email}</td>
+                                        <td className={styles.longData}>{admin.email}</td>
 
                                         <td>{admin.userName}</td>
 
-                                        <td><button onClick={() => { setAdminToRemove(admin) }}>Remove</button></td>
+                                        <td><button className={styles.redBttn} onClick={() => { setAdminToRemove(admin) }}>Remove</button></td>
                                     </tr>)}
                                 </tbody>
                             </table>

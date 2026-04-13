@@ -1,7 +1,8 @@
+import styles from '../../../shared/components/Table/Table.module.css'
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useEffect, useState } from "react"
 import { productsStore } from '../store/productsStore'
-import UpdateProductDialog from "./UpdateProductDialog"
+import UpdateProductDialog from "./Update ProductDialog/UpdateProductDialog"
 import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchProducts, deleteProduct } from "../api/productsAPI"
 import { uiStore } from "../../../app/store/uiStore"
@@ -47,13 +48,13 @@ export default function ProductsTable() {
 
     return (
         <>
-            <div className="table-header">
-                <strong>Products</strong>
+            <div className={styles.header}>
+                <strong className={styles.productsHeader}>Products</strong>
 
-                <div className="search-section">
-                    <input type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
+                <div className={styles.searchSection}>
+                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
 
-                    <select name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
+                    <select className={styles.select} name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
                         <option value="" disabled >Filter category</option>
 
                         <option value="All Products" >All Products</option>
@@ -77,8 +78,8 @@ export default function ProductsTable() {
                                 <h2>No products found</h2>
                             </section>
                             :
-                            <section className="table-container">
-                                <table>
+                            <section className={styles.container}>
+                                <table className={styles.table} id={styles.productsTable}>
                                     <thead>
                                         <tr>{headers.map(header => <td key={header}>
                                             {header}
@@ -87,16 +88,16 @@ export default function ProductsTable() {
 
                                     <tbody>
                                         {filteredProducts.map(product => <tr key={product._id}>
-                                            <td className="title-section">{product.title}</td>
+                                            <td>{product.title}</td>
 
-                                            <td>{product.price}</td>
+                                            <td className={styles.entry}>{product.price}</td>
 
-                                            <td>{product.category}</td>
+                                            <td className={styles.entry}>{product.category}</td>
 
                                             <td>
-                                                <button className="white-button" onClick={() => setProductToUpdate(product)}>Update</button>
+                                                <button className={styles.whiteBttn} onClick={() => setProductToUpdate(product)}>Update</button>
 
-                                                <button onClick={() => setProductToDelete(product)}>Delete</button>
+                                                <button className={styles.redBttn} onClick={() => setProductToDelete(product)}>Delete</button>
                                             </td>
                                         </tr>)}
                                     </tbody>

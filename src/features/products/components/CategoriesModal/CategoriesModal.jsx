@@ -1,10 +1,11 @@
+import styles from './CategoriesModal.module.css'
 import { useState } from "react"
-import Loading from "../../../shared/ui/Loading/Loading"
+import Loading from "../../../../shared/ui/Loading/Loading"
 import { Trash2 } from 'lucide-react'
-import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
-import { categoriesStore } from "../../categories/store/categoriesStore"
-import { addCategory, deleteCategory } from "../../categories/api/categoriesAPI"
-import { uiStore } from "../../../app/store/uiStore"
+import ConfirmModal from "../../../../shared/ui/ConfirmModal/ConfirmModal"
+import { categoriesStore } from "../../../categories/store/categoriesStore"
+import { addCategory, deleteCategory } from "../../../categories/api/categoriesAPI"
+import { uiStore } from "../../../../app/store/uiStore"
 
 export default function CategoriesModal() {
     const { categories, setCategories, showCatModal, setShowCatModal } = categoriesStore()
@@ -47,14 +48,14 @@ export default function CategoriesModal() {
 
     return (
         showCatModal &&
-        <section className="modal" onClick={() => setShowCatModal(false)}>
-            <div className="dialog-product" onClick={e => e.stopPropagation()}>
+        <div className={styles.modal} onClick={() => setShowCatModal(false)}>
+            <div className={styles.dialogProduct} onClick={e => e.stopPropagation()}>
                 <strong>Add new category</strong>
 
-                <div className="one-row">
-                    <input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
+                <div className={styles.oneRow}>
+                    <input className={styles.input} type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
 
-                    <button className="add-bttn"
+                    <button className={styles.addBttn}
                         type="button"
                         disabled={addCategoryLoading || !newCategory}
                         onClick={handleAddCategory}
@@ -67,7 +68,7 @@ export default function CategoriesModal() {
                 <strong>Categories</strong>
                 {
                     categories?.map(category =>
-                        <div className="cat-box" key={category._id}>
+                        <div className={styles.catBox} key={category._id}>
                             <p>{category.name}</p>
 
                             <div title="Delete category"><Trash2 color="red" onClick={() => setCategoryToDelete(category)} style={{ cursor: 'pointer' }} /> </div>
@@ -75,7 +76,7 @@ export default function CategoriesModal() {
                     )
                 }
 
-                <button className="cancel-bttn" onClick={() => setShowCatModal(false)}>Close</button>
+                <button className={styles.cancelBttn} onClick={() => setShowCatModal(false)}>Close</button>
             </div>
 
             {categoryToDelete &&
@@ -83,6 +84,6 @@ export default function CategoriesModal() {
                     close={() => setCategoryToDelete()}
                     message={`Delete category: ${categoryToDelete.name} ?`}
                     action={async () => { await handleDeleteCategory(categoryToDelete._id) }} />}
-        </section>
+        </div>
     )
 }
