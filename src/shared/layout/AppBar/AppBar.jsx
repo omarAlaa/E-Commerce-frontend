@@ -12,7 +12,7 @@ import { fetchCategories } from '../../../features/categories/api/categoriesAPI'
 import { safeStorage } from '../../../app/utilities/safeStorage'
 
 export default function AppBar() {
-    const [categoriesState, setCategoriesState] = useState('hide')
+    const [categoriesPanel, setCategoriesPanel] = useState('hide')
     const [cartState, setCartState] = useState('hide')
     const [optionsState, setOptionstate] = useState('hide')
     const { cart, cartFetched, setCart, setCartFetched } = cartStore()
@@ -76,7 +76,7 @@ export default function AppBar() {
     }
 
     const hideModal = () => {
-        categoriesState === 'close' ? setCategoriesState('hide') : cartState === 'close' ? setCartState('hide') : optionsState === 'close' && setOptionstate('hide')
+        categoriesPanel === 'close' ? setCategoriesPanel('hide') : cartState === 'close' ? setCartState('hide') : optionsState === 'close' && setOptionstate('hide')
     }
 
     return (
@@ -89,13 +89,13 @@ export default function AppBar() {
                 {
                     user?.role !== 'admin' &&
                     <>
-                        <button className={styles.categories} onClick={() => setCategoriesState('open')}>Categories</button>
+                        <button className={styles.categories} onClick={() => setCategoriesPanel('open')}>Categories</button>
                         {
-                            categoriesState !== 'hide' &&
-                            <div className={categoriesState === 'open' ? 'modal' : styles.closeCategories}
+                            categoriesPanel !== 'hide' &&
+                            <div className={categoriesPanel === 'open' ? styles.modal : styles.closeCategories}
                                 onAnimationEnd={hideModal}
-                                onClick={() => setCategoriesState('close')}>
-                                <ul className={categoriesState === 'open' ? styles.openCategories : undefined}>
+                                onClick={() => setCategoriesPanel('close')}>
+                                <ul className={categoriesPanel === 'open' ? styles.openCategories : undefined}>
                                     {
                                         categories?.map((category) =>
                                             <Link key={category._id} to={`/${category.name}`} className={styles.category}>
@@ -122,7 +122,7 @@ export default function AppBar() {
 
                 {
                     cartState !== 'hide' &&
-                    <div className={cartState === 'open' ? 'modal' : styles.closeCart}
+                    <div className={cartState === 'open' ? styles.modal : styles.closeCart}
                         onAnimationEnd={hideModal}
                         onClick={() => setCartState('close')}>
                         <div className={cartState === 'open' ? styles.openCart : undefined} onClick={e => e.stopPropagation()}>
@@ -138,7 +138,7 @@ export default function AppBar() {
 
                     {
                         optionsState !== 'hide' &&
-                        <div className={optionsState === 'open' ? 'modal' : styles.closeOptions}
+                        <div className={optionsState === 'open' ? styles.modal : styles.closeOptions}
                             onAnimationEnd={hideModal}
                             onClick={() => setOptionstate('close')}>
                             <ul className={optionsState === 'open' ? styles.openOptions : undefined}>
