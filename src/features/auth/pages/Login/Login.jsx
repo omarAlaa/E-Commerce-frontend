@@ -8,6 +8,7 @@ import { authStore } from '../../../../app/store/authStore'
 import { cartStore } from '../../../../app/store/cartStore'
 import { uiStore } from '../../../../app/store/uiStore'
 import { safeStorage } from '../../../../app/utilities/safeStorage'
+import Input from '../../../../shared/ui/Input/Input'
 
 export default function Login() {
     const [email, setEmail] = useState()
@@ -56,9 +57,9 @@ export default function Login() {
                     <h1>Sign In</h1>
                 </header>
 
-                <input className={styles.input} autoComplete='on' type="email" name="email" id="email" placeholder='Email Address *' onChange={e => setEmail(e.target.value)} />
+                <Input autoComplete='on' type="email" name="email" id="email" placeholder='Email Address *' onChange={e => setEmail(e.target.value)} />
 
-                <input className={styles.input} type='password' name="password" id="password" placeholder='Password *' onChange={e => setPassword(e.target.value)} />
+                <Input type='password' name="password" id="password" placeholder='Password *' onChange={e => setPassword(e.target.value)} />
 
                 <button className={styles.button} disabled={loginDisabled}>
                     {loginLoading ? <Loading size={18} height={'100%'} /> : 'Sign In'}

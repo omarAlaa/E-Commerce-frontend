@@ -5,6 +5,7 @@ import Loading from '../../../shared/ui/Loading/Loading'
 import ConfirmModal from '../../../shared/ui/ConfirmModal/ConfirmModal'
 import { fetchUsers, removeUser, makeAdmin } from '../api/adminsUsersAPI'
 import { uiStore } from '../../../app/store/uiStore'
+import Input from '../../../shared/ui/Input/Input'
 
 export default function UsersTable() {
     const { setUsers, setAdmins, users, admins, headers, filteredUsers, searchUsers } = adminsUsersStore()
@@ -63,7 +64,7 @@ export default function UsersTable() {
                 <strong>Users</strong>
 
                 <div className={styles.searchSection}>
-                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
+                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
                 </div>
             </div>
 

@@ -4,6 +4,7 @@ import Loading from "../../../../shared/ui/Loading/Loading"
 import { updateProduct } from "../../api/productsAPI"
 import { useState } from "react"
 import { uiStore } from "../../../../app/store/uiStore"
+import Input from '../../../../shared/ui/Input/Input'
 
 export default function UpdateProductDialog() {
     const { products, setProducts, productToUpdate, closeUpdate, setProductToUpdate } = productsStore()
@@ -56,17 +57,17 @@ export default function UpdateProductDialog() {
 
                         <div className={styles.oneRow}>
                             <label className={styles.label} htmlFor="price-update">Price:
-                                <input className={styles.input} type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={String(productToUpdate.price).replace(/,/g, "")} />
+                                <Input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={String(productToUpdate.price).replace(/,/g, "")} />
                             </label>
 
                             <label className={styles.label} htmlFor="category-update">Category:
-                                <input className={styles.input} type="text" name="category-update" id="category-update" defaultValue={productToUpdate.category} />
+                                <Input type="text" name="category-update" id="category-update" defaultValue={productToUpdate.category} />
                             </label>
                         </div>
 
                         <label className={styles.label} htmlFor="image-url-update">
                             Image URL:
-                            <input className={styles.input} type="text" name="image-url-update" id="image-url-update" defaultValue={productToUpdate.image} />
+                            <Input type="text" name="image-url-update" id="image-url-update" defaultValue={productToUpdate.image} />
                         </label>
 
                         <label className={styles.label} htmlFor="description-update">Description:

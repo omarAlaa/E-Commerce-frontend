@@ -3,7 +3,7 @@
     justify-content: center;
 }
 
-.divider{
+.divider {
     min-height: calc(100vh - 64px);
 }
 
@@ -29,23 +29,6 @@ p {
     flex-wrap: wrap;
     gap: 16px;
     margin-bottom: 10px;
-}
-
-.input {
-    outline: none;
-    border: 1px solid gray;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: medium;
-}
-
-.input:hover {
-    border-color: black;
-}
-
-.input:focus {
-    border: 2px solid rgba(3, 3, 250, 0.829);
-    padding: 7px;
 }
 
 .button {
@@ -100,7 +83,7 @@ p {
         margin-left: -40px;
     }
 
-    .divider{
+    .divider {
         display: none;
     }
 }

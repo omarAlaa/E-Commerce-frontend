@@ -6,6 +6,7 @@ import ConfirmModal from "../../../../shared/ui/ConfirmModal/ConfirmModal"
 import { categoriesStore } from "../../../categories/store/categoriesStore"
 import { addCategory, deleteCategory } from "../../../categories/api/categoriesAPI"
 import { uiStore } from "../../../../app/store/uiStore"
+import Input from '../../../../shared/ui/Input/Input'
 
 export default function CategoriesModal() {
     const { categories, setCategories, showCatModal, setShowCatModal } = categoriesStore()
@@ -53,7 +54,7 @@ export default function CategoriesModal() {
                 <strong>Add new category</strong>
 
                 <div className={styles.oneRow}>
-                    <input className={styles.input} type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
+                    <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
 
                     <button className={styles.addBttn}
                         type="button"

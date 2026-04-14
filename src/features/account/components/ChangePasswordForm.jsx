@@ -3,6 +3,7 @@ import { changePassword } from '../api/accountAPI'
 import { uiStore } from "../../../app/store/uiStore"
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useState } from "react"
+import Input from "../../../shared/ui/Input/Input"
 
 export default function ChangePasswordForm() {
     const [newPassword, setNewPassword] = useState('')
@@ -44,9 +45,9 @@ export default function ChangePasswordForm() {
 
             <form onSubmit={handleChangePassword} >
                 <div className={styles.form}>
-                    <input className={styles.input} value={newPassword} type="password" name="password" id="password" placeholder='New Password' onChange={e => setNewPassword(e.target.value)} />
+                    <Input value={newPassword} type="password" name="password" id="password" placeholder='New Password' onChange={e => setNewPassword(e.target.value)} />
 
-                    <input className={styles.input} value={confirmPassword} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} />
+                    <Input value={confirmPassword} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} />
 
                     <button className={styles.button}
                         type='submit'

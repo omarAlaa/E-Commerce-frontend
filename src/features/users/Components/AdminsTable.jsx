@@ -5,6 +5,7 @@ import Loading from '../../../shared/ui/Loading/Loading'
 import ConfirmModal from '../../../shared/ui/ConfirmModal/ConfirmModal'
 import { fetchAdmins, removeAdmin } from '../api/adminsUsersAPI'
 import { uiStore } from '../../../app/store/uiStore'
+import Input from '../../../shared/ui/Input/Input'
 
 export default function AdminsTable() {
     const { setAdmins, admins, headers, filteredAdmins, searchAdmins } = adminsUsersStore()
@@ -46,7 +47,7 @@ export default function AdminsTable() {
                 <strong>Admins</strong>
 
                 <div className={styles.searchSection}>
-                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
+                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
                 </div>
             </div>
 

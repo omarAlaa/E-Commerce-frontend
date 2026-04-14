@@ -16,7 +16,6 @@
     flex-wrap: nowrap;
 }
 
-.input,
 .textarea,
 .select {
     border-radius: 8px;
@@ -42,13 +41,11 @@
     height: 53px;
 }
 
-.input:hover,
 .textarea:hover,
 .select:hover {
     border-color: black;
 }
 
-.input:focus,
 .textarea:focus,
 .select:focus {
     border: 2px solid rgba(3, 3, 250, 0.829);

@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 5px;
 }
 
 .number {
@@ -28,23 +29,4 @@
 
 .cvv {
     width: 25%;
-}
-
-.input {
-    width: 100%;
-    outline: none;
-    border-radius: .5em;
-    border: 1px solid gray;
-    padding: 8px;
-    margin: 10px 0;
-    background: whitesmoke;
-    font-size: medium;
-}
-
-.input:hover {
-    border-color: black;
-}
-
-.input:focus {
-    border-color: blue;
 }

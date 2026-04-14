@@ -4,6 +4,7 @@ import { authStore } from "../../../app/store/authStore"
 import { uiStore } from "../../../app/store/uiStore"
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useState } from "react"
+import Input from "../../../shared/ui/Input/Input"
 
 export default function ChangeUsernameForm() {
     const [newUsername, setNewUsername] = useState('')
@@ -44,7 +45,7 @@ export default function ChangeUsernameForm() {
             <h2>Change Username</h2>
 
             <form onSubmit={handleChangeUsername} className={styles.form}>
-                <input className={styles.input} autoComplete='on' value={newUsername} type="text" name="username" id="username" placeholder='New Username' onChange={e => setNewUsername(e.target.value)} />
+                <Input autoComplete='on' value={newUsername} type="text" name="username" id="username" placeholder='New Username' onChange={e => setNewUsername(e.target.value)} />
 
                 <button className={styles.button} disabled={usernameDisabled}
                     style={{ cursor: usernameDisabled ? 'not-allowed' : 'pointer' }}

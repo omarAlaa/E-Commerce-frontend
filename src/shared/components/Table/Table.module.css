@@ -31,7 +31,6 @@ td,
     margin-left: auto;
 }
 
-.input,
 .select {
     max-width: 164px;
     border-radius: 8px;
@@ -47,12 +46,10 @@ td,
     padding: 6px;
 }
 
-.input:hover,
 .select:hover {
     border-color: black;
 }
 
-.input:focus,
 .select:focus {
     border: 2px solid rgba(3, 3, 250, 0.829);
     padding: 10px;

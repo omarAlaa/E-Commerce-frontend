@@ -7,6 +7,7 @@ import { addProduct } from "../../api/productsAPI"
 import { uiStore } from "../../../../app/store/uiStore"
 import { categoriesStore } from "../../../categories/store/categoriesStore"
 import { productsStore } from "../../store/productsStore"
+import Input from '../../../../shared/ui/Input/Input'
 
 export default function AddProductForm() {
 
@@ -47,7 +48,7 @@ export default function AddProductForm() {
 
     return (
         <form ref={formRef} onSubmit={handleAddProduct} className={styles.addProduct}>
-            <input className={styles.input} type="text" name="title" id="product-title" placeholder="Title" />
+            <Input type="text" name="title" id="product-title" placeholder="Title" />
 
             <div className={styles.oneRow}>
                 <select className={styles.select} name="category" id="category" defaultValue={''} onChange={e => setCategory(e.target.value)} style={{ color: category ? 'black' : 'gray' }}>
@@ -66,9 +67,9 @@ export default function AddProductForm() {
             </div>
 
             <div className={styles.oneRow}>
-                <input className={styles.input} type="number" name="price" id="price" placeholder="Price" step="0.01" min="0" />
+                <Input type="number" name="price" id="price" placeholder="Price" step="0.01" min="0" />
 
-                <input className={styles.input} type="text" name="image-url" id="image-url" placeholder="Image URL" />
+                <Input type="text" name="image-url" id="image-url" placeholder="Image URL" />
             </div>
 
             <textarea className={styles.textarea} type="text" name="description" id="description" placeholder="Description" />

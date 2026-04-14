@@ -7,6 +7,7 @@ import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchProducts, deleteProduct } from "../api/productsAPI"
 import { uiStore } from "../../../app/store/uiStore"
 import { categoriesStore } from "../../categories/store/categoriesStore"
+import Input from '../../../shared/ui/Input/Input'
 
 export default function ProductsTable() {
     const { products, setProducts, filteredProducts, setProductToUpdate, searchProducts } = productsStore()
@@ -52,7 +53,7 @@ export default function ProductsTable() {
                 <strong className={styles.productsHeader}>Products</strong>
 
                 <div className={styles.searchSection}>
-                    <input className={styles.input} type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
+                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
 
                     <select className={styles.select} name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
                         <option value="" disabled >Filter category</option>
