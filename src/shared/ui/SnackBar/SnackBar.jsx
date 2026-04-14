@@ -1,12 +1,10 @@
-import './SnackBar.css'
+import styles from './SnackBar.module.css'
 import { CircleX, CircleCheckBig } from 'lucide-react'
 
 export default function SnackBar(props) {
     return (
-        <article className="snack-bar"
-            style={{ display: props.visible ? 'flex' : 'none', animation: 'show-snackbar 5s ease-in-out forwards', background: props.success ? 'green' : 'red' }}
-        >
+        <div className={props.visible ? props.success ? styles.greenSnackBar : styles.redSnackBar : styles.hide}>
             {props.success ? <CircleCheckBig /> : <CircleX />} <p>{props.text}</p>
-        </article>
+        </div>
     )
 }

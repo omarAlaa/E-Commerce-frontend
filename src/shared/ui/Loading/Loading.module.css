@@ -1,13 +1,13 @@
-.spinner-container {
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    height: var(--height);
 }
 
 .spinner {
-    width: 220px;
-    height: 220px;
+    width: var(--size);
+    height: var(--size);
     border: solid aqua;
     border-left-color: white;
     border-radius: 50%;

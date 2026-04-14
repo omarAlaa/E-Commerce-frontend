@@ -1,9 +1,9 @@
-import './Loading.css'
+import styles from './Loading.module.css'
 
-export default function Loading(props) {
+export default function Loading({ height = '70vh', size = 220 }) {
     return (
-        <div className='spinner-container' style={{ height: props.height }}>
-            <div className='spinner' style={{ width: props.size, height: props.size }}></div>
+        <div className={styles.container} style={{ '--height': height }}>
+            <div className={styles.spinner} style={{ '--size': `${size}px` }}></div>
         </div>
     )
 }
