@@ -16,3 +16,13 @@
     width: 100%;
     justify-content: space-between;
 }
+
+@media screen and (max-width:768px) {
+    .address {
+        width: 80vw;
+    }
+
+    .city {
+        flex-direction: column;
+    }
+}

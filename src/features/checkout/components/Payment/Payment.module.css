@@ -23,10 +23,18 @@
     gap: 5px;
 }
 
-.number {
+.number,
+.name {
     flex: 1;
 }
 
-.cvv {
+.cvv,
+.date {
     width: 25%;
+}
+
+@media screen and (max-width:768px) {
+    .form {
+        width: 80vw;
+    }
 }

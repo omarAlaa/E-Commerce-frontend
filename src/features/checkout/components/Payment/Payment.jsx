@@ -24,13 +24,13 @@ export default function Payment() {
             </div>
 
             <div className={styles.name_date}>
-                <label htmlFor="name">
+                <label className={styles.name} htmlFor="name">
                     Name *
                     <Input type="text" name="name" id="name" placeholder='Omar Mohamed Alaa' />
                 </label>
 
-                <label htmlFor="date">
-                    Expiration date *
+                <label className={styles.date} htmlFor="date">
+                    Ex. date *
                     <Input type="text" name="date" id="date" placeholder='MM/YY' />
                 </label>
             </div>
