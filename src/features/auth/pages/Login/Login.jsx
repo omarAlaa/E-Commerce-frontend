@@ -39,6 +39,7 @@ export default function Login() {
                 safeStorage.remove('cart')
             }
         } catch (error) {
+            console.log(error)
             const errorMessage = error.code === 'LOCAL_STORAGE_ERROR' ? error.message : error?.response?.data?.message || 'Connection error'
             showSnackBar({ visible: true, success: false, text: errorMessage })
         } finally {
@@ -50,7 +51,7 @@ export default function Login() {
         <main className={styles.container}>
             <form className={styles.form} onSubmit={handleLogin}>
                 <header className={styles.header}>
-                    <img src="https://cdn-icons-png.flaticon.com/512/1803/1803612.png" alt="Login icon" width={'50px'} height={'50px'} />
+                    <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/512/1803/1803612.png" alt="Login icon" />
 
                     <h1>Sign In</h1>
                 </header>
