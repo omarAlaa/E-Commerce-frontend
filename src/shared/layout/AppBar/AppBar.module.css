@@ -30,7 +30,8 @@
     color: whitesmoke;
     cursor: pointer;
     font-size: large;
-    margin-top: 8px;
+    font-weight: bold;
+    margin-top: 4px;
     border: none;
 }
 
