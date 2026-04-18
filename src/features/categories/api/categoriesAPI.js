@@ -4,8 +4,8 @@ export const fetchCategories = () => {
     return api.get('/api/categories')
 }
 
-export const addCategory = (newCategory) => {
-    return api.post('/api/categories', { name: newCategory })
+export const addCategory = (newCategory, imageURL) => {
+    return api.post('/api/categories', { name: newCategory, imageURL })
 }
 
 export const deleteCategory = (id) =>

@@ -28,6 +28,12 @@
     flex-wrap: nowrap;
 }
 
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .label {
     display: flex;
     flex-direction: column;
@@ -50,6 +56,7 @@
 #disabled {
     width: 83.5px;
     white-space: nowrap;
+    align-self: flex-end;
 }
 
 #addBttn {

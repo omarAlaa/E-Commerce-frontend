@@ -14,19 +14,21 @@ export default function CategoriesModal() {
     const { showSnackBar } = uiStore()
     const [addCategoryLoading, setAddCategoryLoading] = useState(false)
     const [newCategory, setNewCategory] = useState('')
+    const [imageURL, setImageURL] = useState('')
     const [categoryToDelete, setCategoryToDelete] = useState()
-    const addCatDisabled = addCategoryLoading || !newCategory
+    const addCatDisabled = addCategoryLoading || !newCategory || !imageURL
 
     const handleAddCategory = async () => {
         setAddCategoryLoading(true)
 
         try {
-            const res = await addCategory(newCategory)
+            const res = await addCategory(newCategory, imageURL)
             setCategories([res.data, ...categories])
 
             showSnackBar({ visible: true, success: true, text: 'Category Added' })
 
             setNewCategory('')
+            setImageURL('')
         } catch (error) {
             const errorMessage = error?.response?.data?.message || 'Failed to add category'
             showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -56,7 +58,11 @@ export default function CategoriesModal() {
                 <strong>Add new category</strong>
 
                 <div className={styles.oneRow}>
-                    <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
+                    <div className={styles.inputContainer}>
+                        <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category name" onChange={e => setNewCategory(e.target.value)} />
+
+                        <Input type="text" value={imageURL} name="image-url" id="image-url" placeholder="Image URL" onChange={e => setImageURL(e.target.value)} />
+                    </div>
 
                     <Button id={!addCatDisabled ? styles.addBttn : styles.disabled}
                         type="button"

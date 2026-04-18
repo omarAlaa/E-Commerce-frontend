@@ -7,7 +7,7 @@
     transition: all 0.2s ease;
     cursor: pointer;
     font-size: medium;
-    height: 40px;
+    min-height: 40px;
 }
 
 .disabled {
