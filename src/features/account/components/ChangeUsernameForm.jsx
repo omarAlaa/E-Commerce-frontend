@@ -5,6 +5,7 @@ import { uiStore } from "../../../app/store/uiStore"
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useState } from "react"
 import Input from "../../../shared/ui/Input/Input"
+import Button from "../../../shared/ui/Button/Button"
 
 export default function ChangeUsernameForm() {
     const [newUsername, setNewUsername] = useState('')
@@ -12,7 +13,7 @@ export default function ChangeUsernameForm() {
     const { user, setUser } = authStore()
     const { showSnackBar } = uiStore()
 
-    const usernameDisabled = changeUsernameLoading || !newUsername
+    const usernameDisabled = !newUsername
 
     const handleChangeUsername = async (e) => {
         e.preventDefault()
@@ -47,11 +48,9 @@ export default function ChangeUsernameForm() {
             <form onSubmit={handleChangeUsername} className={styles.form}>
                 <Input autoComplete='on' value={newUsername} type="text" name="username" id="username" placeholder='New Username' onChange={e => setNewUsername(e.target.value)} />
 
-                <button className={styles.button} disabled={usernameDisabled}
-                    style={{ cursor: usernameDisabled ? 'not-allowed' : 'pointer' }}
-                >
-                    {changeUsernameLoading ? <Loading size={15} height={'100%'} /> : 'Change'}
-                </button>
+                <Button id={!usernameDisabled ? styles.changeBttn : styles.disabled} type="submit" disabled={usernameDisabled}>
+                    {changeUsernameLoading ? <Loading size={18} height={'100%'} /> : 'Change'}
+                </Button>
             </form>
         </>
     )

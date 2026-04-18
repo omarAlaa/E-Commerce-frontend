@@ -82,31 +82,26 @@ td:has(button) {
     text-align: center;
 }
 
-.redBttn,
-.whiteBttn {
+#redBttn,
+#whiteBttn {
     background: red;
     color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 8px 0px;
-    cursor: pointer;
     margin: 7px 0;
     width: 100%;
-    transition: all 0.2s ease;
 }
 
-.redBttn:hover {
+#redBttn:hover {
     background: rgb(173, 0, 0);
 }
 
-.whiteBttn {
+#whiteBttn {
     background: white;
     color: blue;
     border: 1px solid blue;
     padding: 7px 0;
 }
 
-.whiteBttn:hover {
+#whiteBttn:hover {
     background: rgb(214, 206, 206);
 }
 
@@ -140,9 +135,10 @@ td:has(button) {
         margin-right: -20px;
     }
 
-    .redBttn,
-    .whiteBttn {
+    #redBttn,
+    #whiteBttn {
         padding: 10px 30px;
+        font-size: small;
     }
 
     td:not(:has(strong)) {

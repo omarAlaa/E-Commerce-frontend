@@ -6,6 +6,7 @@ import ConfirmModal from '../../../shared/ui/ConfirmModal/ConfirmModal'
 import { fetchAdmins, removeAdmin } from '../api/adminsUsersAPI'
 import { uiStore } from '../../../app/store/uiStore'
 import Input from '../../../shared/ui/Input/Input'
+import Button from '../../../shared/ui/Button/Button'
 
 export default function AdminsTable() {
     const { setAdmins, admins, headers, filteredAdmins, searchAdmins } = adminsUsersStore()
@@ -76,7 +77,7 @@ export default function AdminsTable() {
 
                                         <td>{admin.userName}</td>
 
-                                        <td><button className={styles.redBttn} onClick={() => { setAdminToRemove(admin) }}>Remove</button></td>
+                                        <td><Button id={styles.redBttn} onClick={() => { setAdminToRemove(admin) }}>Remove</Button></td>
                                     </tr>)}
                                 </tbody>
                             </table>

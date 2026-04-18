@@ -8,6 +8,7 @@ import { authStore } from '../../../app/store/authStore'
 import { cartStore } from "../../../app/store/cartStore"
 import { uiStore } from "../../../app/store/uiStore"
 import { safeStorage } from "../../../app/utilities/safeStorage"
+import Button from '../../ui/Button/Button'
 
 export default function Product(props) {
     const [isLoading, setIsLoading] = useState(false)
@@ -69,11 +70,11 @@ export default function Product(props) {
             <div className={styles.price_addCart}>
                 <strong>{Intl.NumberFormat().format(props?.price)} EGP</strong>
 
-                <button className={styles.addToCart}
+                <Button id={styles.addToCart}
                     onClick={async () => handleAddTocart(props)}
                     disabled={isLoading}>
-                    {isLoading ? <Loading size={15} height={'100%'} /> : '+ Add'}
-                </button>
+                    {isLoading ? <Loading size={18} height={'100%'} /> : '+ Add'}
+                </Button>
             </div>
         </article>
     )

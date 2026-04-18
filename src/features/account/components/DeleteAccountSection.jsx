@@ -4,6 +4,7 @@ import { authStore } from '../../../app/store/authStore'
 import { uiStore } from '../../../app/store/uiStore'
 import ConfirmModal from '../../../shared/ui/ConfirmModal/ConfirmModal'
 import { useState } from "react"
+import Button from '../../../shared/ui/Button/Button'
 
 export default function DeleteAccountSection() {
     const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -33,9 +34,9 @@ export default function DeleteAccountSection() {
 
             <p className={styles.delete_account_text}>Once you delete your account all your data will be removed.</p>
 
-            <button className={styles.delete_account_bttn} onClick={() => setShowConfirmModal(true)}>
+            <Button id={styles.deleteBttn} onClick={() => setShowConfirmModal(true)}>
                 Delete Account
-            </button>
+            </Button>
 
             {showConfirmModal && <ConfirmModal
                 close={() => setShowConfirmModal(false)}

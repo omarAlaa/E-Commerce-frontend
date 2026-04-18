@@ -7,6 +7,7 @@ import { cartStore } from "../../../../../../app/store/cartStore"
 import { useState } from 'react'
 import { uiStore } from '../../../../../../app/store/uiStore'
 import { safeStorage } from '../../../../../../app/utilities/safeStorage'
+import Button from '../../../../../../shared/ui/Button/Button'
 
 export default function ProductDetails(product) {
     const [addToCartLoading, setAddToCartLoading] = useState(false)
@@ -56,9 +57,9 @@ export default function ProductDetails(product) {
                 <div className={styles.price_add}>
                     <h2 className={styles.price}>{new Intl.NumberFormat().format(product?.price)} EGP</h2>
 
-                    <button className={styles.add} onClick={() => handleAddTocart(product)}
-                        disabled={addToCartLoading}>{addToCartLoading ? <Loading size={15} height={'100%'} /> : '+ Add'}
-                    </button>
+                    <Button id={styles.add} onClick={() => handleAddTocart(product)}
+                        disabled={addToCartLoading}>{addToCartLoading ? <Loading size={18} height={'100%'} /> : '+ Add'}
+                    </Button>
                 </div>
 
                 <hr />

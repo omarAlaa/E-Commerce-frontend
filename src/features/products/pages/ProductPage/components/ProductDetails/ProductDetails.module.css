@@ -31,20 +31,14 @@
     color: green;
 }
 
-.add {
+#add {
     width: 90px;
-    background: limegreen;
-    color: white;
-    border: none;
-    border-radius: .5em;
-    padding: .6em 2em;
-    cursor: pointer;
-    margin-top: .4em;
-    transition: all 0.2s ease;
+    color: green;
 }
 
-.add:hover {
+#add:hover {
     background: green;
+    color: white;
 }
 
 .rating_container {

@@ -4,6 +4,7 @@ import { uiStore } from "../../../app/store/uiStore"
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useState } from "react"
 import Input from "../../../shared/ui/Input/Input"
+import Button from "../../../shared/ui/Button/Button"
 
 export default function ChangePasswordForm() {
     const [newPassword, setNewPassword] = useState('')
@@ -11,7 +12,7 @@ export default function ChangePasswordForm() {
     const [changePasswordLoading, setChangePasswordLoading] = useState(false)
     const { showSnackBar } = uiStore()
 
-    const passwordDisabled = changePasswordLoading || newPassword?.length < 8 || confirmPassword?.length < 8
+    const passwordDisabled = newPassword?.length < 8 || confirmPassword?.length < 8
     const isShortPasswords = (newPassword.length < 8 || confirmPassword.length < 8) && (newPassword || confirmPassword)
 
     const handleChangePassword = async (e) => {
@@ -27,7 +28,7 @@ export default function ChangePasswordForm() {
         try {
             await changePassword(newPassword)
 
-            showSnackBar({ visible: true, success: true, text: `Passwords chenged` })
+            showSnackBar({ visible: true, success: true, text: `Password changed` })
 
             setNewPassword('')
             setConfirmPassword('')
@@ -49,13 +50,9 @@ export default function ChangePasswordForm() {
 
                     <Input value={confirmPassword} type="password" name="confirm-password" id="confirm-password" placeholder='Confirm Password' onChange={e => setConfirmPassword(e.target.value)} />
 
-                    <button className={styles.button}
-                        type='submit'
-                        disabled={passwordDisabled}
-                        style={{ cursor: passwordDisabled ? 'not-allowed' : 'pointer' }}
-                    >
-                        {changePasswordLoading ? <Loading size={15} height={'100%'} /> : 'Change'}
-                    </button>
+                    <Button id={!passwordDisabled ? styles.changeBttn : styles.disabled} type='submit' disabled={passwordDisabled}>
+                        {changePasswordLoading ? <Loading size={18} height={'100%'} /> : 'Change'}
+                    </Button>
                 </div>
 
                 <div className={isShortPasswords ? styles.short_password : styles.hide}>

@@ -29,4 +29,9 @@
     .divider {
         display: none;
     }
+
+    .header {
+        align-self: center;
+        margin-left: -40px;
+    }
 }

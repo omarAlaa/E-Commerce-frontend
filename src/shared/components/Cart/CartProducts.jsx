@@ -8,6 +8,7 @@ import { Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { safeStorage } from "../../../app/utilities/safeStorage"
 import { Link } from "react-router-dom"
+import Button from '../../ui/Button/Button'
 
 export default function CartProducts() {
     const { cart, setCart } = cartStore()
@@ -138,10 +139,10 @@ export default function CartProducts() {
                 )
             }
 
-            <button className={styles.emptyCartButton} onClick={async () => { handleEmptyCart() }}
+            <Button id={styles.emptyCartBttn} onClick={async () => { handleEmptyCart() }}
                 disabled={emptyLoading}>
-                {emptyLoading ? <Loading size={15} height={'100%'} /> : 'Empty your cart'}
-            </button>
+                {emptyLoading ? <Loading size={18} height={'100%'} /> : 'Empty your cart'}
+            </Button>
         </>
     )
 }

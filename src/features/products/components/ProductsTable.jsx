@@ -8,6 +8,7 @@ import { fetchProducts, deleteProduct } from "../api/productsAPI"
 import { uiStore } from "../../../app/store/uiStore"
 import { categoriesStore } from "../../categories/store/categoriesStore"
 import Input from '../../../shared/ui/Input/Input'
+import Button from '../../../shared/ui/Button/Button'
 
 export default function ProductsTable() {
     const { products, setProducts, filteredProducts, setProductToUpdate, searchProducts } = productsStore()
@@ -96,9 +97,9 @@ export default function ProductsTable() {
                                             <td className={styles.entry}>{product.category}</td>
 
                                             <td>
-                                                <button className={styles.whiteBttn} onClick={() => setProductToUpdate(product)}>Update</button>
+                                                <Button id={styles.whiteBttn} onClick={() => setProductToUpdate(product)}>Update</Button>
 
-                                                <button className={styles.redBttn} onClick={() => setProductToDelete(product)}>Delete</button>
+                                                <Button id={styles.redBttn} onClick={() => setProductToDelete(product)}>Delete</Button>
                                             </td>
                                         </tr>)}
                                     </tbody>

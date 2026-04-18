@@ -9,13 +9,14 @@ import { authStore } from '../../../../app/store/authStore'
 import { uiStore } from '../../../../app/store/uiStore'
 import { safeStorage } from '../../../../app/utilities/safeStorage'
 import Input from '../../../../shared/ui/Input/Input'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function Register() {
     const [email, setEmail] = useState()
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [registerLoading, setRegisterLoading] = useState(false)
-    const registerDisabled = registerLoading || !email || !userName || password?.length < 8
+    const registerDisabled = !email || !userName || password?.length < 8
     const { snackBar, showSnackBar } = uiStore()
     const { cart, setCart, setCartFetched } = cartStore()
     const { setUser } = authStore()
@@ -68,9 +69,9 @@ export default function Register() {
                         Password must be at least 8 characters
                     </div>}
 
-                <button className={styles.button} disabled={registerDisabled}>
+                <Button id={!registerDisabled ? styles.registerBttn : undefined} disabled={registerDisabled}>
                     {registerLoading ? <Loading size={18} height={'100%'} /> : 'Sign Up'}
-                </button>
+                </Button>
 
                 <Link className={styles.login_link} to='/login'>Already have an account? Sign in</Link>
             </form>

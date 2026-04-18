@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { cartStore } from '../../../app/store/cartStore'
 import { authStore } from '../../../app/store/authStore'
 import CartProducts from './CartProducts'
+import Button from '../../ui/Button/Button'
 
 export default function Cart() {
     const { user } = authStore()
@@ -28,7 +29,7 @@ export default function Cart() {
                             }, 0))} EGP</h3>
 
                         <Link to={user ? '/checkout' : '/login'}>
-                            <button className={styles.checkout}>Checkout</button>
+                            <Button id={styles.checkout}>Checkout</Button>
                         </Link>
                     </div>
                 </>

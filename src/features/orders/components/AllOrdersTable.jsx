@@ -7,6 +7,7 @@ import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchAllOrders, updateOrder } from "../api/ordersAPI"
 import { uiStore } from "../../../app/store/uiStore"
 import Input from "../../../shared/ui/Input/Input"
+import Button from "../../../shared/ui/Button/Button"
 
 export default function AllOrdersTable() {
     const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
@@ -91,14 +92,14 @@ export default function AllOrdersTable() {
                                         <td className={styles.entry}>{order.status}</td>
 
                                         <td>
-                                            <button className={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</button>
+                                            <Button id={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</Button>
 
-                                            <button className={styles.redBttn}
+                                            <Button id={styles.redBttn}
                                                 onClick={() => setOrderIdToCancel(order._id)}
                                                 disabled={order.status === 'cancelled'}
                                                 style={{ cursor: order.status === 'cancelled' ? 'not-allowed' : 'pointer' }}>
                                                 Cancel
-                                            </button>
+                                            </Button>
                                         </td>
 
                                     </tr>)}

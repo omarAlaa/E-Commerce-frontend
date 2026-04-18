@@ -28,26 +28,16 @@
     margin-top: -10px;
 }
 
-.button {
-    width: 100%;
+#loginBttn,
+#registerBttn {
     margin-top: 20px;
-    padding: 10px;
-    border: none;
-    height: 40px;
-    background-color: rgb(93, 93, 248);
-    color: white;
-    font-size: medium;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    color: blue;
 }
 
-.button:hover {
+#loginBttn:hover,
+#registerBttn:hover {
     background-color: rgb(23, 23, 189);
-}
-
-.button:disabled {
-    cursor: not-allowed;
+    color: white;
 }
 
 .options {

@@ -5,18 +5,13 @@
     gap: 10px;
 }
 
-.button {
-    margin: 20px 0 10px;
-    padding: 10px 20px;
-    background: blue;
-    color: white;
-    border-radius: .5em;
-    border: none;
-    cursor: pointer;
-    max-width: 150px;
-    transition: all 0.2s ease;
+#orders {
+    background: white;
+    color: blue;
+    width: 170px;
 }
 
-.button:hover {
-    background: rgb(0, 0, 161);
+#orders:hover {
+    background: blue;
+    color: white;
 }

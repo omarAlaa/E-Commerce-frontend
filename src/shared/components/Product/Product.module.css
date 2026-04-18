@@ -62,17 +62,12 @@
     color: green;
 }
 
-.addToCart {
-    width: 80px;
-    padding: 10px 15px;
-    background: limegreen;
-    color: whitesmoke;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+#addToCart {
+    color: green;
+    width: 85px;
 }
 
-.addToCart:hover {
+#addToCart:hover {
     background: green;
+    color: white;
 }

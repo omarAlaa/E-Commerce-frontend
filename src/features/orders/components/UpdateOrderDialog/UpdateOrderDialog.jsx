@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ordersStore } from "../../store/ordersStore"
 import { updateOrder } from '../../api/ordersAPI'
 import { uiStore } from '../../../../app/store/uiStore'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function UpdateOrderDialog() {
     const { setOrders, orders, orderToReview, setOrderToReview } = ordersStore()
@@ -83,18 +84,20 @@ export default function UpdateOrderDialog() {
                         </div>
 
                         <div className={styles.actionsBttns}>
-                            <button className={styles.updateBttn}
+                            <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}
                                 disabled={updateDisabled}
                                 onClick={() => { handleUpdateOrder(orderToReview._id, status) }}
                                 style={{ cursor: updateDisabled ? 'not-allowed' : 'pointer' }}
                             >
                                 {updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
-                            </button>
+                            </Button>
 
-                            <button className={styles.closeBttn} onClick={() => {
+                            <Button id={styles.closeBttn} onClick={() => {
                                 setOrderToReview()
                                 setStatus()
-                            }}>Close</button>
+                            }}>
+                                Close
+                            </Button>
                         </div>
                     </div>
                 </article >

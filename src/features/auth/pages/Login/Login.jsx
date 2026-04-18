@@ -9,12 +9,13 @@ import { cartStore } from '../../../../app/store/cartStore'
 import { uiStore } from '../../../../app/store/uiStore'
 import { safeStorage } from '../../../../app/utilities/safeStorage'
 import Input from '../../../../shared/ui/Input/Input'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [loginLoading, setLoginLoading] = useState(false)
-    const loginDisabled = loginLoading || !email || !password
+    const loginDisabled = !email || !password
     const { snackBar, showSnackBar } = uiStore()
     const { cart, setCart, setCartFetched } = cartStore()
     const { setUser } = authStore()
@@ -61,9 +62,9 @@ export default function Login() {
 
                 <Input type='password' name="password" id="password" placeholder='Password *' onChange={e => setPassword(e.target.value)} />
 
-                <button className={styles.button} disabled={loginDisabled}>
+                <Button id={!loginDisabled ? styles.loginBttn : undefined} disabled={loginDisabled}>
                     {loginLoading ? <Loading size={18} height={'100%'} /> : 'Sign In'}
-                </button>
+                </Button>
 
                 <div className={styles.options}>
                     <a href="">Forgot Password?</a>

@@ -63,27 +63,25 @@
     align-self: flex-end;
 }
 
-.updateBttn,
-.closeBttn {
-    border-radius: .5em;
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid blue;
+#updateBttn,
+#closeBttn {
+    color: black;
+    border: none;
+    background-color: rgb(180, 179, 179);
+    width: 100px;
 }
 
-.updateBttn:hover,
-.closeBttn:hover {
-    background: rgb(204, 199, 199);
-}
-
-.updateBttn {
-    width: 65px;
+#updateBttn {
     background: blue;
     color: whitesmoke;
 }
 
-.updateBttn:hover {
-    background: rgb(7, 7, 179);
+#closeBttn:hover {
+    background-color: gray;
+}
+
+#updateBttn:hover {
+    background: rgb(0, 0, 184);
 }
 
 @media screen and (max-width: 770px) {

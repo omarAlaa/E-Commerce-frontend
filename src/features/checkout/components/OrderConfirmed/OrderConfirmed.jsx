@@ -2,6 +2,7 @@ import styles from './OrderConfirmed.module.css'
 import { PackageCheck } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { checkoutStore } from '../../store/checkoutStore'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function OrderConfirmed() {
     const navigate = useNavigate()
@@ -20,10 +21,10 @@ export default function OrderConfirmed() {
 
             <p>Your order id is #{orderId}. You can track your order status in your orders</p>
 
-            <button className={styles.button}
+            <Button id={styles.orders}
                 onClick={handleGoToMyOrders}>
                 Go to my orders
-            </button>
+            </Button>
         </section>
     )
 }

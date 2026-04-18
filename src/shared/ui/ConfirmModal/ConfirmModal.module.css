@@ -20,6 +20,7 @@
     max-height: 70vh;
     overflow-y: auto;
     z-index: 2;
+    text-align: center;
 }
 
 .oneRow {
@@ -29,40 +30,35 @@
     justify-content: center;
 }
 
-.cancelBttn,
-.addBttn,
-.redBttn {
-    border: none;
-    border-radius: 4px;
-    padding: 10px 25px;
+#cancelBttn,
+#addBttn,
+#redBttn {
     background-color: rgb(170, 170, 170);
     color: black;
-    width: 90px;
-    transition: all 0.2s ease;
-    align-self: flex-end;
-    cursor: pointer;
+    border: none;
+    width: 80px;
 }
 
-.addBttn,
-.redBttn {
+#addBttn,
+#redBttn {
     background-color: blue;
     color: white;
 }
 
-.redBttn {
+#redBttn {
     background: red;
 }
 
-.cancelBttn:hover {
+#cancelBttn:hover {
     background-color: gray;
 }
 
-.addBttn:hover {
+#addBttn:hover {
     background-color: rgb(0, 0, 167);
 }
 
-.redBttn:hover {
-    background: rgb(173, 0, 0);
+#redBttn:hover {
+    background: rgb(202, 0, 0);
 }
 
 @media screen and (max-width: 770px) {

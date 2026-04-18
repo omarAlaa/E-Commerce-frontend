@@ -13,6 +13,7 @@ import { uiStore } from '../../../../app/store/uiStore'
 import Steps from '../../components/Steps/Steps'
 import { checkoutStore } from '../../store/checkoutStore'
 import StepsNavigation from '../../components/StepsNavigation/StepsNavigation'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function Checkout() {
     const { step, setStep } = checkoutStore()
@@ -57,10 +58,10 @@ export default function Checkout() {
             {
                 user &&
                 <main className={styles.main}>
-                    <button className={styles.backStore}
+                    <Button id={styles.backStore}
                         onClick={handleBackToStore}>
                         {'< Back to Store'}
-                    </button>
+                    </Button>
 
                     <Steps />
 

@@ -4,30 +4,25 @@
     width: 100%;
 }
 
-.button,
-.next,
-.placeOrder {
-    margin: 20px 0 10px;
-    padding: 10px 20px;
+#previous,
+#next,
+#placeOrder {
+    background: white;
+    color: blue;
+}
+
+#previous:hover,
+#next:hover,
+#placeOrder:hover {
     background: blue;
     color: white;
-    border-radius: .5em;
-    border: none;
-    cursor: pointer;
-    max-width: 150px;
-    transition: all 0.2s ease;
 }
 
-.button:hover,
-.next:hover,
-.placeOrder:hover {
-    background: rgb(0, 0, 161);
-}
-
-.next {
+#next {
     margin-left: auto;
 }
 
-.placeOrder {
-    width: 112px;
+#placeOrder {
+    width: 130px;
+    white-space: nowrap;
 }

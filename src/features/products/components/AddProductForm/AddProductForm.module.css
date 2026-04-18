@@ -56,33 +56,31 @@
     padding: 5px;
 }
 
-.newProduct,
-.manageCategories {
-    background: limegreen;
-    color: whitesmoke;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 0;
-    transition: all 0.2s ease;
+#newProduct,
+#manageCategories {
+    background: green;
+    color: white;
 }
 
-.manageCategories {
+#manageCategories {
+    padding: 10px 0;
     width: 100px;
-    background: gray;
+    background: rgb(90, 90, 90);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
 }
 
-.newProduct:hover,
-.manageCategories:hover {
-    background: green;
+#newProduct:hover,
+#manageCategories:hover {
+    background: rgb(0, 83, 0);
     cursor: pointer;
+    color: white;
 }
 
-.manageCategories:hover {
-    background: rgb(90, 90, 90);
+#manageCategories:hover {
+    background: rgb(48, 48, 48);
 }
 
 @media screen and (max-width: 770px) {
@@ -99,7 +97,7 @@
         flex-direction: column;
     }
 
-    .manageCategories {
+    #manageCategories {
         width: 100%;
     }
 }

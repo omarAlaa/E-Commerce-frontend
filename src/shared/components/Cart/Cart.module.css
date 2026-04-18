@@ -85,33 +85,25 @@
     background: gray;
 }
 
-.emptyCartButton,
-.checkout {
-    border: 1px solid red;
-    border-radius: 8px;
+#emptyCartBttn {
     background: white;
     color: red;
     width: 50%;
     align-self: center;
-    padding: 10px 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.emptyCartButton:hover {
+#emptyCartBttn:hover {
     background: red;
     color: white;
 }
 
-.checkout {
+#checkout {
     color: blue;
-    border-color: blue;
-    width: 200%;
 }
 
-.checkout:hover {
+#checkout:hover {
     color: white;
-    background: rgb(20, 20, 116);
+    background: blue;
 }
 
 .checkoutContainer {

@@ -5,6 +5,7 @@ import { uiStore } from "../../../../app/store/uiStore"
 import { checkoutStore } from "../../store/checkoutStore"
 import Loading from '../../../../shared/ui/Loading/Loading'
 import { placeOrder } from "../../../orders/api/ordersAPI"
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function StepsNavigation() {
     const { step, setStep, setOrderId } = checkoutStore()
@@ -13,6 +14,8 @@ export default function StepsNavigation() {
     const [placeOrderLoading, setPlaceOrderLoading] = useState(false)
 
     const handlePlaceOrder = async () => {
+        setPlaceOrderLoading(true)
+
         try {
             const res = await placeOrder()
             setOrderId(res.data)
@@ -26,35 +29,34 @@ export default function StepsNavigation() {
             const errorMessage = error?.response?.data?.message || 'Failed to place order'
             showSnackBar({ visible: true, success: false, text: errorMessage })
         }
+        finally {
+            setPlaceOrderLoading(false)
+        }
     }
 
     return (
         <div className={styles.navigation}>
-            <button className={styles.button}
+            <Button id={styles.previous}
                 onClick={() => setStep(step - 1)}
                 style={{ display: step === 1 || step === 4 ? 'none' : 'block' }}
             >
                 {'< Previous'}
-            </button>
+            </Button>
 
-            <button className={styles.next}
+            <Button id={styles.next}
                 onClick={() => setStep(step + 1)}
                 style={{ display: step === 3 || step === 4 ? 'none' : 'block' }}
             >
                 {'Next >'}
-            </button>
+            </Button>
 
-            <button className={styles.placeOrder}
+            <Button id={styles.placeOrder}
                 disabled={placeOrderLoading}
-                onClick={async () => {
-                    setPlaceOrderLoading(true)
-                    await handlePlaceOrder()
-                    setPlaceOrderLoading(false)
-                }}
+                onClick={() => { handlePlaceOrder() }}
                 style={{ display: step === 3 ? 'block' : 'none' }}
             >
-                {placeOrderLoading ? <Loading size={15} height={'100%'} /> : 'Place Order'}
-            </button>
+                {placeOrderLoading ? <Loading size={18} height={'100%'} /> : 'Place Order'}
+            </Button>
         </div>
     )
 }

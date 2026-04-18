@@ -8,6 +8,7 @@ import { uiStore } from "../../../../app/store/uiStore"
 import { categoriesStore } from "../../../categories/store/categoriesStore"
 import { productsStore } from "../../store/productsStore"
 import Input from '../../../../shared/ui/Input/Input'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function AddProductForm() {
 
@@ -57,13 +58,13 @@ export default function AddProductForm() {
                     {categories?.map(category => <option key={category._id} className={styles.option} value={category.name}>{category.name}</option>)}
                 </select>
 
-                <button type="button"
-                    className={styles.manageCategories}
+                <Button type="button"
+                    id={styles.manageCategories}
                     onClick={() => setShowCatModal(true)}
                     title="Manage Categories"
                 >
                     <Settings size={20} /> Manage
-                </button>
+                </Button>
             </div>
 
             <div className={styles.oneRow}>
@@ -74,10 +75,11 @@ export default function AddProductForm() {
 
             <textarea className={styles.textarea} type="text" name="description" id="description" placeholder="Description" />
 
-            <button className={styles.newProduct}
-                type='submit'>
-                {addProductLoading ? <Loading size={15} height={'100%'} /> : '+ Add Product'}
-            </button>
+            <Button id={styles.newProduct}
+                type='submit'
+                disabled={addProductLoading}>
+                {addProductLoading ? <Loading size={18} height={'100%'} /> : '+ Add Product'}
+            </Button>
 
             <CategoriesModal />
         </form >

@@ -5,6 +5,7 @@ import { updateProduct } from "../../api/productsAPI"
 import { useState } from "react"
 import { uiStore } from "../../../../app/store/uiStore"
 import Input from '../../../../shared/ui/Input/Input'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function UpdateProductDialog() {
     const { products, setProducts, productToUpdate, closeUpdate, setProductToUpdate } = productsStore()
@@ -24,7 +25,7 @@ export default function UpdateProductDialog() {
         }
 
         if (data.get('price-update') === productToUpdate.price && data.get('category-update') === productToUpdate.category && data.get('description-update') === productToUpdate.description && data.get('image-url-update') === productToUpdate.image) {
-            showSnackBar({ visible: true, success: false, text: 'No values updated' })
+            showSnackBar({ visible: true, success: false, text: 'Values not updated' })
 
             setUpdateProductLoading(false)
             return
@@ -75,13 +76,15 @@ export default function UpdateProductDialog() {
                         </label>
 
                         <div className={styles.actionsBttns}>
-                            <button className={styles.updateBttn}
+                            <Button id={styles.updateBttn}
                                 type="submit"
                                 disabled={updateProductLoading}
                             >{updateProductLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
-                            </button>
+                            </Button>
 
-                            <button className={styles.closeBttn} type="button" onClick={closeUpdate}>Close</button>
+                            <Button id={styles.closeBttn} type="button" onClick={closeUpdate}>
+                                Close
+                            </Button>
                         </div>
                     </form>
                 </div>

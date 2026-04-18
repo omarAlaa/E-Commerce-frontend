@@ -6,6 +6,7 @@ import ConfirmModal from '../../../shared/ui/ConfirmModal/ConfirmModal'
 import { fetchUsers, removeUser, makeAdmin } from '../api/adminsUsersAPI'
 import { uiStore } from '../../../app/store/uiStore'
 import Input from '../../../shared/ui/Input/Input'
+import Button from '../../../shared/ui/Button/Button'
 
 export default function UsersTable() {
     const { setUsers, setAdmins, users, admins, headers, filteredUsers, searchUsers } = adminsUsersStore()
@@ -94,16 +95,16 @@ export default function UsersTable() {
                                         <td>{user.userName}</td>
 
                                         <td>
-                                            <button onClick={() => {
+                                            <Button onClick={() => {
                                                 setActionUser(user)
                                                 setAction('Make admin: ')
-                                            }} className={styles.whiteBttn}>Make Admin</button>
+                                            }} id={styles.whiteBttn}>Make Admin</Button>
 
-                                            <button className={styles.redBttn}
+                                            <Button id={styles.redBttn}
                                                 onClick={() => {
                                                     setActionUser(user)
                                                     setAction('Remove user: ')
-                                                }} >Remove</button>
+                                                }} >Remove</Button>
                                         </td>
                                     </tr>)}
                                 </tbody>

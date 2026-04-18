@@ -31,20 +31,18 @@ p {
     margin-bottom: 10px;
 }
 
-.button {
-    width: 90px;
-    background: white;
-    color: blue;
-    padding: .5em;
-    border-radius: .5em;
-    border: 1px solid blue;
-    padding: 10px 20px;
+#changeBttn,
+#disabled {
+    width: 98px;
 }
 
-.button:hover {
+#changeBttn {
+    color: blue;
+}
+
+#changeBttn:hover {
     background: blue;
     color: white;
-    transition: all 0.2s ease;
 }
 
 .short_password {
@@ -59,22 +57,15 @@ p {
     color: red;
 }
 
-.delete_account_bttn {
+#deleteBttn {
     width: 150px;
-    background: white;
     color: red;
-    border: 1px solid rgb(255, 110, 110);
-    padding: .7em 20px;
-    border-radius: .5em;
     white-space: nowrap;
-    margin-bottom: 30px;
-    transition: all 0.2s ease;
 }
 
-.delete_account_bttn:hover {
+#deleteBttn:hover {
     color: white;
     background: red;
-    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -7,6 +7,7 @@ import { categoriesStore } from "../../../categories/store/categoriesStore"
 import { addCategory, deleteCategory } from "../../../categories/api/categoriesAPI"
 import { uiStore } from "../../../../app/store/uiStore"
 import Input from '../../../../shared/ui/Input/Input'
+import Button from '../../../../shared/ui/Button/Button'
 
 export default function CategoriesModal() {
     const { categories, setCategories, showCatModal, setShowCatModal } = categoriesStore()
@@ -14,6 +15,7 @@ export default function CategoriesModal() {
     const [addCategoryLoading, setAddCategoryLoading] = useState(false)
     const [newCategory, setNewCategory] = useState('')
     const [categoryToDelete, setCategoryToDelete] = useState()
+    const addCatDisabled = addCategoryLoading || !newCategory
 
     const handleAddCategory = async () => {
         setAddCategoryLoading(true)
@@ -56,14 +58,13 @@ export default function CategoriesModal() {
                 <div className={styles.oneRow}>
                     <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category" onChange={e => setNewCategory(e.target.value)} />
 
-                    <button className={styles.addBttn}
+                    <Button id={!addCatDisabled ? styles.addBttn : styles.disabled}
                         type="button"
-                        disabled={addCategoryLoading || !newCategory}
+                        disabled={addCatDisabled}
                         onClick={handleAddCategory}
-                        style={{ cursor: !newCategory ? 'not-allowed' : 'pointer' }}
                     >
-                        {addCategoryLoading ? <Loading size={15} height={'100%'} /> : '+ Add'}
-                    </button>
+                        {addCategoryLoading ? <Loading size={18} height={'100%'} /> : '+ Add'}
+                    </Button>
                 </div>
 
                 <strong>Categories</strong>
@@ -77,7 +78,9 @@ export default function CategoriesModal() {
                     )
                 }
 
-                <button className={styles.cancelBttn} onClick={() => setShowCatModal(false)}>Close</button>
+                <Button id={styles.cancelBttn} onClick={() => setShowCatModal(false)}>
+                    Close
+                </Button>
             </div>
 
             {categoryToDelete &&
