@@ -62,7 +62,7 @@ export default function Login() {
 
                 <Input type='password' name="password" id="password" placeholder='Password *' onChange={e => setPassword(e.target.value)} />
 
-                <Button id={!loginDisabled ? styles.loginBttn : undefined} disabled={loginDisabled}>
+                <Button id={!loginDisabled ? styles.loginBttn : styles.disabled} disabled={loginDisabled}>
                     {loginLoading ? <Loading size={18} height={'100%'} /> : 'Sign In'}
                 </Button>
 

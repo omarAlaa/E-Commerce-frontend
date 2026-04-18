@@ -29,8 +29,13 @@
 }
 
 #loginBttn,
-#registerBttn {
+#registerBttn,
+#disabled {
     margin-top: 20px;
+}
+
+#loginBttn,
+#registerBttn {
     color: blue;
 }
 

@@ -16,7 +16,7 @@ export default function Register() {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [registerLoading, setRegisterLoading] = useState(false)
-    const registerDisabled = !email || !userName || password?.length < 8
+    const registerDisabled = !email || !userName || !password || password.length < 8
     const { snackBar, showSnackBar } = uiStore()
     const { cart, setCart, setCartFetched } = cartStore()
     const { setUser } = authStore()
@@ -69,7 +69,7 @@ export default function Register() {
                         Password must be at least 8 characters
                     </div>}
 
-                <Button id={!registerDisabled ? styles.registerBttn : undefined} disabled={registerDisabled}>
+                <Button id={!registerDisabled ? styles.registerBttn : styles.disabled} disabled={registerDisabled}>
                     {registerLoading ? <Loading size={18} height={'100%'} /> : 'Sign Up'}
                 </Button>
 
