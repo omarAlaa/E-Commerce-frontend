@@ -5,6 +5,7 @@ import { ordersStore } from "../../store/ordersStore"
 import { updateOrder } from '../../api/ordersAPI'
 import { uiStore } from '../../../../app/store/uiStore'
 import Button from '../../../../shared/ui/Button/Button'
+import Modal from '../../../../shared/ui/Modal/Modal'
 
 export default function UpdateOrderDialog() {
     const { setOrders, orders, orderToReview, setOrderToReview } = ordersStore()
@@ -14,21 +15,21 @@ export default function UpdateOrderDialog() {
     const updateDisabled = updateLoading || orderToReview?.status === status || !status
     const statuses = ['paid', 'shipped', 'delivered']
 
-    const handleUpdateOrder = async (orderId, newStatus) => {
+    const handleUpdateOrder = async (orderId) => {
         setUpdateLoading(true)
 
         try {
-            const res = await updateOrder(orderId, newStatus)
+            const res = await updateOrder(orderId, status)
 
 
             const updatedOrders = orders.map(order => order._id === orderId ? res.data : order)
             setOrders(updatedOrders, true)
 
-            if (newStatus !== 'cancelled') {
+            if (status !== 'cancelled') {
                 setOrderToReview(res.data)
             }
 
-            showSnackBar({ visible: true, success: true, text: `Order ${newStatus}` })
+            showSnackBar({ visible: true, success: true, text: `Order ${status}` })
         } catch (error) {
             const errorMessage = error?.response?.data?.message || 'Failed to update order'
             showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -41,66 +42,63 @@ export default function UpdateOrderDialog() {
         <>
             {
                 orderToReview &&
-                <article className={styles.modal}
-                    onClick={() => {
-                        setOrderToReview()
-                        setStatus()
-                    }}>
-                    <div className={styles.dialogOrder} onClick={e => e.stopPropagation()}>
-                        <strong className={styles.orderId}>Order Id: {orderToReview._id}</strong>
+                <Modal onClose={() => {
+                    setOrderToReview()
+                    setStatus()
+                }}>
+                    <strong className={styles.orderId}>Order Id: {orderToReview._id}</strong>
 
-                        <hr />
+                    <hr />
 
-                        {
-                            orderToReview.items.map(product => <div key={product._id} className={styles.product}>
-                                <img className={styles.image} src={product.image} alt="" width={'40px'} height={'40px'} />
+                    {
+                        orderToReview.items.map(product => <div key={product._id} className={styles.product}>
+                            <img className={styles.image} src={product.image} alt="" width={'40px'} height={'40px'} />
 
-                                <div className={styles.info}>
-                                    <strong className={styles.title}>{product.title}</strong>
+                            <div className={styles.info}>
+                                <strong className={styles.title}>{product.title}</strong>
 
-                                    <p>price: {Intl.NumberFormat().format(product.price)} EGP</p>
+                                <p>price: {Intl.NumberFormat().format(product.price)} EGP</p>
 
-                                    <p>Quantity: {product.quantity}</p>
+                                <p>Quantity: {product.quantity}</p>
 
-                                    <p>Total: {Intl.NumberFormat().format(product.quantity * product.price)} EGP</p>
-                                </div>
-                            </div>)
-                        }
+                                <p>Total: {Intl.NumberFormat().format(product.quantity * product.price)} EGP</p>
+                            </div>
+                        </div>)
+                    }
 
-                        <hr />
+                    <hr />
 
-                        <strong className={styles.subtotal}>Subtotal: {new Intl.NumberFormat().format(orderToReview.subtotal)} EGP</strong>
+                    <strong className={styles.subtotal}>Subtotal: {new Intl.NumberFormat().format(orderToReview.subtotal)} EGP</strong>
 
-                        <strong>Order Date: {new Date(parseInt(orderToReview._id.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
+                    <strong>Order Date: {new Date(parseInt(orderToReview._id.substring(0, 8), 16) * 1000).toLocaleString()}</strong>
 
-                        <div className={styles.oneRow}>
-                            <strong>Status:</strong>
+                    <div className={styles.oneRow}>
+                        <strong>Status:</strong>
 
-                            <select className={styles.select} name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
-                                <option value="" disabled>Change status</option>
+                        <select className={styles.select} name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
+                            <option value="" disabled>Change status</option>
 
-                                {statuses.map(status => <option value={status} key={status}>{status}</option>)}
-                            </select>
-                        </div>
-
-                        <div className={styles.actionsBttns}>
-                            <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}
-                                disabled={updateDisabled}
-                                onClick={() => { handleUpdateOrder(orderToReview._id, status) }}
-                                style={{ cursor: updateDisabled ? 'not-allowed' : 'pointer' }}
-                            >
-                                {updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
-                            </Button>
-
-                            <Button id={styles.closeBttn} onClick={() => {
-                                setOrderToReview()
-                                setStatus()
-                            }}>
-                                Close
-                            </Button>
-                        </div>
+                            {statuses.map(status => <option value={status} key={status}>{status}</option>)}
+                        </select>
                     </div>
-                </article >
+
+                    <div className={styles.actionsBttns}>
+                        <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}
+                            disabled={updateDisabled}
+                            onClick={() => { handleUpdateOrder(orderToReview._id) }}
+                            style={{ cursor: updateDisabled ? 'not-allowed' : 'pointer' }}
+                        >
+                            {updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
+                        </Button>
+
+                        <Button id={styles.closeBttn} onClick={() => {
+                            setOrderToReview()
+                            setStatus()
+                        }}>
+                            Close
+                        </Button>
+                    </div>
+                </Modal>
             }
         </>
     )

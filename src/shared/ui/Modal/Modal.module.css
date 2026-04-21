@@ -1,0 +1,23 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.dialog {
+    border: none;
+    border-radius: 8px;
+    background: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .2);
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 2;
+}

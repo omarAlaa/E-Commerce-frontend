@@ -6,35 +6,27 @@ import { useState } from "react"
 import { uiStore } from "../../../../app/store/uiStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
+import Modal from '../../../../shared/ui/Modal/Modal'
 
-export default function UpdateProductDialog() {
-    const { products, setProducts, productToUpdate, closeUpdate, setProductToUpdate } = productsStore()
+export default function UpdateProductDialog({ product, setProduct }) {
+    const { products, setProducts } = productsStore()
     const { showSnackBar } = uiStore()
     const [updateProductLoading, setUpdateProductLoading] = useState(false)
+    const [price, setPrice] = useState(String(product.price).replace(/,/g, ""))
+    const [category, setCategory] = useState(product.category)
+    const [description, setDescription] = useState(product.description)
+    const [imageUrl, setImageUrl] = useState(product.image)
+    const updateDisabled = updateProductLoading || !price || !category || !description || !imageUrl || (price === String(product.price).replace(/,/g, "") && category === product.category && description === product.description && imageUrl === product.image)
 
     const handleUpdateProduct = async (e) => {
         e.preventDefault()
-        const data = new FormData(e.currentTarget)
+
         setUpdateProductLoading(true)
 
-        if (!data.get('price-update') || !data.get('category-update') || !data.get('description-update') || !data.get('image-url-update')) {
-            showSnackBar({ visible: true, success: false, text: 'You must fill all the fields' })
-
-            setUpdateProductLoading(false)
-            return
-        }
-
-        if (data.get('price-update') === productToUpdate.price && data.get('category-update') === productToUpdate.category && data.get('description-update') === productToUpdate.description && data.get('image-url-update') === productToUpdate.image) {
-            showSnackBar({ visible: true, success: false, text: 'Values not updated' })
-
-            setUpdateProductLoading(false)
-            return
-        }
-
         try {
-            const res = await updateProduct(productToUpdate._id, { dialogProduct: { ...productToUpdate, price: Number(data.get('price-update').replace(/,/g, '')), category: data.get('category-update'), image: data.get('image-url-update'), description: data.get('description-update') } })
+            const res = await updateProduct(product._id, { updatedProduct: { ...product, price: Number(price), category: category, image: imageUrl, description: description } })
 
-            setProductToUpdate(res.data)
+            setProduct(res.data)
             setProducts(products.map(product => product._id === res.data._id ? res.data : product))
 
             showSnackBar({ visible: true, success: true, text: 'Product updated' })
@@ -49,45 +41,44 @@ export default function UpdateProductDialog() {
     return (
         <>
             {
-                productToUpdate &&
-                <div className={styles.modal} onClick={closeUpdate}>
-                    <form onSubmit={handleUpdateProduct} className={styles.dialogProduct} onClick={e => e.stopPropagation()}>
-                        <strong>{productToUpdate.title}</strong>
+                product &&
+                <form onSubmit={handleUpdateProduct}>
+                    <Modal onClose={() => setProduct(null)}>
+                        <strong>{product.title}</strong>
 
                         <hr />
 
                         <div className={styles.oneRow}>
                             <label className={styles.label} htmlFor="price-update">Price:
-                                <Input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={String(productToUpdate.price).replace(/,/g, "")} />
+                                <Input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={price} onChange={e => setPrice(e.target.value)} />
                             </label>
 
                             <label className={styles.label} htmlFor="category-update">Category:
-                                <Input type="text" name="category-update" id="category-update" defaultValue={productToUpdate.category} />
+                                <Input type="text" name="category-update" id="category-update" defaultValue={category} onChange={e => setCategory(e.target.value)} />
                             </label>
                         </div>
 
                         <label className={styles.label} htmlFor="image-url-update">
                             Image URL:
-                            <Input type="text" name="image-url-update" id="image-url-update" defaultValue={productToUpdate.image} />
+                            <Input type="text" name="image-url-update" id="image-url-update" defaultValue={imageUrl} onChange={e => setImageUrl(e.target.value)} />
                         </label>
 
                         <label className={styles.label} htmlFor="description-update">Description:
-                            <textarea className={styles.textarea} type="text" name="description-update" id="description-update" defaultValue={productToUpdate.description} />
+                            <textarea className={styles.textarea} type="text" name="description-update" id="description-update" defaultValue={description} onChange={e => setDescription(e.target.value)} />
                         </label>
 
                         <div className={styles.actionsBttns}>
-                            <Button id={styles.updateBttn}
-                                type="submit"
-                                disabled={updateProductLoading}
+                            <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}
+                                disabled={updateDisabled}
                             >{updateProductLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
                             </Button>
 
-                            <Button id={styles.closeBttn} type="button" onClick={closeUpdate}>
+                            <Button id={styles.closeBttn} type="button" onClick={() => setProduct(null)}>
                                 Close
                             </Button>
                         </div>
-                    </form>
-                </div>
+                    </Modal>
+                </form>
             }
         </>
     )

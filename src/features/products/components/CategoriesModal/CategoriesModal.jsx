@@ -8,6 +8,7 @@ import { addCategory, deleteCategory } from "../../../categories/api/categoriesA
 import { uiStore } from "../../../../app/store/uiStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
+import Modal from '../../../../shared/ui/Modal/Modal'
 
 export default function CategoriesModal() {
     const { categories, setCategories, showCatModal, setShowCatModal } = categoriesStore()
@@ -53,47 +54,45 @@ export default function CategoriesModal() {
 
     return (
         showCatModal &&
-        <div className={styles.modal} onClick={() => setShowCatModal(false)}>
-            <div className={styles.dialogProduct} onClick={e => e.stopPropagation()}>
-                <strong>Add new category</strong>
+        <Modal onClose={() => setShowCatModal(false)}>
+            <strong>Add new category</strong>
 
-                <div className={styles.oneRow}>
-                    <div className={styles.inputContainer}>
-                        <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category name" onChange={e => setNewCategory(e.target.value)} />
+            <div className={styles.oneRow}>
+                <div className={styles.inputContainer}>
+                    <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category name" onChange={e => setNewCategory(e.target.value)} />
 
-                        <Input type="text" value={imageURL} name="image-url" id="image-url" placeholder="Image URL" onChange={e => setImageURL(e.target.value)} />
-                    </div>
-
-                    <Button id={!addCatDisabled ? styles.addBttn : styles.disabled}
-                        type="button"
-                        disabled={addCatDisabled}
-                        onClick={handleAddCategory}
-                    >
-                        {addCategoryLoading ? <Loading size={18} height={'100%'} /> : '+ Add'}
-                    </Button>
+                    <Input type="text" value={imageURL} name="image-url" id="image-url" placeholder="Image URL" onChange={e => setImageURL(e.target.value)} />
                 </div>
 
-                <strong>Categories</strong>
-                {
-                    categories?.map(category =>
-                        <div className={styles.catBox} key={category._id}>
-                            <p>{category.name}</p>
-
-                            <div title="Delete category"><Trash2 color="red" onClick={() => setCategoryToDelete(category)} style={{ cursor: 'pointer' }} /> </div>
-                        </div>
-                    )
-                }
-
-                <Button id={styles.cancelBttn} onClick={() => setShowCatModal(false)}>
-                    Close
+                <Button id={!addCatDisabled ? styles.addBttn : styles.disabled}
+                    type="button"
+                    disabled={addCatDisabled}
+                    onClick={handleAddCategory}
+                >
+                    {addCategoryLoading ? <Loading size={18} height={'100%'} /> : '+ Add'}
                 </Button>
             </div>
+
+            <strong>Categories</strong>
+            {
+                categories?.map(category =>
+                    <div className={styles.catBox} key={category._id}>
+                        <p>{category.name}</p>
+
+                        <div title="Delete category"><Trash2 color="red" onClick={() => setCategoryToDelete(category)} style={{ cursor: 'pointer' }} /> </div>
+                    </div>
+                )
+            }
+
+            <Button id={styles.cancelBttn} onClick={() => setShowCatModal(false)}>
+                Close
+            </Button>
 
             {categoryToDelete &&
                 <ConfirmModal
                     close={() => setCategoryToDelete()}
                     message={`Delete category: ${categoryToDelete.name} ?`}
                     action={async () => { await handleDeleteCategory(categoryToDelete._id) }} />}
-        </div>
+        </Modal>
     )
 }

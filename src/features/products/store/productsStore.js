@@ -3,7 +3,6 @@ import { create } from "zustand"
 export const productsStore = create((set, get) => ({
     products: null,
     filteredProducts: null,
-    productToUpdate: null,
 
     searchTerm: null,
     categoryFilter: null,
@@ -37,9 +36,6 @@ export const productsStore = create((set, get) => ({
             get().searchProducts(get().categoryFilter, 'categories')
         }
     },
-
-    setProductToUpdate: (product) => set({ productToUpdate: product }),
-    closeUpdate: () => set({ productToUpdate: null }),
 
     searchProducts: (term, type) => {
         if (type === 'categories') {

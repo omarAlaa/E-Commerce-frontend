@@ -1,4 +1,5 @@
 import styles from './AppBar.module.css'
+import modalStyles from '../../ui/Modal/Modal.module.css'
 import Cart from '../../components/Cart/Cart'
 import { ShoppingCart, LogOut, LogIn, CircleUser } from 'lucide-react'
 import { useEffect, useState } from 'react'
@@ -92,7 +93,7 @@ export default function AppBar() {
                         <button className={styles.categories} onClick={() => setCategoriesPanel('open')}>Categories</button>
                         {
                             categoriesPanel !== 'hide' &&
-                            <div className={categoriesPanel === 'open' ? styles.modal : styles.closeCategories}
+                            <div className={categoriesPanel === 'open' ? modalStyles.modal : styles.closeCategories}
                                 onAnimationEnd={hideModal}
                                 onClick={() => setCategoriesPanel('close')}>
                                 <ul className={categoriesPanel === 'open' ? styles.openCategories : undefined}>
@@ -122,7 +123,7 @@ export default function AppBar() {
 
                 {
                     cartState !== 'hide' &&
-                    <div className={cartState === 'open' ? styles.modal : styles.closeCart}
+                    <div className={cartState === 'open' ? modalStyles.modal : styles.closeCart}
                         onAnimationEnd={hideModal}
                         onClick={() => setCartState('close')}>
                         <div className={cartState === 'open' ? styles.openCart : undefined} onClick={e => e.stopPropagation()}>
@@ -138,7 +139,7 @@ export default function AppBar() {
 
                     {
                         optionsState !== 'hide' &&
-                        <div className={optionsState === 'open' ? styles.modal : styles.closeOptions}
+                        <div className={optionsState === 'open' ? modalStyles.modal : styles.closeOptions}
                             onAnimationEnd={hideModal}
                             onClick={() => setOptionstate('close')}>
                             <ul className={optionsState === 'open' ? styles.openOptions : undefined}>

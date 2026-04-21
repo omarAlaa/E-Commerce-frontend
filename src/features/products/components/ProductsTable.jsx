@@ -11,12 +11,13 @@ import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 
 export default function ProductsTable() {
-    const { products, setProducts, filteredProducts, setProductToUpdate, searchProducts } = productsStore()
+    const { products, setProducts, filteredProducts, searchProducts } = productsStore()
     const { categories } = categoriesStore()
     const { showSnackBar } = uiStore()
     const [fetchLoading, setFetchLoading] = useState(true)
     const [productToDelete, setProductToDelete] = useState()
     const headers = ['Title', 'Price', 'Category', 'Actions']
+    const [productToUpdate, setProductToUpdate] = useState()
 
     useEffect(() => {
         const getData = async () => {
@@ -107,7 +108,7 @@ export default function ProductsTable() {
                             </section>
             }
 
-            <UpdateProductDialog />
+            {productToUpdate && <UpdateProductDialog product={productToUpdate} setProduct={(product) => setProductToUpdate(product)} />}
 
             {productToDelete &&
                 <ConfirmModal
