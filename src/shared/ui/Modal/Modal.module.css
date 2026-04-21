@@ -21,3 +21,9 @@
     overflow-y: auto;
     z-index: 2;
 }
+
+@media screen and (max-width: 770px) {
+    .dialog {
+        max-width: 90%;
+    }
+}

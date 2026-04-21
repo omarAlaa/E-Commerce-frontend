@@ -35,9 +35,3 @@
 #redBttn:hover {
     background: rgb(202, 0, 0);
 }
-
-@media screen and (max-width: 770px) {
-    .dialogProduct {
-        width: 90%;
-    }
-}
