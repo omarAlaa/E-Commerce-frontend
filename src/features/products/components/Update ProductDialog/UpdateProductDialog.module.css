@@ -4,12 +4,6 @@
     flex-wrap: nowrap;
 }
 
-.label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 #priceLabel,
 #categoryLabel {
     width: 194.5px;

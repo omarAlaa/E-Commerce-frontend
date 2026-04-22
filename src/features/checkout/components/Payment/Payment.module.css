@@ -15,21 +15,13 @@
     width: 100%;
 }
 
-.number_cvv label,
-.name_date label {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 5px;
-}
-
-.number,
-.name {
+#number,
+#name {
     flex: 1;
 }
 
-.cvv,
-.date {
+#cvv,
+#date {
     width: 25%;
 }
 

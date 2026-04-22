@@ -10,6 +10,7 @@ import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
 import Select from '../../../../shared/ui/Select/Select'
 import Textarea from '../../../../shared/ui/TextArea/TextArea'
+import Label from '../../../../shared/ui/Label/Label'
 
 export default function UpdateProductDialog({ product, setProduct }) {
     const { products, setProducts } = productsStore()
@@ -53,25 +54,25 @@ export default function UpdateProductDialog({ product, setProduct }) {
                         <hr />
 
                         <div className={styles.oneRow}>
-                            <label className={styles.label} id={styles.priceLabel} htmlFor="price-update">Price:
+                            <Label id={styles.priceLabel} htmlFor="price-update">Price:
                                 <Input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={price} onChange={e => setPrice(e.target.value)} />
-                            </label>
+                            </Label>
 
-                            <label className={styles.label} id={styles.categoryLabel} htmlFor="category-update">Category:
+                            <Label id={styles.categoryLabel} htmlFor="category-update">Category:
                                 <Select name="category" defaultValue={category} id="category-update" onChange={e => setCategory(e.target.value)}>
                                     {categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)}
                                 </Select>
-                            </label>
+                            </Label>
                         </div>
 
-                        <label className={styles.label} htmlFor="image-url-update">
+                        <Label htmlFor="image-url-update">
                             Image URL:
                             <Input type="text" name="image-url-update" id="image-url-update" defaultValue={imageUrl} onChange={e => setImageUrl(e.target.value)} />
-                        </label>
+                        </Label>
 
-                        <label className={styles.label} htmlFor="description-update">Description:
+                        <Label htmlFor="description-update">Description:
                             <Textarea type="text" name="description-update" id="description-update" defaultValue={description} onChange={e => setDescription(e.target.value)} />
-                        </label>
+                        </Label>
 
                         <div className={styles.actionsBttns}>
                             <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}

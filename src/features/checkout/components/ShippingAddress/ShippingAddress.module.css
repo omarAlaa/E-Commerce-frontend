@@ -4,12 +4,6 @@
     gap: 10px;
 }
 
-.address label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 .city {
     display: flex;
     gap: 15px;
