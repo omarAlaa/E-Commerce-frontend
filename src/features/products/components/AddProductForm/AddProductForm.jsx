@@ -10,6 +10,7 @@ import { productsStore } from "../../store/productsStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Select from '../../../../shared/ui/Select/Select'
+import Textarea from '../../../../shared/ui/TextArea/TextArea'
 
 export default function AddProductForm() {
 
@@ -74,7 +75,7 @@ export default function AddProductForm() {
                 <Input type="text" name="productImage" id="productImage" placeholder="Image URL" value={image} onChange={e => setImageUrl(e.target.value)} />
             </div>
 
-            <textarea className={styles.textarea} type="text" name="description" id="description" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
+            <Textarea type="text" name="description" id="description" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />
 
             <Button id={!addDisabled ? styles.newProduct : undefined}
                 disabled={addDisabled}>

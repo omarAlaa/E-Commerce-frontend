@@ -9,6 +9,7 @@ import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
 import Select from '../../../../shared/ui/Select/Select'
+import Textarea from '../../../../shared/ui/TextArea/TextArea'
 
 export default function UpdateProductDialog({ product, setProduct }) {
     const { products, setProducts } = productsStore()
@@ -69,7 +70,7 @@ export default function UpdateProductDialog({ product, setProduct }) {
                         </label>
 
                         <label className={styles.label} htmlFor="description-update">Description:
-                            <textarea className={styles.textarea} type="text" name="description-update" id="description-update" defaultValue={description} onChange={e => setDescription(e.target.value)} />
+                            <Textarea type="text" name="description-update" id="description-update" defaultValue={description} onChange={e => setDescription(e.target.value)} />
                         </label>
 
                         <div className={styles.actionsBttns}>

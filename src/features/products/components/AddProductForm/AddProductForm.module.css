@@ -16,15 +16,6 @@
     flex-wrap: nowrap;
 }
 
-.textarea {
-    border-radius: 8px;
-    border: 1px solid gray;
-    outline: none;
-    padding: 11px;
-    font-size: medium;
-    height: 40px;
-}
-
 #select,
 #graySelect {
     width: 75%;
@@ -36,20 +27,6 @@
 
 .option {
     color: black;
-}
-
-.textarea {
-    font-size: 17px;
-    height: 53px;
-}
-
-.textarea:hover {
-    border-color: black;
-}
-
-.textarea:focus {
-    border: 2px solid rgba(3, 3, 250, 0.829);
-    padding: 10px;
 }
 
 #newProduct,

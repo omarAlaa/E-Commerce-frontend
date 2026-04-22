@@ -1,0 +1,17 @@
+.textarea {
+    border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 11px;
+    font-size: 17px;
+    height: 53px;
+}
+
+.textarea:hover {
+    border-color: black;
+}
+
+.textarea:focus {
+    border: 2px solid blue;
+    padding: 10px;
+}
