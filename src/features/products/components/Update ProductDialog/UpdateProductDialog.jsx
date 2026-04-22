@@ -4,9 +4,11 @@ import Loading from "../../../../shared/ui/Loading/Loading"
 import { updateProduct } from "../../api/productsAPI"
 import { useState } from "react"
 import { uiStore } from "../../../../app/store/uiStore"
+import { categoriesStore } from "../../../categories/store/categoriesStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
+import Select from '../../../../shared/ui/Select/Select'
 
 export default function UpdateProductDialog({ product, setProduct }) {
     const { products, setProducts } = productsStore()
@@ -16,6 +18,7 @@ export default function UpdateProductDialog({ product, setProduct }) {
     const [category, setCategory] = useState(product.category)
     const [description, setDescription] = useState(product.description)
     const [imageUrl, setImageUrl] = useState(product.image)
+    const { categories } = categoriesStore()
     const updateDisabled = updateProductLoading || !price || !category || !description || !imageUrl || (price === String(product.price).replace(/,/g, "") && category === product.category && description === product.description && imageUrl === product.image)
 
     const handleUpdateProduct = async (e) => {
@@ -49,12 +52,14 @@ export default function UpdateProductDialog({ product, setProduct }) {
                         <hr />
 
                         <div className={styles.oneRow}>
-                            <label className={styles.label} htmlFor="price-update">Price:
+                            <label className={styles.label} id={styles.priceLabel} htmlFor="price-update">Price:
                                 <Input type="number" name="price-update" id="price-update" step='0.01' min='0' defaultValue={price} onChange={e => setPrice(e.target.value)} />
                             </label>
 
-                            <label className={styles.label} htmlFor="category-update">Category:
-                                <Input type="text" name="category-update" id="category-update" defaultValue={category} onChange={e => setCategory(e.target.value)} />
+                            <label className={styles.label} id={styles.categoryLabel} htmlFor="category-update">Category:
+                                <Select name="category" defaultValue={category} id="category-update" onChange={e => setCategory(e.target.value)}>
+                                    {categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)}
+                                </Select>
                             </label>
                         </div>
 

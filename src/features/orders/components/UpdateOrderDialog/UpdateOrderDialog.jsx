@@ -6,6 +6,7 @@ import { updateOrder } from '../../api/ordersAPI'
 import { uiStore } from '../../../../app/store/uiStore'
 import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
+import Select from '../../../../shared/ui/Select/Select'
 
 export default function UpdateOrderDialog() {
     const { setOrders, orders, orderToReview, setOrderToReview } = ordersStore()
@@ -75,11 +76,11 @@ export default function UpdateOrderDialog() {
                     <div className={styles.oneRow}>
                         <strong>Status:</strong>
 
-                        <select className={styles.select} name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
+                        <Select name="status" id="status" defaultValue={''} onChange={e => setStatus(e.target.value)} >
                             <option value="" disabled>Change status</option>
 
                             {statuses.map(status => <option value={status} key={status}>{status}</option>)}
-                        </select>
+                        </Select>
                     </div>
 
                     <div className={styles.actionsBttns}>

@@ -1,13 +1,14 @@
-.input {
-    outline: none;
-    border: 1px solid gray;
-    padding: 10px;
+.select {
     border-radius: 8px;
+    border: 1px solid gray;
+    outline: none;
+    padding: 10px;
     font-size: medium;
     height: 40px;
+    cursor: pointer;
 }
 
-.input:focus {
+.select:focus {
     border: 2px solid blue;
     padding: 9px;
 }

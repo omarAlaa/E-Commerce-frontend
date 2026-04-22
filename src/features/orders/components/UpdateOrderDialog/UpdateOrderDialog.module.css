@@ -26,16 +26,10 @@
     font-size: large;
 }
 
-.select {
-    border-radius: 8px;
-    border: 1px solid gray;
-    outline: none;
-    padding: 6px;
-    font-size: medium;
-    height: 40px;
-    width: 150px;
-    cursor: pointer;
-    margin-left: 10px;
+.oneRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .actionsBttns {

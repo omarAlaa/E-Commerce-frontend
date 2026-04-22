@@ -8,6 +8,7 @@ import { fetchAllOrders, updateOrder } from "../api/ordersAPI"
 import { uiStore } from "../../../app/store/uiStore"
 import Input from "../../../shared/ui/Input/Input"
 import Button from "../../../shared/ui/Button/Button"
+import Select from "../../../shared/ui/Select/Select"
 
 export default function AllOrdersTable() {
     const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
@@ -54,13 +55,13 @@ export default function AllOrdersTable() {
                 <div className={styles.searchSection}>
                     <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchOrders(e.target.value)} />
 
-                    <select className={styles.select} name="status" id="search-status" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
+                    <Select name="status" id="search-status" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
                         <option value="" disabled >Filter status</option>
 
                         <option value="All orders" >All orders</option>
 
                         {statuses?.map(status => <option key={status} value={status}>{status}</option>)}
-                    </select>
+                    </Select>
                 </div>
             </div>
 

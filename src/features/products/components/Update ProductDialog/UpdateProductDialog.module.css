@@ -33,6 +33,11 @@
     gap: 5px;
 }
 
+#priceLabel,
+#categoryLabel {
+    width: 194.5px;
+}
+
 .actionsBttns {
     display: flex;
     gap: 10px;
@@ -70,7 +75,8 @@
         flex-direction: column;
     }
 
-    .dialogProduct {
-        width: 90%;
+    #priceLabel,
+    #categoryLabel {
+        width: 100%;
     }
 }

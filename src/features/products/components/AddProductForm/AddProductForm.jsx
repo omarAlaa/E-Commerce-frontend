@@ -9,6 +9,7 @@ import { categoriesStore } from "../../../categories/store/categoriesStore"
 import { productsStore } from "../../store/productsStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
+import Select from '../../../../shared/ui/Select/Select'
 
 export default function AddProductForm() {
 
@@ -52,11 +53,11 @@ export default function AddProductForm() {
             <Input type="text" name="title" id="product-title" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
 
             <div className={styles.oneRow}>
-                <select className={category ? styles.select : styles.graySelect} name="category" id="category" value={category} onChange={e => setCategory(e.target.value)}>
+                <Select id={category ? styles.select : styles.graySelect} name="category" value={category} onChange={e => setCategory(e.target.value)}>
                     <option value="" disabled >Select Category</option>
 
                     {categories?.map(category => <option key={category._id} className={styles.option} value={category.name}>{category.name}</option>)}
-                </select>
+                </Select>
 
                 <Button type="button"
                     id={styles.manageCategories}

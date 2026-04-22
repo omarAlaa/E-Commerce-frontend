@@ -9,6 +9,7 @@ import { uiStore } from "../../../app/store/uiStore"
 import { categoriesStore } from "../../categories/store/categoriesStore"
 import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
+import Select from '../../../shared/ui/Select/Select'
 
 export default function ProductsTable() {
     const { products, setProducts, filteredProducts, searchProducts } = productsStore()
@@ -57,13 +58,13 @@ export default function ProductsTable() {
                 <div className={styles.searchSection}>
                     <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
 
-                    <select className={styles.select} name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
+                    <Select name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
                         <option value="" disabled >Filter category</option>
 
                         <option value="All Products" >All Products</option>
 
                         {categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)}
-                    </select>
+                    </Select>
                 </div>
             </div>
 
