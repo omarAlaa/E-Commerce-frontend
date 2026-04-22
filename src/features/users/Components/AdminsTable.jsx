@@ -48,7 +48,7 @@ export default function AdminsTable() {
                 <strong>Admins</strong>
 
                 <div className={styles.searchSection}>
-                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
+                    <Input type="text" name="adminsSearch" id="adminsSearch" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
                 </div>
             </div>
 

@@ -61,7 +61,7 @@ export default function CategoriesModal() {
                 <div className={styles.inputContainer}>
                     <Input type="text" value={newCategory} name="new-category" id="new-category" placeholder="Category name" onChange={e => setNewCategory(e.target.value)} />
 
-                    <Input type="text" value={imageURL} name="image-url" id="image-url" placeholder="Image URL" onChange={e => setImageURL(e.target.value)} />
+                    <Input type="text" value={imageURL} name="categoryImage" id="categoryImage" placeholder="Image URL" onChange={e => setImageURL(e.target.value)} />
                 </div>
 
                 <Button id={!addCatDisabled ? styles.addBttn : styles.disabled}

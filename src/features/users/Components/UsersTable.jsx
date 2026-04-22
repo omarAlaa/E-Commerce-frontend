@@ -65,7 +65,7 @@ export default function UsersTable() {
                 <strong>Users</strong>
 
                 <div className={styles.searchSection}>
-                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
+                    <Input type="text" name="usersSearch" id="usersSearch" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
                 </div>
             </div>
 

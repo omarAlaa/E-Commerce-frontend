@@ -70,7 +70,7 @@ export default function AddProductForm() {
             <div className={styles.oneRow}>
                 <Input type="number" name="price" id="price" placeholder="Price" step="0.01" min="0" value={price} onChange={e => setPrice(e.target.value)} />
 
-                <Input type="text" name="image-url" id="image-url" placeholder="Image URL" value={image} onChange={e => setImageUrl(e.target.value)} />
+                <Input type="text" name="productImage" id="productImage" placeholder="Image URL" value={image} onChange={e => setImageUrl(e.target.value)} />
             </div>
 
             <textarea className={styles.textarea} type="text" name="description" id="description" placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} />

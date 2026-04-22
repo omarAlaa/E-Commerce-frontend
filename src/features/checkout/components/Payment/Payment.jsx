@@ -14,24 +14,24 @@ export default function Payment() {
             <div className={styles.number_cvv}>
                 <label className={styles.number} htmlFor="card-number">
                     Card number *
-                    <Input type="text" name="card-number" id="card-number" placeholder='0000 0000 0000 0000' />
+                    <Input autoComplete='off' type="text" name="card-number" id="card-number" placeholder='0000 0000 0000 0000' />
                 </label>
 
                 <label className={styles.cvv} htmlFor="cvv">
                     CVV *
-                    <Input type="text" name="cvv" id="cvv" placeholder='123' />
+                    <Input autoComplete='off' type="text" name="cvv" id="cvv" placeholder='123' />
                 </label>
             </div>
 
             <div className={styles.name_date}>
                 <label className={styles.name} htmlFor="name">
                     Name *
-                    <Input type="text" name="name" id="name" placeholder='Omar Mohamed Alaa' />
+                    <Input autoComplete='on' type="text" name="name" id="name" placeholder='Omar Mohamed Alaa' />
                 </label>
 
                 <label className={styles.date} htmlFor="date">
                     Ex. date *
-                    <Input type="text" name="date" id="date" placeholder='MM/YY' />
+                    <Input autoComplete='off' type="text" name="date" id="date" placeholder='MM/YY' />
                 </label>
             </div>
         </form>
