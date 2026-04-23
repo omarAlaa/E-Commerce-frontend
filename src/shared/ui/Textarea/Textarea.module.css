@@ -5,6 +5,7 @@
     padding: 11px;
     font-size: 17px;
     height: 53px;
+    resize: vertical;
 }
 
 .textarea:hover {
