@@ -61,6 +61,7 @@ p {
     width: 150px;
     color: red;
     white-space: nowrap;
+    margin-bottom: 20px;
 }
 
 #deleteBttn:hover {
