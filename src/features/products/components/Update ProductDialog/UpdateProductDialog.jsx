@@ -9,7 +9,7 @@ import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
 import Select from '../../../../shared/ui/Select/Select'
-import Textarea from '../../../../shared/ui/TextArea/TextArea'
+import Textarea from '../../../../shared/ui/Textarea/Textarea'
 import Label from '../../../../shared/ui/Label/Label'
 
 export default function UpdateProductDialog({ product, setProduct }) {

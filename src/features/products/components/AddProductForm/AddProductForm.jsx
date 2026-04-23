@@ -10,7 +10,7 @@ import { productsStore } from "../../store/productsStore"
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Select from '../../../../shared/ui/Select/Select'
-import Textarea from '../../../../shared/ui/TextArea/TextArea'
+import Textarea from '../../../../shared/ui/Textarea/Textarea'
 
 export default function AddProductForm() {
 
