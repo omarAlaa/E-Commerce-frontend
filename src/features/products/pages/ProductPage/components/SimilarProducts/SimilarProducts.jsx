@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import Loading from '../../../../../../shared/ui/Loading/Loading'
 import { Link } from 'react-router-dom'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
+import NoItemsSection from '../../../../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function SimilarProducts(product) {
     const [similarProducts, setSimilarProducts] = useState()
@@ -41,9 +42,7 @@ export default function SimilarProducts(product) {
                 <>
                     {similarProducts?.length === 0 ?
 
-                        <section className='no-items'>
-                            <h2>No similar Products</h2>
-                        </section>
+                        <NoItemsSection message="No similar products found" />
                         :
                         <>
                             <div className={styles.arrows}>

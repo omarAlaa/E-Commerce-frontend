@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom"
 import { fetchCategoryProducts } from '../../../products/api/productsAPI'
 import { uiStore } from '../../../../app/store/uiStore'
 import Container from '../../../../shared/ui/Container/Container'
+import NoItemsSection from '../../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function CategoryProducts() {
     const { category } = useParams()
@@ -46,14 +47,10 @@ export default function CategoryProducts() {
                     <Loading />
                     :
                     !products ?
-                        <section className={styles.no_items}>
-                            <h2>Error occured, please try again later</h2>
-                        </section>
+                        <NoItemsSection message="Error occurred, please try again later" />
                         :
                         products.length === 0 ?
-                            <section className={styles.no_items}>
-                                <h2>No products in this category</h2>
-                            </section>
+                            <NoItemsSection message="No products in this category" />
                             :
                             <Container>
                                 {products?.map(product => <Product key={product._id} {...product} />)}

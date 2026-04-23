@@ -9,6 +9,7 @@ import { uiStore } from "../../../../app/store/uiStore"
 import { fetchProduct } from '../../api/productsAPI'
 import ProductDetails from './components/ProductDetails/ProductDetails'
 import SimilarProducts from './components/SimilarProducts/SimilarProducts'
+import NoItemsSection from '../../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function ProductPage() {
     const { id } = useParams()
@@ -52,9 +53,7 @@ export default function ProductPage() {
                 <Loading />
                 :
                 !product ?
-                    <section className='no-items'>
-                        <h2>{errorMessage}</h2>
-                    </section>
+                    <NoItemsSection message={errorMessage} />
                     :
                     <ProductDetails {...product} />
             }

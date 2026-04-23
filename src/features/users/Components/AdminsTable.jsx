@@ -7,6 +7,7 @@ import { fetchAdmins, removeAdmin } from '../api/adminsUsersAPI'
 import { uiStore } from '../../../app/store/uiStore'
 import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
+import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function AdminsTable() {
     const { setAdmins, admins, headers, filteredAdmins, searchAdmins } = adminsUsersStore()
@@ -56,14 +57,10 @@ export default function AdminsTable() {
                 <Loading />
                 :
                 !filteredAdmins ?
-                    <section className="no-items">
-                        <h2>Error occured, please try again later</h2>
-                    </section>
+                    <NoItemsSection message={"Error occured, please try again later"} />
                     :
                     filteredAdmins.length === 0 ?
-                        <section className="no-items">
-                            <h2>No admins found</h2>
-                        </section>
+                        <NoItemsSection message={"No admins found"} />
                         :
                         <section className={styles.container}>
                             <table className={styles.table}>

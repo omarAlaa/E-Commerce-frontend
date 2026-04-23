@@ -4,6 +4,7 @@ import Loading from "../../../shared/ui/Loading/Loading"
 import { useEffect, useState } from "react"
 import { fetchPopularProducts } from "../../products/api/productsAPI"
 import Container from "../../../shared/ui/Container/Container"
+import NoItemsSection from "../../../shared/ui/NoItemsSection/NoItemsSection"
 
 export default function PopularProducts() {
     const [popularProducts, setPopularProducts] = useState()
@@ -36,14 +37,10 @@ export default function PopularProducts() {
                     <Loading />
                     :
                     !popularProducts ?
-                        <section className='no-items'>
-                            <h2>Error occured, please try again later</h2>
-                        </section>
+                        <NoItemsSection message="Error occured, please try again later" />
                         :
                         popularProducts.length === 0 ?
-                            <section className='no-items'>
-                                <h2>No products found</h2>
-                            </section>
+                            <NoItemsSection message="No products found" />
                             :
                             <Container>
                                 {popularProducts.map(product => <Product key={product._id} {...product} />)}

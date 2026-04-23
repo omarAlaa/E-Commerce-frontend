@@ -3,6 +3,7 @@ import Loading from "../../../../shared/ui/Loading/Loading"
 import { Link } from "react-router-dom"
 import { categoriesStore } from "../../../categories/store/categoriesStore"
 import Container from '../../../../shared/ui/Container/Container'
+import NoItemsSection from '../../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function FeaturedCategories() {
     const { categories, categoriesFetched } = categoriesStore()
@@ -16,14 +17,10 @@ export default function FeaturedCategories() {
                     <Loading />
                     :
                     !categories ?
-                        <section className='no-items'>
-                            <h2>Error occured, please try again later</h2>
-                        </section>
+                        <NoItemsSection message="Error occured, please try again later" />
                         :
                         categories.length === 0 ?
-                            <section className='no-items'>
-                                <h2>No categories found</h2>
-                            </section>
+                            <NoItemsSection message="No categories found" />
                             :
                             <Container>
                                 {

@@ -9,6 +9,7 @@ import { uiStore } from "../../../app/store/uiStore"
 import Input from "../../../shared/ui/Input/Input"
 import Button from "../../../shared/ui/Button/Button"
 import Select from "../../../shared/ui/Select/Select"
+import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function AllOrdersTable() {
     const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
@@ -69,14 +70,10 @@ export default function AllOrdersTable() {
                 <Loading />
                 :
                 !filteredOrders ?
-                    <section className="no-items">
-                        <h2>Error occured, please try again later</h2>
-                    </section>
+                    <NoItemsSection message={"Error occured, please try again later"} />
                     :
                     filteredOrders.length === 0 ?
-                        <section className="no-items">
-                            <h2>No orders found</h2>
-                        </section>
+                        <NoItemsSection message={"No orders found"} />
                         :
                         <section className={styles.container}>
                             <table className={styles.table}>

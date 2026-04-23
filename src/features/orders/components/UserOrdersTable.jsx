@@ -3,6 +3,7 @@ import Loading from '../../../shared/ui/Loading/Loading'
 import { ScrollText } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { fetchUserOrders } from '../api/ordersAPI'
+import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 
 export default function UserOrdersTable() {
     const [orders, setOrders] = useState()
@@ -34,11 +35,9 @@ export default function UserOrdersTable() {
                 < Loading />
                 :
                 !orders ?
-                    < section className={styles.no_orders} >
+                    <NoItemsSection message={'No orders yet'} id={styles.noOrders}>
                         <ScrollText size={80} />
-
-                        <h2>{errorMessage}</h2>
-                    </section>
+                    </NoItemsSection>
                     :
                     <section className={styles.orders} >
                         {
