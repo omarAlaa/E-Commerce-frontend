@@ -32,7 +32,8 @@
     gap: 8px;
 }
 
-.setting {
+.setting,
+.selectedSetting {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -45,11 +46,16 @@
     transition: all ease 0.2s;
 }
 
+.selectedSetting {
+    background-color: aqua;
+}
+
 .setting:hover {
     background: rgb(230, 230, 230);
 }
 
-.setting h4 {
+.setting h4,
+.selectedSetting h4 {
     margin-left: 20px;
 }
 

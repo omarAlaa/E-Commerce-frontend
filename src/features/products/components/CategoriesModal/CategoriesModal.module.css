@@ -28,6 +28,10 @@
     padding: 10px;
 }
 
+.delete {
+    cursor: pointer;
+}
+
 #addBttn,
 #disabled {
     width: 83.5px;

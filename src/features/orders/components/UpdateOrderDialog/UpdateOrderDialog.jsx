@@ -87,7 +87,6 @@ export default function UpdateOrderDialog() {
                         <Button id={!updateDisabled ? styles.updateBttn : styles.disabled}
                             disabled={updateDisabled}
                             onClick={() => { handleUpdateOrder(orderToReview._id) }}
-                            style={{ cursor: updateDisabled ? 'not-allowed' : 'pointer' }}
                         >
                             {updateLoading ? <Loading size={15} height={'100%'} /> : 'Update'}
                         </Button>

@@ -79,7 +79,7 @@ export default function CategoriesModal() {
                     <div className={styles.catBox} key={category._id}>
                         <p>{category.name}</p>
 
-                        <div title="Delete category"><Trash2 color="red" onClick={() => setCategoryToDelete(category)} style={{ cursor: 'pointer' }} /> </div>
+                        <div className={styles.delete} title="Delete category"><Trash2 color="red" onClick={() => setCategoryToDelete(category)} /> </div>
                     </div>
                 )
             }

@@ -36,25 +36,20 @@ export default function StepsNavigation() {
 
     return (
         <div className={styles.navigation}>
-            <Button id={styles.previous}
+            <Button id={step === 1 || step === 4 ? styles.hide : styles.previous}
                 onClick={() => setStep(step - 1)}
-                style={{ display: step === 1 || step === 4 ? 'none' : 'block' }}
             >
                 {'< Previous'}
             </Button>
 
-            <Button id={styles.next}
-                onClick={() => setStep(step + 1)}
-                style={{ display: step === 3 || step === 4 ? 'none' : 'block' }}
-            >
+            <Button id={step === 3 || step === 4 ? styles.hide : styles.next}
+                onClick={() => setStep(step + 1)}            >
                 {'Next >'}
             </Button>
 
-            <Button id={styles.placeOrder}
+            <Button id={step === 3 ? styles.placeOrder : styles.hide}
                 disabled={placeOrderLoading}
-                onClick={() => { handlePlaceOrder() }}
-                style={{ display: step === 3 ? 'block' : 'none' }}
-            >
+                onClick={() => { handlePlaceOrder() }}            >
                 {placeOrderLoading ? <Loading size={18} height={'100%'} /> : 'Place Order'}
             </Button>
         </div>

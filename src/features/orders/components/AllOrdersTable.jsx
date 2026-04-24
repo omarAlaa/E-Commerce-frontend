@@ -94,8 +94,7 @@ export default function AllOrdersTable() {
 
                                             <Button id={styles.redBttn}
                                                 onClick={() => setOrderIdToCancel(order._id)}
-                                                disabled={order.status === 'cancelled'}
-                                                style={{ cursor: order.status === 'cancelled' ? 'not-allowed' : 'pointer' }}>
+                                                disabled={order.status === 'cancelled'}>
                                                 Cancel
                                             </Button>
                                         </td>
