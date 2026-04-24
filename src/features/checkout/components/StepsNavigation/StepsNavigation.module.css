@@ -13,6 +13,7 @@
 #placeOrder {
     background: white;
     color: blue;
+    margin-bottom: 20px;
 }
 
 #previous:hover,
