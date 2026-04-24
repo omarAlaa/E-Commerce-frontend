@@ -53,7 +53,7 @@ export default function Register() {
         <main className={styles.container}>
             <form className={styles.form} onSubmit={handleRegister}>
                 <header className={styles.header}>
-                    <img src="https://cdn-icons-png.flaticon.com/512/1803/1803612.png" alt="" width={'50px'} height={'50px'} />
+                    <img className={styles.icon} src="https://cdn-icons-png.flaticon.com/512/1803/1803612.png" alt="Register icon" />
 
                     <h1>Sign Up</h1>
                 </header>

@@ -53,7 +53,7 @@ export default function UpdateOrderDialog() {
 
                     {
                         orderToReview.items.map(product => <div key={product._id} className={styles.product}>
-                            <img className={styles.image} src={product.image} alt="" width={'40px'} height={'40px'} />
+                            <img className={styles.image} src={product.image} alt="Product image" />
 
                             <div className={styles.info}>
                                 <strong className={styles.title}>{product.title}</strong>
