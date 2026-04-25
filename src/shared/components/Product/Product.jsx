@@ -47,7 +47,7 @@ export default function Product(props) {
     return (
         <article key={props?._id} className={styles.card}>
             <Link className={styles.imageContainer} to={`/product/${props?._id}`}>
-                <img className={styles.image} src={props?.image} alt="Product image" />
+                <img className={styles.image} src={props?.image} alt="Product image" loading="lazy" />
             </Link>
 
             <Link className={styles.category} to={`/${props?.category}`}>

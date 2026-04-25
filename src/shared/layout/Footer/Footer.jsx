@@ -10,7 +10,7 @@ export default function Footer() {
         <footer className={styles.footer}>
             <div className={styles.columns}>
                 <div className={styles.column}>
-                    <img className={styles.image} src="https://i.ibb.co/nMmL6ft4/36682-removebg-preview.png" alt="Website image" />
+                    <img className={styles.image} src="https://i.ibb.co/nMmL6ft4/36682-removebg-preview.png" alt="Website image" loading='lazy' />
                 </div>
 
                 <div className={styles.column}>

@@ -44,7 +44,7 @@ export default function UserOrdersTable() {
                             orders?.map(order => <article className={styles.order} key={order._id}>
                                 {
                                     order.items.map(item => <article key={order._id + item._id} className={styles.order_item}>
-                                        <img className={styles.image} src={item.image} alt="" />
+                                        <img className={styles.image} src={item.image} alt="" loading='lazy' />
 
                                         <article className={styles.order_item_info}>
                                             <strong className={styles.order_item_title}>{item.title}</strong>

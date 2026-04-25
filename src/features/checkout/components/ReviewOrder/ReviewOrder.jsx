@@ -9,7 +9,7 @@ export default function ReviewOrder() {
             <div className={styles.order}>
                 {
                     cart?.map(item => <div key={item.product._id} className={styles.item}>
-                        <img className={styles.image} src={item.product.image} alt="" />
+                        <img className={styles.image} src={item.product.image} alt="" loading='lazy' />
 
                         <div className={styles.info}>
                             <strong className={styles.title}>{item.product.title}</strong>

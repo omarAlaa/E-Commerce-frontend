@@ -25,7 +25,7 @@ export default function FeaturedCategories() {
                             <Container>
                                 {
                                     categories.map(category => <Link to={`/${category.name}`} key={category._id} className={styles.card}>
-                                        <img className={styles.image} src={category.imageURL} alt="" />
+                                        <img className={styles.image} src={category.imageURL} alt="" loading="lazy" />
 
                                         <strong>{category.name}</strong>
                                     </Link>)

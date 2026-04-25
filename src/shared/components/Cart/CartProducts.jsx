@@ -99,7 +99,7 @@ export default function CartProducts() {
                         <hr />
 
                         <article className={styles.product}>
-                            <img className={styles.image} src={item.product.image} alt="Product image" />
+                            <img className={styles.image} src={item.product.image} alt="Product image" loading='lazy' />
 
                             <div className={styles.info}>
                                 <Link className={styles.title} to={`/product/${item.product._id}`}>

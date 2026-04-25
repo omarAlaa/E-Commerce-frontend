@@ -56,7 +56,7 @@ export default function SimilarProducts(product) {
 
                                 {similarProducts?.map(prod => <div key={prod._id} className={styles.similar_product_container}>
                                     <Link to={`/product/${prod._id}`}>
-                                        <img className={styles.image} src={prod.image} alt="Product image" />
+                                        <img className={styles.image} src={prod.image} alt="Product image" loading='lazy' />
                                     </Link>
 
                                     <h3>{prod.title}</h3>
