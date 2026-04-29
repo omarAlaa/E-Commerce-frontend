@@ -15,7 +15,7 @@ import Textarea from '../../../../shared/ui/Textarea/Textarea'
 export default function AddProductForm() {
 
     const { setShowCatModal, categories } = categoriesStore()
-    const { addNewProduct } = productsStore()
+    const { productsChange, changeProducts } = productsStore()
     const { showSnackBar } = uiStore()
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
@@ -32,7 +32,7 @@ export default function AddProductForm() {
 
         try {
             const res = await addProduct({ title, price, description, category, image })
-            addNewProduct(res.data)
+            changeProducts()
 
             showSnackBar({ visible: true, success: true, text: 'Product Added' })
 
@@ -42,6 +42,8 @@ export default function AddProductForm() {
             setImageUrl('')
             setDescription('')
         } catch (error) {
+            console.log(error);
+
             const errorMessage = error?.response?.data?.message || 'Failed to add product'
             showSnackBar({ visible: true, success: false, text: errorMessage })
         } finally {

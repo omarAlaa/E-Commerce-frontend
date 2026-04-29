@@ -10,18 +10,16 @@ export const ordersStore = create((set, get) => ({
     searchTerm: null,
     statusFilter: null,
 
-    setOrders: (orders, toSearch) => {
+    setOrders: (orders) => {
         set({ orders, filteredOrders: orders })
 
-        if (toSearch) {
-            if (get().searchTerm) {
-                get().searchOrders(get().searchTerm)
-                return
-            }
+        if (get().searchTerm) {
+            get().searchOrders(get().searchTerm)
+            return
+        }
 
-            if (get().statusFilter) {
-                get().searchOrders(get().statusFilter, 'status')
-            }
+        if (get().statusFilter) {
+            get().searchOrders(get().statusFilter, 'status')
         }
     },
 

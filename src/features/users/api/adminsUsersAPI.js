@@ -1,11 +1,11 @@
 import api from "../../../app/config/axios"
 
-export const fetchAdmins = () => {
-    return api.get('/api/users/admins')
+export const fetchAdmins = (page) => {
+    return api.get(`/api/users/admins/${page}`)
 }
 
-export const fetchUsers = () => {
-    return api.get('/api/users/users')
+export const fetchUsers = (page) => {
+    return api.get(`/api/users/users/${page}`)
 }
 
 export const makeAdmin = (userId) => {

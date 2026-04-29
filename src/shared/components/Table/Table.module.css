@@ -58,6 +58,11 @@ td:has(button) {
 #whiteBttn {
     background: red;
     color: white;
+}
+
+#disabled,
+#redBttn,
+#whiteBttn {
     margin: 7px 0;
     width: 100%;
 }
@@ -116,5 +121,9 @@ td:has(button) {
     td:not(:has(strong)) {
         padding: 3px 3px;
         text-align: center;
+    }
+
+    #pages {
+        margin-left: -34px;
     }
 }

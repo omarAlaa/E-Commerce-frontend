@@ -3,33 +3,38 @@ import { create } from "zustand"
 export const adminsUsersStore = create((set, get) => ({
     admins: null,
     filteredAdmins: null,
+
     users: null,
     filteredUsers: null,
+
     loading: false,
+
     headers: ['Email', 'Username', 'Actions'],
-    snackBar: null,
+
     usersSearchTerm: null,
+
     adminsSearchTerm: null,
 
-    setAdmins: (admins, toSearch) => {
+    isAdminsChanged: false,
+    setIsAdminsChanged: () => { set({ isAdminsChanged: !get().isAdminsChanged }) },
+
+    setAdmins: (admins) => {
         set({ admins, filteredAdmins: admins })
 
-        if (toSearch && get().adminsSearchTerm?.length > 0) {
+        if (get().adminsSearchTerm?.length > 0) {
             get().searchAdmins(get().adminsSearchTerm)
         }
     },
 
-    setUsers: (users, toSearch) => {
+    setUsers: (users) => {
         set({ users, filteredUsers: users })
 
-        if (toSearch) {
-            if (get().usersSearchTerm?.length > 0) {
-                get().searchUsers(get().usersSearchTerm)
-            }
+        if (get().usersSearchTerm?.length > 0) {
+            get().searchUsers(get().usersSearchTerm)
+        }
 
-            if (get().adminsSearchTerm?.length > 0) {
-                get().searchAdmins(get().adminsSearchTerm)
-            }
+        if (get().adminsSearchTerm?.length > 0) {
+            get().searchAdmins(get().adminsSearchTerm)
         }
     },
 

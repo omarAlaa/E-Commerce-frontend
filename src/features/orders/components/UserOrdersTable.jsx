@@ -4,17 +4,24 @@ import { ScrollText } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { fetchUserOrders } from '../api/ordersAPI'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
+import Button from '../../../shared/ui/Button/Button'
+import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function UserOrdersTable() {
     const [orders, setOrders] = useState()
     const [ordersLoading, setOrdersLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState()
     const [errorMessage, setErrorMessage] = useState()
 
     useEffect(() => {
         async function getUserOrders() {
+            setOrdersLoading(true)
+
             try {
-                const res = await fetchUserOrders()
-                setOrders(res.data)
+                const res = await fetchUserOrders(page)
+                setOrders(res.data.orders)
+                setTotalPages(res.data.totalPages)
             } catch (error) {
                 setErrorMessage(error?.response?.data?.message || 'Failed to fetch orders')
             } finally {
@@ -23,7 +30,7 @@ export default function UserOrdersTable() {
         }
 
         getUserOrders()
-    }, [])
+    }, [page])
 
     return (
         <section className={styles.section}>
@@ -35,7 +42,7 @@ export default function UserOrdersTable() {
                 < Loading />
                 :
                 !orders ?
-                    <NoItemsSection message={'No orders yet'} id={styles.noOrders}>
+                    <NoItemsSection message={errorMessage} id={styles.noOrders}>
                         <ScrollText size={80} />
                     </NoItemsSection>
                     :
@@ -71,6 +78,8 @@ export default function UserOrdersTable() {
                             </article>
                             )
                         }
+
+                        <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} />
                     </section>
             }
         </section >

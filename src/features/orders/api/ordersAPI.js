@@ -1,11 +1,11 @@
 import api from "../../../app/config/axios"
 
-export const fetchAllOrders = () => {
-    return api.get('/api/orders/')
+export const fetchAllOrders = (page) => {
+    return api.get(`/api/orders/${page}`)
 }
 
-export const fetchUserOrders = () => {
-    return api.get('/api/orders/userOrders')
+export const fetchUserOrders = (page) => {
+    return api.get(`/api/orders/userOrders/${page}`)
 }
 
 export const placeOrder = () => {

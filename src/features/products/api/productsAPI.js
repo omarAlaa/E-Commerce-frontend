@@ -1,7 +1,7 @@
 import api from "../../../app/config/axios"
 
-export const fetchProducts = () => {
-    return api.get('/api/products/allProducts')
+export const fetchProducts = (page) => {
+    return api.get(`/api/products/allProducts/${page}`)
 }
 
 export const fetchProduct = (productId) => {
@@ -16,8 +16,8 @@ export const fetchPopularProducts = () => {
     return api.get('/api/products/popularProducts')
 }
 
-export const fetchCategoryProducts = async (category) => {
-    return await api.get(`/api/products/categoryProducts/${category}`)
+export const fetchCategoryProducts = async (category, page) => {
+    return await api.get(`/api/products/categoryProducts/${category}/${page}`)
 }
 
 export const addProduct = async (data) => {

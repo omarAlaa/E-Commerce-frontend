@@ -1,6 +1,6 @@
 import styles from '../../../shared/components/Table/Table.module.css'
 import Loading from "../../../shared/ui/Loading/Loading"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { productsStore } from '../store/productsStore'
 import UpdateProductDialog from "./Update ProductDialog/UpdateProductDialog"
 import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
@@ -11,22 +11,42 @@ import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import Select from '../../../shared/ui/Select/Select'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
+import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function ProductsTable() {
-    const { products, setProducts, filteredProducts, searchProducts } = productsStore()
+    const { products, setProducts, filteredProducts, searchProducts, productsChange, changeProducts } = productsStore()
     const { categories } = categoriesStore()
     const { showSnackBar } = uiStore()
     const [fetchLoading, setFetchLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState()
     const [productToDelete, setProductToDelete] = useState()
     const headers = ['Title', 'Price', 'Category', 'Actions']
     const [productToUpdate, setProductToUpdate] = useState()
+    const prevPageRef = useRef(page)
+    const headerRef = useRef()
+
+    useEffect(() => {
+        if (prevPageRef.current !== page) {
+            prevPageRef.current = page
+
+            const header = headerRef.current
+            const yOffset = -80
+            const y = header.getBoundingClientRect().top + window.pageYOffset + yOffset
+
+            window.scrollTo({ top: y, behavior: 'smooth' })
+        }
+    }, [page])
 
     useEffect(() => {
         const getData = async () => {
-            try {
-                const res = await fetchProducts()
+            setFetchLoading(true)
 
-                setProducts(res.data.map(product => ({ ...product, price: new Intl.NumberFormat().format(product.price) })))
+            try {
+                const res = await fetchProducts(page)
+
+                setProducts(res.data.products.map(product => ({ ...product, price: new Intl.NumberFormat().format(product.price) })))
+                setTotalPages(res.data.totalPages)
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Failed to fetch products'
                 showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -36,13 +56,14 @@ export default function ProductsTable() {
         }
 
         getData()
-    }, [])
+    }, [page, productsChange])
 
     const handleDeleteProduct = async (productId) => {
         try {
             await deleteProduct(productId)
 
-            setProducts(products.filter(product => product._id !== productId), true)
+            setProducts(products.filter(product => product._id !== productId))
+            changeProducts()
 
             showSnackBar({ visible: true, success: true, text: 'Product Deleted' })
         } catch (error) {
@@ -53,7 +74,7 @@ export default function ProductsTable() {
 
     return (
         <>
-            <div className={styles.header}>
+            <div ref={headerRef} className={styles.header}>
                 <strong className={styles.productsHeader}>Products</strong>
 
                 <div className={styles.searchSection}>
@@ -105,6 +126,8 @@ export default function ProductsTable() {
                                 </table>
                             </section>
             }
+
+            <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} id={styles.pages} />
 
             {productToUpdate && <UpdateProductDialog product={productToUpdate} setProduct={(product) => setProductToUpdate(product)} />}
 

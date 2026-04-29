@@ -8,18 +8,24 @@ import { uiStore } from '../../../app/store/uiStore'
 import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
+import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function AdminsTable() {
-    const { setAdmins, admins, headers, filteredAdmins, searchAdmins } = adminsUsersStore()
+    const { setAdmins, admins, headers, filteredAdmins, searchAdmins, isAdminsChanged, setIsAdminsChanged } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [adminToRemove, setAdminToRemove] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState()
 
     useEffect(() => {
+        setFetchLoading(true)
+
         const getAdmins = async () => {
             try {
-                const res = await fetchAdmins()
-                setAdmins(res.data)
+                const res = await fetchAdmins(page)
+                setAdmins(res.data.admins)
+                setTotalPages(res.data.totalPages)
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Failed to fetch admins'
                 showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -29,12 +35,12 @@ export default function AdminsTable() {
         }
 
         getAdmins()
-    }, [])
+    }, [page, isAdminsChanged])
 
     const handleRemoveAdmin = async (adminId) => {
         try {
             await removeAdmin(adminId)
-            setAdmins(admins.filter(admin => admin._id !== adminId), true)
+            setIsAdminsChanged()
 
             showSnackBar({ visible: true, success: true, text: 'Admin removed' })
         } catch (error) {
@@ -80,6 +86,8 @@ export default function AdminsTable() {
                             </table>
                         </section>
             }
+
+            <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} id={styles.pages} />
 
             {adminToRemove && <ConfirmModal
                 close={() => setAdminToRemove()}

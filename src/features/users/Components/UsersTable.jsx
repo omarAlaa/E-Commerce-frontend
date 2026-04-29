@@ -8,19 +8,26 @@ import { uiStore } from '../../../app/store/uiStore'
 import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
+import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function UsersTable() {
-    const { setUsers, setAdmins, users, admins, headers, filteredUsers, searchUsers } = adminsUsersStore()
+    const { setUsers, setAdmins, users, admins, headers, filteredUsers, searchUsers, setIsAdminsChanged } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [actionUser, setActionUser] = useState()
     const [action, setAction] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState()
+    const [isUsersChanged, setIsUsersChanged] = useState(false)
 
     useEffect(() => {
         const getUsers = async () => {
+            setFetchLoading(true)
+
             try {
-                const res = await fetchUsers()
-                setUsers(res.data)
+                const res = await fetchUsers(page)
+                setUsers(res.data.users)
+                setTotalPages(res.data.totalPages)
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Failed to fetch users'
                 showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -30,15 +37,15 @@ export default function UsersTable() {
         }
 
         getUsers()
-    }, [])
+    }, [page, isUsersChanged])
 
     const handleMakeAdmin = async (userId) => {
         try {
             const res = await makeAdmin(userId)
 
-            setAdmins([res.data, ...admins])
+            setIsAdminsChanged()
 
-            setUsers(users.filter(user => user._id !== userId), true)
+            setIsUsersChanged(!isUsersChanged)
 
             showSnackBar({ visible: true, success: true, text: 'Admin added' })
         } catch (error) {
@@ -51,7 +58,7 @@ export default function UsersTable() {
         try {
             await removeUser(userId)
 
-            setUsers(users.filter(user => user._id !== userId), true)
+            setIsUsersChanged(!isUsersChanged)
 
             showSnackBar({ visible: true, success: true, text: 'User removed' })
         } catch (error) {
@@ -107,6 +114,8 @@ export default function UsersTable() {
                                 </tbody>
                             </table>
                         </section>}
+
+            <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} id={styles.pages} />
 
             {actionUser && <ConfirmModal
                 close={() => setActionUser()}

@@ -1,0 +1,15 @@
+.pages {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#page {
+    color: blue;
+}
+
+#page:hover {
+    background-color: blue;
+    color: white;
+}

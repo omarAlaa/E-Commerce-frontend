@@ -10,21 +10,29 @@ import Input from "../../../shared/ui/Input/Input"
 import Button from "../../../shared/ui/Button/Button"
 import Select from "../../../shared/ui/Select/Select"
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
+import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function AllOrdersTable() {
     const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
     const { showSnackBar } = uiStore()
     const [orderIdToCancel, setOrderIdToCancel] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
+    const [page, setPage] = useState(1)
+    const [totalPages, setTotalPages] = useState()
     const headers = ['ID', 'Status', 'Actions']
     const statuses = ['paid', 'shipped', 'delivered', 'cancelled']
 
     useEffect(() => {
         const getAllOrders = async () => {
-            try {
-                const res = await fetchAllOrders()
+            window.scrollTo({ top: 0, behavior: 'smooth' })
 
-                setOrders(res.data)
+            setFetchLoading(true)
+
+            try {
+                const res = await fetchAllOrders(page)
+
+                setOrders(res.data.orders)
+                setTotalPages(res.data.totalPages)
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Failed to fetch orders'
                 showSnackBar({ visible: true, success: false, text: errorMessage })
@@ -34,7 +42,7 @@ export default function AllOrdersTable() {
         }
 
         getAllOrders()
-    }, [])
+    }, [page])
 
     const handleCancelOrder = async (orderId) => {
         try {
@@ -92,7 +100,7 @@ export default function AllOrdersTable() {
                                         <td>
                                             <Button id={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</Button>
 
-                                            <Button id={styles.redBttn}
+                                            <Button id={order.status !== 'cancelled' ? styles.redBttn : styles.disabled}
                                                 onClick={() => setOrderIdToCancel(order._id)}
                                                 disabled={order.status === 'cancelled'}>
                                                 Cancel
@@ -104,6 +112,8 @@ export default function AllOrdersTable() {
                             </table>
                         </section>
             }
+
+            <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} id={styles.pages} />
 
             <UpdateOrderDialog />
 

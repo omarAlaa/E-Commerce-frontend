@@ -4,28 +4,14 @@ export const productsStore = create((set, get) => ({
     products: null,
     filteredProducts: null,
 
+    productsChange: false,
+    changeProducts: () => { set({ productsChange: !get().productsChange }) },
+
     searchTerm: null,
     categoryFilter: null,
 
     setProducts: (products, toSearch) => {
         set({ products, filteredProducts: products })
-
-        if (toSearch) {
-            if (get().searchTerm) {
-                get().searchProducts(get().searchTerm)
-                return
-            }
-
-            if (get().categoryFilter) {
-                get().searchProducts(get().categoryFilter, 'categories')
-            }
-        }
-    },
-
-    setFilteredProducts: (products) => set({ filteredProducts: products }),
-
-    addNewProduct: (product) => {
-        set({ products: [product, ...get().products], filteredProducts: [product, ...get().products] })
 
         if (get().searchTerm) {
             get().searchProducts(get().searchTerm)
@@ -36,6 +22,8 @@ export const productsStore = create((set, get) => ({
             get().searchProducts(get().categoryFilter, 'categories')
         }
     },
+
+    setFilteredProducts: (products) => set({ filteredProducts: products }),
 
     searchProducts: (term, type) => {
         if (type === 'categories') {

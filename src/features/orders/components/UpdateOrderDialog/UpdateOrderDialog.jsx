@@ -24,7 +24,7 @@ export default function UpdateOrderDialog() {
 
 
             const updatedOrders = orders.map(order => order._id === orderId ? res.data : order)
-            setOrders(updatedOrders, true)
+            setOrders(updatedOrders)
 
             if (status !== 'cancelled') {
                 setOrderToReview(res.data)
