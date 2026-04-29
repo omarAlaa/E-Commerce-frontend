@@ -16,9 +16,9 @@ export default function SimilarProducts(product) {
     useEffect(() => {
         async function getSimilarProducts() {
             try {
-                const res = await fetchCategoryProducts(product?.category)
+                const res = await fetchCategoryProducts(product?.category, 1)
 
-                setSimilarProducts(res.data.filter(similarProduct => similarProduct._id !== product?._id))
+                setSimilarProducts(res.data.products.filter(similarProduct => similarProduct._id !== product?._id))
             } catch (error) {
                 const errorMessage = error?.response?.data?.message || 'Failed to fetch similar products'
                 showSnackBar({ visible: true, success: false, text: errorMessage })
