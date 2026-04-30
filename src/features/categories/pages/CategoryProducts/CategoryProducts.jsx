@@ -22,11 +22,11 @@ export default function CategoryProducts() {
     const prevCategory = useRef(category)
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-
-        setFetchLoading(true)
-
         const getCategoryProducts = async () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+
+            setFetchLoading(true)
+
             try {
                 if (prevCategory.current !== category) {
                     prevCategory.current = category

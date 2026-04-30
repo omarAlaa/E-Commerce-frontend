@@ -22,6 +22,8 @@ export default function ProductPage() {
         async function getProduct() {
             window.scrollTo({ top: 0, behavior: 'smooth' })
 
+            setProductLoading(true)
+
             try {
                 const res = await fetchProduct(id)
 
