@@ -9,7 +9,7 @@ export default function ConfirmModal(props) {
 
     return (
         <Modal onClose={props.close}>
-            <strong>{props.message}</strong>
+            <strong className={styles.message}>{props.message}</strong>
 
             <div className={styles.oneRow}>
                 <Button id={props.message.substring(0, 4) === 'Make' ? styles.addBttn : styles.redBttn}
