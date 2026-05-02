@@ -16,7 +16,7 @@ export default function AppBar() {
     const [categoriesPanel, setCategoriesPanel] = useState('hide')
     const [cartState, setCartState] = useState('hide')
     const [optionsState, setOptionstate] = useState('hide')
-    const { cart, cartFetched, setCart, setCartFetched } = cartStore()
+    const { cart, cartFetched, setCart, setCartFetched, setIsCartFetchLoading } = cartStore()
     const { user, logout } = authStore()
     const { categories, setCategories, setCategoriesFetched, categoriesFetched } = categoriesStore()
     const { showSnackBar } = uiStore()
@@ -58,11 +58,12 @@ export default function AppBar() {
                 }
 
                 setCart(userCart)
+                setCartFetched(true)
             } catch (error) {
                 showSnackBar({ visible: true, success: false, text: 'Failed to fetch cart' })
                 return
             } finally {
-                setCartFetched(true)
+                setIsCartFetchLoading(false)
             }
         }
 

@@ -5,40 +5,56 @@ import { cartStore } from '../../../app/store/cartStore'
 import { authStore } from '../../../app/store/authStore'
 import CartProducts from './CartProducts'
 import Button from '../../ui/Button/Button'
+import Loading from '../../ui/Loading/Loading'
 
 export default function Cart() {
     const { user } = authStore()
-    const { cart } = cartStore()
+    const { cart, cartFetched, isCartFetchLoading } = cartStore()
 
     return (
         <section className={styles.container}>
             {
-                cart?.length > 0 ? <>
-                    <h1 className={styles.header}>Your Cart</h1>
-
-                    <CartProducts />
-
-                    <hr />
-
-                    <h3 className={styles.subtotal}>Subtotal</h3>
-
-                    <div className={styles.checkoutContainer}>
-                        <h3 className={styles.subtotal}>
-                            {Intl.NumberFormat().format(cart.reduce((sum, item) => {
-                                return sum + (item.product.price * item.quantity)
-                            }, 0))} EGP</h3>
-
-                        <Link to={user ? '/checkout' : '/login'}>
-                            <Button id={styles.checkout}>Checkout</Button>
-                        </Link>
-                    </div>
-                </>
+                isCartFetchLoading ?
+                    <>
+                        <h1 className={styles.header}>Your Cart</h1>
+                        <Loading />
+                    </>
                     :
-                    <div className={styles.emptyCart}>
-                        <h1 className={styles.message}>Your cart is empty</h1>
+                    cart ?
+                        <>
+                            <h1 className={styles.header}>Your Cart</h1>
 
-                        <ShoppingCart size={170} />
-                    </div>}
+                            <CartProducts />
+
+                            <hr />
+
+                            <h3 className={styles.subtotal}>Subtotal</h3>
+
+                            <div className={styles.checkoutContainer}>
+                                <h3 className={styles.subtotal}>
+                                    {Intl.NumberFormat().format(cart.reduce((sum, item) => {
+                                        return sum + (item.product.price * item.quantity)
+                                    }, 0))} EGP</h3>
+
+                                <Link to={user ? '/checkout' : '/login'}>
+                                    <Button id={styles.checkout}>Checkout</Button>
+                                </Link>
+                            </div>
+                        </>
+                        :
+                        cartFetched ?
+                            <div className={styles.emptyCart}>
+                                <h1 className={styles.message}>Your cart is empty</h1>
+
+                                <ShoppingCart size={170} />
+                            </div>
+                            :
+                            <div className={styles.emptyCart}>
+                                <h1 className={styles.message}>Error occured, please try again later</h1>
+
+                                <ShoppingCart size={170} />
+                            </div>
+            }
         </section>
     )
 }

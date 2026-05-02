@@ -15,6 +15,8 @@ export default function SimilarProducts(product) {
 
     useEffect(() => {
         async function getSimilarProducts() {
+            setSimiliarProductsLoading(true)
+
             try {
                 const res = await fetchCategoryProducts(product?.category, 1)
 
@@ -28,7 +30,7 @@ export default function SimilarProducts(product) {
         }
 
         getSimilarProducts()
-    }, [product])
+    }, [product?._id])
 
     const scroll = (direction) => {
         scrollRef.current?.scrollBy({ left: direction * 320 })
@@ -38,31 +40,34 @@ export default function SimilarProducts(product) {
         <>
             <h2 className={styles.header}>Similar Products</h2>
 
-            {!similiarProductsLoading &&
+            {similiarProductsLoading ?
+                <Loading />
+                :
                 <>
-                    {similarProducts?.length === 0 ?
+                    {!similarProducts ?
 
-                        <NoItemsSection message="No similar products found" />
+                        <NoItemsSection message="Error occured, please try again later" />
                         :
-                        <>
-                            <div className={styles.arrows}>
-                                <ChevronLeft size={44} className={styles.arrow} onClick={() => scroll(-1)} />
+                        similarProducts.length === 0 ?
+                            <NoItemsSection message="No similar products found" />
+                            :
+                            <>
+                                <div className={styles.arrows}>
+                                    <ChevronLeft size={44} className={styles.arrow} onClick={() => scroll(-1)} />
 
-                                <ChevronRight size={44} className={styles.arrow} onClick={() => scroll(1)} />
-                            </div>
+                                    <ChevronRight size={44} className={styles.arrow} onClick={() => scroll(1)} />
+                                </div>
 
-                            <section className={styles.similar_products} ref={scrollRef}>
-                                {!similarProducts && <Loading />}
+                                <section className={styles.similar_products} ref={scrollRef}>
+                                    {similarProducts.map(prod => <div key={prod._id} className={styles.similar_product_container}>
+                                        <Link to={`/product/${prod._id}`}>
+                                            <img className={styles.image} src={prod.image} alt="Product image" loading='lazy' />
+                                        </Link>
 
-                                {similarProducts?.map(prod => <div key={prod._id} className={styles.similar_product_container}>
-                                    <Link to={`/product/${prod._id}`}>
-                                        <img className={styles.image} src={prod.image} alt="Product image" loading='lazy' />
-                                    </Link>
-
-                                    <h3>{prod.title}</h3>
-                                </div>)}
-                            </section>
-                        </>}
+                                        <h3>{prod.title}</h3>
+                                    </div>)}
+                                </section>
+                            </>}
                 </>
             }
         </>
