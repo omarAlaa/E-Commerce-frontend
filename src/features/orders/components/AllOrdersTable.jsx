@@ -13,7 +13,7 @@ import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function AllOrdersTable() {
-    const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders } = ordersStore()
+    const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders, resetSearchParams } = ordersStore()
     const { showSnackBar } = uiStore()
     const [orderIdToCancel, setOrderIdToCancel] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -21,6 +21,10 @@ export default function AllOrdersTable() {
     const [totalPages, setTotalPages] = useState()
     const headers = ['ID', 'Status', 'Actions']
     const statuses = ['paid', 'shipped', 'delivered', 'cancelled']
+
+    useEffect(() => {
+        resetSearchParams()
+    }, [])
 
     useEffect(() => {
         const getAllOrders = async () => {

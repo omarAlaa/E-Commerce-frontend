@@ -11,12 +11,16 @@ import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 
 export default function AdminsTable() {
-    const { setAdmins, admins, headers, filteredAdmins, searchAdmins, isAdminsChanged, setIsAdminsChanged } = adminsUsersStore()
+    const { setAdmins, admins, headers, filteredAdmins, searchAdmins, isAdminsChanged, setIsAdminsChanged, resetSearchParams } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [adminToRemove, setAdminToRemove] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState()
+
+    useEffect(() => {
+        resetSearchParams()
+    }, [])
 
     useEffect(() => {
         setFetchLoading(true)

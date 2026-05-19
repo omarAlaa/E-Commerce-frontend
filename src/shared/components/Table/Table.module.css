@@ -54,6 +54,27 @@ td:has(button) {
     text-align: center;
 }
 
+.bttnsGroup {
+    display: flex;
+    gap: 5px;
+    justify-content: space-evenly;
+    padding: 10px 0;
+}
+
+#edit,
+#delete {
+    display: grid;
+    place-content: center;
+    border-color: gray;
+    width: 30px;
+
+}
+
+#edit:hover,
+#delete:hover {
+    background: rgb(230, 230, 230);
+}
+
 #redBttn,
 #whiteBttn {
     background: red;

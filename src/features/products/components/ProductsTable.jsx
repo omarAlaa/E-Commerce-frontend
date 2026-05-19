@@ -12,9 +12,10 @@ import Button from '../../../shared/ui/Button/Button'
 import Select from '../../../shared/ui/Select/Select'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
+import { Pencil, Trash2 } from 'lucide-react'
 
 export default function ProductsTable() {
-    const { products, setProducts, filteredProducts, searchProducts, productsChange, changeProducts } = productsStore()
+    const { products, setProducts, filteredProducts, searchProducts, productsChange, changeProducts, resetSearchParams } = productsStore()
     const { categories } = categoriesStore()
     const { showSnackBar } = uiStore()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -25,6 +26,10 @@ export default function ProductsTable() {
     const [productToUpdate, setProductToUpdate] = useState()
     const prevPageRef = useRef(page)
     const headerRef = useRef()
+
+    useEffect(() => {
+        resetSearchParams()
+    }, [])
 
     useEffect(() => {
         if (prevPageRef.current !== page) {
@@ -117,9 +122,11 @@ export default function ProductsTable() {
                                             <td className={styles.entry}>{product.category}</td>
 
                                             <td>
-                                                <Button id={styles.whiteBttn} onClick={() => setProductToUpdate(product)}>Update</Button>
+                                                <div className={styles.bttnsGroup}>
+                                                    <Button id={styles.edit} onClick={() => setProductToUpdate(product)} title='Edit'> <Pencil color='blue' /> </Button>
 
-                                                <Button id={styles.redBttn} onClick={() => setProductToDelete(product)}>Delete</Button>
+                                                    <Button id={styles.delete} onClick={() => setProductToDelete(product)} title='Delete'> <Trash2 color='red' /> </Button>
+                                                </div>
                                             </td>
                                         </tr>)}
                                     </tbody>

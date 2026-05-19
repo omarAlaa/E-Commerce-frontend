@@ -10,6 +10,8 @@ export const ordersStore = create((set, get) => ({
     searchTerm: null,
     statusFilter: null,
 
+    resetSearchParams: () => { set({ searchTerm: null, statusFilter: null }) },
+
     setOrders: (orders) => {
         set({ orders, filteredOrders: orders })
 

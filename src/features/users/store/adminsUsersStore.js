@@ -15,6 +15,8 @@ export const adminsUsersStore = create((set, get) => ({
 
     adminsSearchTerm: null,
 
+    resetSearchParams: () => { set({ usersSearchTerm: null, adminsSearchTerm: null }) },
+
     isAdminsChanged: false,
     setIsAdminsChanged: () => { set({ isAdminsChanged: !get().isAdminsChanged }) },
 
