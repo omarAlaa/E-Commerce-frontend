@@ -16,7 +16,7 @@ export default function Register() {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [registerLoading, setRegisterLoading] = useState(false)
-    const registerDisabled = !email || !userName || !password || password.length < 8
+    const registerDisabled = !email || !userName || !password || password.length < 8 || registerLoading
     const { snackBar, showSnackBar } = uiStore()
     const { cart, setCart, setCartFetched } = cartStore()
     const { setUser } = authStore()

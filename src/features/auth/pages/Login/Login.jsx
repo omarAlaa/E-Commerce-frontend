@@ -15,7 +15,7 @@ export default function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [loginLoading, setLoginLoading] = useState(false)
-    const loginDisabled = !email || !password
+    const loginDisabled = !email || !password || loginLoading
     const { snackBar, showSnackBar } = uiStore()
     const { cart, setCart, setCartFetched } = cartStore()
     const { setUser } = authStore()
