@@ -11,42 +11,51 @@ import Button from "../../../shared/ui/Button/Button"
 import Select from "../../../shared/ui/Select/Select"
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
+import { useDebouncedCallback } from 'use-debounce'
 
 export default function AllOrdersTable() {
-    const { setOrders, orders, filteredOrders, setOrderToReview, searchOrders, resetSearchParams } = ordersStore()
+    const [orders, setOrders] = useState()
+    const [search, setSearch] = useState()
+    const [filteredStatus, setFilteredStatus] = useState()
+    const { setOrderToReview } = ordersStore()
     const { showSnackBar } = uiStore()
     const [orderIdToCancel, setOrderIdToCancel] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState()
-    const headers = ['ID', 'Status', 'Actions']
+    const headers = ['Customer', 'Email', 'Status', 'Actions']
     const statuses = ['paid', 'shipped', 'delivered', 'cancelled']
 
     useEffect(() => {
-        resetSearchParams()
-    }, [])
+        getAllOrders(search)
+    }, [page, filteredStatus])
 
-    useEffect(() => {
-        const getAllOrders = async () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+    const getAllOrders = async (search) => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
 
-            setFetchLoading(true)
+        setFetchLoading(true)
+        setSearch(search)
 
-            try {
-                const res = await fetchAllOrders(page)
-
-                setOrders(res.data.orders)
-                setTotalPages(res.data.totalPages)
-            } catch (error) {
-                const errorMessage = error?.response?.data?.message || 'Failed to fetch orders'
-                showSnackBar({ visible: true, success: false, text: errorMessage })
-            } finally {
-                setFetchLoading(false)
-            }
+        if (search || filteredStatus) {
+            setPage(1)
         }
 
-        getAllOrders()
-    }, [page])
+        try {
+            const res = await fetchAllOrders(search, filteredStatus, page)
+
+            setOrders(res.data.orders)
+            setTotalPages(res.data.totalPages)
+        } catch (error) {
+            const errorMessage = error?.response?.data?.message || 'Failed to fetch orders'
+            showSnackBar({ visible: true, success: false, text: errorMessage })
+        } finally {
+            setFetchLoading(false)
+        }
+    }
+
+    const handleSearch = useDebouncedCallback((search) => {
+        getAllOrders(search)
+    }, 600)
 
     const handleCancelOrder = async (orderId) => {
         try {
@@ -66,12 +75,12 @@ export default function AllOrdersTable() {
         <>
             <div className={styles.header}>
                 <div className={styles.searchSection}>
-                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchOrders(e.target.value)} />
+                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => handleSearch(e.target.value)} />
 
-                    <Select name="status" id="search-status" defaultValue={''} onChange={e => searchOrders(e.target.value, 'status')} >
+                    <Select name="status" id="search-status" defaultValue={''} onChange={e => setFilteredStatus(e.target.value)} >
                         <option value="" disabled >Filter status</option>
 
-                        <option value="All orders" >All orders</option>
+                        <option value="" >All orders</option>
 
                         {statuses?.map(status => <option key={status} value={status}>{status}</option>)}
                     </Select>
@@ -81,10 +90,10 @@ export default function AllOrdersTable() {
             {fetchLoading ?
                 <Loading />
                 :
-                !filteredOrders ?
+                !orders ?
                     <NoItemsSection message={"Error occured, please try again later"} />
                     :
-                    filteredOrders.length === 0 ?
+                    orders.length === 0 ?
                         <NoItemsSection message={"No orders found"} />
                         :
                         <section className={styles.container}>
@@ -96,8 +105,10 @@ export default function AllOrdersTable() {
                                 </thead>
 
                                 <tbody>
-                                    {filteredOrders.map((order) => <tr key={order._id}>
-                                        <td className={styles.longData}>{order._id}</td>
+                                    {orders.map((order) => <tr key={order._id}>
+                                        <td className={styles.longData}>{order.user.userName}</td>
+
+                                        <td className={styles.longData}>{order.user.email}</td>
 
                                         <td className={styles.entry}>{order.status}</td>
 

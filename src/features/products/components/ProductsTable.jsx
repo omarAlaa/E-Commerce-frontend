@@ -1,7 +1,6 @@
 import styles from '../../../shared/components/Table/Table.module.css'
 import Loading from "../../../shared/ui/Loading/Loading"
 import { useEffect, useRef, useState } from "react"
-import { productsStore } from '../store/productsStore'
 import UpdateProductDialog from "./Update ProductDialog/UpdateProductDialog"
 import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchProducts, deleteProduct } from "../api/productsAPI"
@@ -13,9 +12,12 @@ import Select from '../../../shared/ui/Select/Select'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 import { Pencil, Trash2 } from 'lucide-react'
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function ProductsTable() {
-    const { products, setProducts, filteredProducts, searchProducts, productsChange, changeProducts, resetSearchParams } = productsStore()
+    const [products, setProducts] = useState()
+    const [search, setSearch] = useState()
+    const [filteredCategory, setFilteredCategory] = useState()
     const { categories } = categoriesStore()
     const { showSnackBar } = uiStore()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -26,10 +28,6 @@ export default function ProductsTable() {
     const [productToUpdate, setProductToUpdate] = useState()
     const prevPageRef = useRef(page)
     const headerRef = useRef()
-
-    useEffect(() => {
-        resetSearchParams()
-    }, [])
 
     useEffect(() => {
         if (prevPageRef.current !== page) {
@@ -44,24 +42,33 @@ export default function ProductsTable() {
     }, [page])
 
     useEffect(() => {
-        const getData = async () => {
-            setFetchLoading(true)
+        getProducts(search)
+    }, [page, filteredCategory])
 
-            try {
-                const res = await fetchProducts(page)
+    const getProducts = async (search) => {
+        setFetchLoading(true)
+        setSearch(search)
 
-                setProducts(res.data.products.map(product => ({ ...product, price: new Intl.NumberFormat().format(product.price) })))
-                setTotalPages(res.data.totalPages)
-            } catch (error) {
-                const errorMessage = error?.response?.data?.message || 'Failed to fetch products'
-                showSnackBar({ visible: true, success: false, text: errorMessage })
-            } finally {
-                setFetchLoading(false)
-            }
+        if (search || filteredCategory) {
+            setPage(1)
         }
 
-        getData()
-    }, [page, productsChange])
+        try {
+            const res = await fetchProducts(search, filteredCategory, page)
+
+            setProducts(res.data.products.map(product => ({ ...product, price: new Intl.NumberFormat().format(product.price) })))
+            setTotalPages(res.data.totalPages)
+        } catch (error) {
+            const errorMessage = error?.response?.data?.message || 'Failed to fetch products'
+            showSnackBar({ visible: true, success: false, text: errorMessage })
+        } finally {
+            setFetchLoading(false)
+        }
+    }
+
+    const handleSearch = useDebouncedCallback((search) => {
+        getProducts(search)
+    }, 600)
 
     const handleDeleteProduct = async (productId) => {
         try {
@@ -83,12 +90,12 @@ export default function ProductsTable() {
                 <strong className={styles.productsHeader}>Products</strong>
 
                 <div className={styles.searchSection}>
-                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => searchProducts(e.target.value)} />
+                    <Input type="text" name="search" id="search" placeholder="Search" onChange={e => handleSearch(e.target.value)} />
 
-                    <Select name="category" id="search-category" defaultValue={''} onChange={e => searchProducts(e.target.value, 'categories')} >
+                    <Select name="category" id="search-category" defaultValue={''} onChange={e => setFilteredCategory(e.target.value)} >
                         <option value="" disabled >Filter category</option>
 
-                        <option value="All Products" >All Products</option>
+                        <option value="" >All Products</option>
 
                         {categories?.map(category => <option key={category._id} value={category.name}>{category.name}</option>)}
                     </Select>
@@ -99,10 +106,10 @@ export default function ProductsTable() {
                 fetchLoading ?
                     <Loading />
                     :
-                    !filteredProducts ?
+                    !products ?
                         <NoItemsSection message={'Error occured, please try again later'} />
                         :
-                        filteredProducts.length === 0 ?
+                        products.length === 0 ?
                             <NoItemsSection message={"No products found"} />
                             :
                             <section className={styles.container}>
@@ -114,7 +121,7 @@ export default function ProductsTable() {
                                     </thead>
 
                                     <tbody>
-                                        {filteredProducts.map(product => <tr key={product._id}>
+                                        {products.map(product => <tr key={product._id}>
                                             <td>{product.title}</td>
 
                                             <td className={styles.entry}>{product.price}</td>

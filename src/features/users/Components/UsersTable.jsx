@@ -9,9 +9,12 @@ import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
+import { useDebouncedCallback } from 'use-debounce'
 
 export default function UsersTable() {
-    const { setUsers, setAdmins, users, admins, headers, filteredUsers, searchUsers, setIsAdminsChanged } = adminsUsersStore()
+    const [users, setUsers] = useState()
+    const [search, setSearch] = useState()
+    const { headers } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [actionUser, setActionUser] = useState()
     const [action, setAction] = useState()
@@ -21,23 +24,32 @@ export default function UsersTable() {
     const [isUsersChanged, setIsUsersChanged] = useState(false)
 
     useEffect(() => {
-        const getUsers = async () => {
-            setFetchLoading(true)
+        getUsers(search)
+    }, [page])
 
-            try {
-                const res = await fetchUsers(page)
-                setUsers(res.data.users)
-                setTotalPages(res.data.totalPages)
-            } catch (error) {
-                const errorMessage = error?.response?.data?.message || 'Failed to fetch users'
-                showSnackBar({ visible: true, success: false, text: errorMessage })
-            } finally {
-                setFetchLoading(false)
-            }
+    const getUsers = async (search) => {
+        setFetchLoading(true)
+        setSearch(search)
+
+        if (search) {
+            setPage(1)
         }
 
-        getUsers()
-    }, [page, isUsersChanged])
+        try {
+            const res = await fetchUsers(search, page)
+            setUsers(res.data.users)
+            setTotalPages(res.data.totalPages)
+        } catch (error) {
+            const errorMessage = error?.response?.data?.message || 'Failed to fetch users'
+            showSnackBar({ visible: true, success: false, text: errorMessage })
+        } finally {
+            setFetchLoading(false)
+        }
+    }
+
+    const handleSearch = useDebouncedCallback((search) => {
+        getUsers(search)
+    }, 600)
 
     const handleMakeAdmin = async (userId) => {
         try {
@@ -73,17 +85,17 @@ export default function UsersTable() {
                 <strong>Users</strong>
 
                 <div className={styles.searchSection}>
-                    <Input type="text" name="usersSearch" id="usersSearch" placeholder="Search" onChange={e => searchUsers(e.target.value)} />
+                    <Input type="text" name="usersSearch" id="usersSearch" placeholder="Search" onChange={e => handleSearch(e.target.value)} />
                 </div>
             </div>
 
             {fetchLoading ?
                 <Loading />
                 :
-                !filteredUsers ?
+                !users ?
                     <NoItemsSection message={"Error occured, please try again later"} />
                     :
-                    filteredUsers.length === 0 ?
+                    users.length === 0 ?
                         <NoItemsSection message={"No users found"} />
                         :
                         <section className={styles.container}>
@@ -93,7 +105,7 @@ export default function UsersTable() {
                                 </thead>
 
                                 <tbody>
-                                    {filteredUsers.map(user => <tr key={user._id}>
+                                    {users.map(user => <tr key={user._id}>
                                         <td>{user.email}</td>
 
                                         <td>{user.userName}</td>

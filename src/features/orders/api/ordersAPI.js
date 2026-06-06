@@ -1,7 +1,13 @@
 import api from "../../../app/config/axios"
 
-export const fetchAllOrders = (page) => {
-    return api.get(`/api/orders/${page}`)
+export const fetchAllOrders = (search, status, page) => {
+    return api.get(`/api/orders`, {
+        params: {
+            search,
+            status,
+            page,
+        },
+    })
 }
 
 export const fetchUserOrders = (page) => {

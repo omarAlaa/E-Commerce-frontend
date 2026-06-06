@@ -9,9 +9,12 @@ import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
+import { useDebouncedCallback } from 'use-debounce'
 
 export default function AdminsTable() {
-    const { setAdmins, admins, headers, filteredAdmins, searchAdmins, isAdminsChanged, setIsAdminsChanged, resetSearchParams } = adminsUsersStore()
+    const [admins, setAdmins] = useState()
+    const [search, setSearch] = useState()
+    const { headers } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [adminToRemove, setAdminToRemove] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -19,27 +22,32 @@ export default function AdminsTable() {
     const [totalPages, setTotalPages] = useState()
 
     useEffect(() => {
-        resetSearchParams()
-    }, [])
+        getAdmins(search)
+    }, [page])
 
-    useEffect(() => {
+    const getAdmins = async (search) => {
         setFetchLoading(true)
+        setSearch(search)
 
-        const getAdmins = async () => {
-            try {
-                const res = await fetchAdmins(page)
-                setAdmins(res.data.admins)
-                setTotalPages(res.data.totalPages)
-            } catch (error) {
-                const errorMessage = error?.response?.data?.message || 'Failed to fetch admins'
-                showSnackBar({ visible: true, success: false, text: errorMessage })
-            } finally {
-                setFetchLoading(false)
-            }
+        if (search) {
+            setPage(1)
         }
 
-        getAdmins()
-    }, [page, isAdminsChanged])
+        try {
+            const res = await fetchAdmins(search, page)
+            setAdmins(res.data.admins)
+            setTotalPages(res.data.totalPages)
+        } catch (error) {
+            const errorMessage = error?.response?.data?.message || 'Failed to fetch admins'
+            showSnackBar({ visible: true, success: false, text: errorMessage })
+        } finally {
+            setFetchLoading(false)
+        }
+    }
+
+    const handleSearch = useDebouncedCallback((search) => {
+        getAdmins(search)
+    }, 600)
 
     const handleRemoveAdmin = async (adminId) => {
         try {
@@ -59,17 +67,17 @@ export default function AdminsTable() {
                 <strong>Admins</strong>
 
                 <div className={styles.searchSection}>
-                    <Input type="text" name="adminsSearch" id="adminsSearch" placeholder="Search" onChange={e => searchAdmins(e.target.value)} />
+                    <Input type="text" name="adminsSearch" id="adminsSearch" placeholder="Search" onChange={e => handleSearch(e.target.value)} />
                 </div>
             </div>
 
             {fetchLoading ?
                 <Loading />
                 :
-                !filteredAdmins ?
+                !admins ?
                     <NoItemsSection message={"Error occured, please try again later"} />
                     :
-                    filteredAdmins.length === 0 ?
+                    admins.length === 0 ?
                         <NoItemsSection message={"No admins found"} />
                         :
                         <section className={styles.container}>
@@ -79,7 +87,7 @@ export default function AdminsTable() {
                                 </thead>
 
                                 <tbody>
-                                    {filteredAdmins.map(admin => <tr key={admin._id}>
+                                    {admins.map(admin => <tr key={admin._id}>
                                         <td className={styles.longData}>{admin.email}</td>
 
                                         <td>{admin.userName}</td>
