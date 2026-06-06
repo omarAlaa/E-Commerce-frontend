@@ -48,19 +48,19 @@ export default function UserPanel(props) {
                                 <Link to='/manageProducts' className={props.page === 'products' ? styles.selectedSetting : styles.setting}>
                                     <PackageCheck color='green' />
 
-                                    <h4>Manage Products</h4>
+                                    <h4>Products</h4>
                                 </Link>
 
                                 <Link to='/manageOrders' className={props.page === 'orders' ? styles.selectedSetting : styles.setting}>
                                     <ClipboardCheck color='limegreen' />
 
-                                    <h4>Manage Orders</h4>
+                                    <h4>Orders</h4>
                                 </Link>
 
                                 <Link to='/manageAdminsUsers' className={props.page === 'admins-users' ? styles.selectedSetting : styles.setting}>
                                     <Users color='blue' />
 
-                                    <h4>Manage Admins/Users</h4>
+                                    <h4>Admins/Users</h4>
                                 </Link>
 
                                 <Link to='/manageAccount' className={props.page === 'account' ? styles.selectedSetting : styles.setting}>
