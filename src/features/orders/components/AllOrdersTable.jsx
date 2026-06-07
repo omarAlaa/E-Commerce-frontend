@@ -1,5 +1,4 @@
 import styles from '../../../shared/components/Table/Table.module.css'
-import { ordersStore } from "../store/ordersStore"
 import { useState, useEffect } from "react"
 import UpdateOrderDialog from "./UpdateOrderDialog/UpdateOrderDialog"
 import Loading from "../../../shared/ui/Loading/Loading"
@@ -16,8 +15,9 @@ import { useDebouncedCallback } from 'use-debounce'
 export default function AllOrdersTable() {
     const [orders, setOrders] = useState()
     const [search, setSearch] = useState()
+    const [ordersModified, setOrdersModified] = useState(false)
+    const [orderToReview, setOrderToReview] = useState()
     const [filteredStatus, setFilteredStatus] = useState()
-    const { setOrderToReview } = ordersStore()
     const { showSnackBar } = uiStore()
     const [orderIdToCancel, setOrderIdToCancel] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -28,7 +28,7 @@ export default function AllOrdersTable() {
 
     useEffect(() => {
         getAllOrders(search)
-    }, [page, filteredStatus])
+    }, [page, filteredStatus, ordersModified])
 
     const getAllOrders = async (search) => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -59,10 +59,9 @@ export default function AllOrdersTable() {
 
     const handleCancelOrder = async (orderId) => {
         try {
-            const res = await updateOrder(orderId, 'cancelled')
+            await updateOrder(orderId, 'cancelled')
 
-            const updatedOrders = orders.map(order => order._id === orderId ? res.data : order)
-            setOrders(updatedOrders, true)
+            setOrdersModified(!ordersModified)
 
             showSnackBar({ visible: true, success: true, text: 'Order cancelled' })
         } catch (error) {
@@ -130,7 +129,10 @@ export default function AllOrdersTable() {
 
             <Pages page={page} totalPages={totalPages} changePage={(page) => setPage(page)} id={styles.pages} />
 
-            <UpdateOrderDialog />
+            <UpdateOrderDialog
+                setOrdersModified={() => setOrdersModified(!ordersModified)}
+                orderToReview={orderToReview}
+                setOrderToReview={setOrderToReview} />
 
             {orderIdToCancel && <ConfirmModal
                 close={() => setOrderIdToCancel()}

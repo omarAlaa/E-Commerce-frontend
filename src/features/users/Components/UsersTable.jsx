@@ -14,7 +14,7 @@ import { useDebouncedCallback } from 'use-debounce'
 export default function UsersTable() {
     const [users, setUsers] = useState()
     const [search, setSearch] = useState()
-    const { headers } = adminsUsersStore()
+    const { headers, setIsAdminsChanged } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [actionUser, setActionUser] = useState()
     const [action, setAction] = useState()
@@ -25,7 +25,7 @@ export default function UsersTable() {
 
     useEffect(() => {
         getUsers(search)
-    }, [page])
+    }, [page, isUsersChanged])
 
     const getUsers = async (search) => {
         setFetchLoading(true)
@@ -53,7 +53,7 @@ export default function UsersTable() {
 
     const handleMakeAdmin = async (userId) => {
         try {
-            const res = await makeAdmin(userId)
+            await makeAdmin(userId)
 
             setIsAdminsChanged()
 

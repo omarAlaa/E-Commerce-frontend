@@ -14,7 +14,7 @@ import { useDebouncedCallback } from 'use-debounce'
 export default function AdminsTable() {
     const [admins, setAdmins] = useState()
     const [search, setSearch] = useState()
-    const { headers } = adminsUsersStore()
+    const { headers, isAdminsChanged, setIsAdminsChanged } = adminsUsersStore()
     const { showSnackBar } = uiStore()
     const [adminToRemove, setAdminToRemove] = useState()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -23,7 +23,7 @@ export default function AdminsTable() {
 
     useEffect(() => {
         getAdmins(search)
-    }, [page])
+    }, [page, isAdminsChanged])
 
     const getAdmins = async (search) => {
         setFetchLoading(true)

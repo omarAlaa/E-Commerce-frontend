@@ -6,6 +6,7 @@ import ConfirmModal from "../../../shared/ui/ConfirmModal/ConfirmModal"
 import { fetchProducts, deleteProduct } from "../api/productsAPI"
 import { uiStore } from "../../../app/store/uiStore"
 import { categoriesStore } from "../../categories/store/categoriesStore"
+import { productsStore } from '../store/productsStore'
 import Input from '../../../shared/ui/Input/Input'
 import Button from '../../../shared/ui/Button/Button'
 import Select from '../../../shared/ui/Select/Select'
@@ -18,6 +19,7 @@ export default function ProductsTable() {
     const [products, setProducts] = useState()
     const [search, setSearch] = useState()
     const [filteredCategory, setFilteredCategory] = useState()
+    const { modifyProducts, productsModified } = productsStore()
     const { categories } = categoriesStore()
     const { showSnackBar } = uiStore()
     const [fetchLoading, setFetchLoading] = useState(true)
@@ -43,7 +45,7 @@ export default function ProductsTable() {
 
     useEffect(() => {
         getProducts(search)
-    }, [page, filteredCategory])
+    }, [page, filteredCategory, productsModified])
 
     const getProducts = async (search) => {
         setFetchLoading(true)
@@ -74,8 +76,7 @@ export default function ProductsTable() {
         try {
             await deleteProduct(productId)
 
-            setProducts(products.filter(product => product._id !== productId))
-            changeProducts()
+            modifyProducts()
 
             showSnackBar({ visible: true, success: true, text: 'Product Deleted' })
         } catch (error) {

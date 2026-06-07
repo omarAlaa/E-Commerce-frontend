@@ -1,15 +1,13 @@
 import styles from './UpdateOrderDialog.module.css'
 import Loading from '../../../../shared/ui/Loading/Loading'
 import { useState } from 'react'
-import { ordersStore } from "../../store/ordersStore"
 import { updateOrder } from '../../api/ordersAPI'
 import { uiStore } from '../../../../app/store/uiStore'
 import Button from '../../../../shared/ui/Button/Button'
 import Modal from '../../../../shared/ui/Modal/Modal'
 import Select from '../../../../shared/ui/Select/Select'
 
-export default function UpdateOrderDialog() {
-    const { setOrders, orders, orderToReview, setOrderToReview } = ordersStore()
+export default function UpdateOrderDialog({ setOrdersModified, orderToReview, setOrderToReview }) {
     const { showSnackBar } = uiStore()
     const [updateLoading, setUpdateLoading] = useState(false)
     const [status, setStatus] = useState()
@@ -22,13 +20,11 @@ export default function UpdateOrderDialog() {
         try {
             const res = await updateOrder(orderId, status)
 
-
-            const updatedOrders = orders.map(order => order._id === orderId ? res.data : order)
-            setOrders(updatedOrders)
-
             if (status !== 'cancelled') {
                 setOrderToReview(res.data)
             }
+
+            setOrdersModified()
 
             showSnackBar({ visible: true, success: true, text: `Order ${status}` })
         } catch (error) {

@@ -6,16 +6,15 @@ import CategoriesModal from "../CategoriesModal/CategoriesModal"
 import { addProduct } from "../../api/productsAPI"
 import { uiStore } from "../../../../app/store/uiStore"
 import { categoriesStore } from "../../../categories/store/categoriesStore"
-import { productsStore } from "../../store/productsStore"
+import { productsStore } from '../../store/productsStore'
 import Input from '../../../../shared/ui/Input/Input'
 import Button from '../../../../shared/ui/Button/Button'
 import Select from '../../../../shared/ui/Select/Select'
 import Textarea from '../../../../shared/ui/Textarea/Textarea'
 
 export default function AddProductForm() {
-
+    const { modifyProducts } = productsStore()
     const { setShowCatModal, categories } = categoriesStore()
-    const { productsChange, changeProducts } = productsStore()
     const { showSnackBar } = uiStore()
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
@@ -32,7 +31,7 @@ export default function AddProductForm() {
 
         try {
             const res = await addProduct({ title, price, description, category, image })
-            changeProducts()
+            modifyProducts()
 
             showSnackBar({ visible: true, success: true, text: 'Product Added' })
 

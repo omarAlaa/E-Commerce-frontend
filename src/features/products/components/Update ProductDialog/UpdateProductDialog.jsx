@@ -13,7 +13,7 @@ import Textarea from '../../../../shared/ui/Textarea/Textarea'
 import Label from '../../../../shared/ui/Label/Label'
 
 export default function UpdateProductDialog({ product, setProduct }) {
-    const { products, setProducts } = productsStore()
+    const { modifyProducts } = productsStore()
     const { showSnackBar } = uiStore()
     const [updateProductLoading, setUpdateProductLoading] = useState(false)
     const [price, setPrice] = useState(String(product.price).replace(/,/g, ""))
@@ -32,7 +32,7 @@ export default function UpdateProductDialog({ product, setProduct }) {
             const res = await updateProduct(product._id, { updatedProduct: { ...product, price: Number(price), category: category, image: imageUrl, description: description } })
 
             setProduct(res.data)
-            setProducts(products.map(product => product._id === res.data._id ? res.data : product))
+            modifyProducts()
 
             showSnackBar({ visible: true, success: true, text: 'Product updated' })
         } catch (error) {

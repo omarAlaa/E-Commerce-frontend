@@ -5,6 +5,7 @@ import AddProductForm from '../../components/AddProductForm/AddProductForm'
 import ProductsTable from '../../components/ProductsTable'
 import SnackBar from '../../../../shared/ui/SnackBar/SnackBar'
 import { uiStore } from '../../../../app/store/uiStore'
+import { useState } from 'react'
 
 export default function ManageProducts() {
     const { snackBar } = uiStore()
