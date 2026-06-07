@@ -16,8 +16,6 @@ export default function ManageAdminsUsers() {
             <main className={styles.main}>
                 <UserPanel page='admins-users' />
 
-                <hr className={styles.divider} />
-
                 <section className={styles.body}>
                     <header className={styles.header}>
                         <h2>Admins/Users</h2>

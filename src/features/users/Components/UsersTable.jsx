@@ -10,6 +10,7 @@ import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 import { useDebouncedCallback } from 'use-debounce'
+import { Trash2, ShieldUser } from 'lucide-react'
 
 export default function UsersTable() {
     const [users, setUsers] = useState()
@@ -111,16 +112,23 @@ export default function UsersTable() {
                                         <td>{user.userName}</td>
 
                                         <td>
-                                            <Button onClick={() => {
-                                                setActionUser(user)
-                                                setAction('Make admin: ')
-                                            }} id={styles.whiteBttn}>Make Admin</Button>
-
-                                            <Button id={styles.redBttn}
-                                                onClick={() => {
+                                            <div className={styles.bttnsGroup}>
+                                                <Button onClick={() => {
                                                     setActionUser(user)
-                                                    setAction('Remove user: ')
-                                                }} >Remove</Button>
+                                                    setAction('Make admin: ')
+                                                }}
+                                                    id={styles.edit}
+                                                    title='Make admin'> <ShieldUser color='blue' /> </Button>
+
+                                                <Button id={styles.delete}
+                                                    onClick={() => {
+                                                        setActionUser(user)
+                                                        setAction('Remove user: ')
+                                                    }}
+                                                    title='Remove user' >
+                                                    <Trash2 color='red' />
+                                                </Button>
+                                            </div>
                                         </td>
                                     </tr>)}
                                 </tbody>

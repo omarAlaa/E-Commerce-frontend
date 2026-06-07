@@ -10,6 +10,7 @@ import Button from '../../../shared/ui/Button/Button'
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 import { useDebouncedCallback } from 'use-debounce'
+import { Trash2 } from 'lucide-react'
 
 export default function AdminsTable() {
     const [admins, setAdmins] = useState()
@@ -92,7 +93,11 @@ export default function AdminsTable() {
 
                                         <td>{admin.userName}</td>
 
-                                        <td><Button id={styles.redBttn} onClick={() => { setAdminToRemove(admin) }}>Remove</Button></td>
+                                        <td>
+                                            <div className={styles.bttnsGroup}>
+                                                <Button id={styles.delete} onClick={() => { setAdminToRemove(admin) }} title='Remove admin'> <Trash2 color='red' /> </Button>
+                                            </div>
+                                        </td>
                                     </tr>)}
                                 </tbody>
                             </table>

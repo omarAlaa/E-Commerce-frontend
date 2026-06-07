@@ -111,64 +111,64 @@ export default function AppBar() {
                 }
             </div>
 
-            <div className={styles.cart_options}>
-                {
-                    user?.role !== 'admin' &&
-                    <div className={styles.icon} onClick={() => setCartState('open')} >
-                        <div title='Cart'>
-                            <ShoppingCart color='black' />
-                            {cart?.length > 0 && <div className={styles.itemsCount}>{cart.length}</div>}
-                        </div>
-                    </div>
-                }
-
-                {
-                    cartState !== 'hide' &&
-                    <div className={cartState === 'open' ? modalStyles.modal : styles.closeCart}
-                        onAnimationEnd={hideModal}
-                        onClick={() => setCartState('close')}>
-                        <div className={cartState === 'open' ? styles.openCart : undefined} onClick={e => e.stopPropagation()}>
-                            <Cart />
-                        </div>
-                    </div>
-                }
-
-                <>
-                    <div title='Options'>
-                        <CircleUser className={styles.icon} color='black' size={28} onClick={() => setOptionstate('open')} />
-                    </div>
-
+            {user?.role !== 'admin' &&
+                <div className={styles.cart_options}>
                     {
-                        optionsState !== 'hide' &&
-                        <div className={optionsState === 'open' ? modalStyles.modal : styles.closeOptions}
-                            onAnimationEnd={hideModal}
-                            onClick={() => setOptionstate('close')}>
-                            <ul className={optionsState === 'open' ? styles.openOptions : undefined}>
-                                {
-                                    !user ?
-                                        <>
-                                            <Link className={styles.link} to='/login'>
-                                                <li className={styles.option}><LogIn /> Login</li>
-                                            </Link>
-
-                                            <Link className={styles.link} to='/register'>
-                                                <li className={styles.option}><CircleUser /> Sign Up</li>
-                                            </Link>
-                                        </>
-                                        :
-                                        <>
-                                            <Link className={styles.link} to={user.role === 'user' ? '/manageAccount' : '/manageProducts'}>
-                                                <li className={styles.option}><CircleUser />{user.role === 'user' ? 'Profile' : 'Panel'}</li>
-                                            </Link>
-
-                                            <li className={styles.option} onClick={handleLogout}><LogOut />Logout</li>
-                                        </>
-                                }
-                            </ul>
+                        <div className={styles.icon} onClick={() => setCartState('open')} >
+                            <div title='Cart'>
+                                <ShoppingCart color='black' />
+                                {cart?.length > 0 && <div className={styles.itemsCount}>{cart.length}</div>}
+                            </div>
                         </div>
                     }
-                </>
-            </div>
+
+                    {
+                        cartState !== 'hide' &&
+                        <div className={cartState === 'open' ? modalStyles.modal : styles.closeCart}
+                            onAnimationEnd={hideModal}
+                            onClick={() => setCartState('close')}>
+                            <div className={cartState === 'open' ? styles.openCart : undefined} onClick={e => e.stopPropagation()}>
+                                <Cart />
+                            </div>
+                        </div>
+                    }
+
+                    <>
+                        <div title='Options'>
+                            <CircleUser className={styles.icon} color='black' size={28} onClick={() => setOptionstate('open')} />
+                        </div>
+
+                        {
+                            optionsState !== 'hide' &&
+                            <div className={optionsState === 'open' ? modalStyles.modal : styles.closeOptions}
+                                onAnimationEnd={hideModal}
+                                onClick={() => setOptionstate('close')}>
+                                <ul className={optionsState === 'open' ? styles.openOptions : undefined}>
+                                    {
+                                        !user ?
+                                            <>
+                                                <Link className={styles.link} to='/login'>
+                                                    <li className={styles.option}><LogIn /> Login</li>
+                                                </Link>
+
+                                                <Link className={styles.link} to='/register'>
+                                                    <li className={styles.option}><CircleUser /> Sign Up</li>
+                                                </Link>
+                                            </>
+                                            :
+                                            <>
+                                                <Link className={styles.link} to='/manageAccount'>
+                                                    <li className={styles.option}><CircleUser />Profile</li>
+                                                </Link>
+
+                                                <li className={styles.option} onClick={handleLogout}><LogOut />Logout</li>
+                                            </>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </>
+                </div>}
         </header>
     )
 }

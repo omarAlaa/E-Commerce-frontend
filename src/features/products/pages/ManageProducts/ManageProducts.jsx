@@ -17,8 +17,6 @@ export default function ManageProducts() {
             <main className={styles.main}>
                 <UserPanel page={'products'} />
 
-                <hr className={styles.divider} />
-
                 <div className={styles.body}>
                     <header className={styles.header}>
                         <h2>Products</h2>

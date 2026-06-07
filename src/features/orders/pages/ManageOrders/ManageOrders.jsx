@@ -15,8 +15,6 @@ export default function ManageOrders() {
             <main className={styles.main}>
                 <UserPanel page={'orders'} />
 
-                <hr className={styles.divider} />
-
                 <section className={styles.body}>
                     <header className={styles.header}>
                         <h2>Orders</h2>

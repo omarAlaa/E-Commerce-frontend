@@ -11,6 +11,7 @@ import Select from "../../../shared/ui/Select/Select"
 import NoItemsSection from '../../../shared/ui/NoItemsSection/NoItemsSection'
 import Pages from '../../../shared/ui/Pages/Pages'
 import { useDebouncedCallback } from 'use-debounce'
+import { Pencil, Ban } from 'lucide-react'
 
 export default function AllOrdersTable() {
     const [orders, setOrders] = useState()
@@ -112,13 +113,16 @@ export default function AllOrdersTable() {
                                         <td className={styles.entry}>{order.status}</td>
 
                                         <td>
-                                            <Button id={styles.whiteBttn} onClick={() => setOrderToReview(order)}>Review</Button>
+                                            <div className={styles.bttnsGroup}>
+                                                <Button id={styles.edit} onClick={() => setOrderToReview(order)} title='Review'> <Pencil color='blue' /> </Button>
 
-                                            <Button id={order.status !== 'cancelled' ? styles.redBttn : styles.disabled}
-                                                onClick={() => setOrderIdToCancel(order._id)}
-                                                disabled={order.status === 'cancelled'}>
-                                                Cancel
-                                            </Button>
+                                                <Button id={order.status !== 'cancelled' ? styles.delete : styles.disabled}
+                                                    onClick={() => setOrderIdToCancel(order._id)}
+                                                    disabled={order.status === 'cancelled'}
+                                                    title='Cancel'>
+                                                    <Ban color='red' />
+                                                </Button>
+                                            </div>
                                         </td>
 
                                     </tr>)}
